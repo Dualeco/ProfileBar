@@ -1,0 +1,33 @@
+<resources>
+
+    <!--Login-->
+    <string name="app_name">ProfileBar</string>
+    <string name="login_email_field_default">Email...</string>
+    <string name="login_password_field_default">Password...</string>
+    <string name="login_confirm_password_field_default">Confirm password...</string>
+    <string name="login_forgot_password"><u>Forgot password?</u></string>
+    <string name="login_sign_up">Sign up</string>
+    <string name="login_sign_in">Sign in</string>
+    <string name="login_or_instead">or instead:</string>
+    <string name="login_read_now">Read now</string>
+
+    <!--Login database errors-->
+    <string name="message_db_invalid_email_or_pwd">"Invalid email or password"</string>
+    <string name="message_db_weak_pwd">"Password should be at least 6 characters long"</string>
+    <string name="message_db_email_already_in_use">"This email address is already in use"</string>
+    <string name="message_db_user_does_not_exist">"User with such email does not exist"</string>
+
+    <!--Forgot password-->
+    <string name="message_forgot_password_error">Error sending the instructions by email</string>
+    <string name="message_forgot_password_success">Instructions have been sent to your email address. Please, check your inbox to reset the password</string>
+    <string name="message_forgot_password_no_email">To reset your password, please specify the email</string>
+
+    <!--Login input errors-->
+    <string name="message_auth_fields_empty">Email and password fields must not be empty</string>
+    <string name="message_auth_confirm_password">Please, confirm your password</string>
+    <string name="message_auth_passwords_do_not_match">Entered passwords do not match</string>
+
+    <string name="change_profile_photo">Photo</string>
+    <string name="change_profile_wallpaper">Wallpaper</string>
+
+</resources>

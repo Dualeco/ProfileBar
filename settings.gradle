@@ -1,0 +1,2 @@
+include ':app', ':profilebar', ':profilebarBinding'
+rootProject.name='ProfileBar'

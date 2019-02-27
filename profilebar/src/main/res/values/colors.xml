@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#E6000000</color>
+    <color name="colorAccent">#DA0606</color>
+    <color name="colorTextHintRed">#80950000</color>
+    <color name="colorTextRed">#CC950000</color>
+    <color name="colorTextBlack">#141414</color>
+    <color name="colorTransparent">#00000001</color>
+    <color name="colorPrimaryTranslucent">#CCFFFFFF</color>
+    <color name="colorPrimaryUnselected">#99FFFFFF</color>
+
+    <color name="colorGrey">#8C8C8C</color>
+    <color name="colorPrimaryRed">#DF3838</color>
+
+    <color name="toolbarColor">#4D000000</color>
+
+    <color name="dimColor">#CB000000</color>
+
+    <color name="textColorPrimary">#FFFFFF</color>
+
+
+    <color name="buttonColorRed">#DA0606</color>
+
+    <color name="rippleColor">#4DFFFFFF</color>
+    <color name="rippleDarkColor">#14000000</color>
+
+    <color name="glowColor">#B3FFFFFF</color>
+
+    <color name="shadowMiddle">#B3000000</color>
+    <color name="shadowColor">#CC000000</color>
+    <color name="liningColor">#66000000</color>
+    <!--Common-->
+    <string name="common_ok">OK</string>
+    <string name="common_none">None</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
+    <string name="common_loading">Loading</string>
+
+</resources>

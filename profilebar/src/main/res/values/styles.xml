@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Login.EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColorHint">@color/colorTextHintRed</item>
+        <item name="android:textColor">@color/colorTextRed</item>
+    </style>
+
+    <style name="Login.EditTextStyle.Transparent" parent="Login.EditTextStyle">
+        <item name="android:background">@color/colorTransparent</item>
+    </style>
+
+    <style name="Comic_EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/comic_item_pages_background</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:alpha">0.9</item>
+    </style>
+
+    <style name="AppTheme.Translucent">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>

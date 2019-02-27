@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="logic"
+                type="com.dichotome.collapsingbar.ui.databinding.ProfileLogic"/>
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.dichotome.profilebar.util.view.profileBar.ProfileBar
+                android:id="@+id/profileBar"
+                android:layout_width="match_parent"
+                app:photo="@{logic.photo}"
+                app:wallpaper="@{logic.wallpaper}"
+                app:title="@{logic.title}"
+                app:subtitle="@{logic.subtitle}"
+                app:onChangedPhoto="@{logic::onChangedPhoto}"
+                app:onChangedWallpaper="@{logic.onChangedWallpaper}"
+                android:layout_height="0dp"/>
+
+        <com.dichotome.profilebar.ui.TabPager
+                android:id="@+id/profilePager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:fragments="@{logic.pagerFragments}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
