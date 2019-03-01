@@ -10,6 +10,7 @@
     <color name="colorPrimaryTranslucent">#CCFFFFFF</color>
     <color name="colorPrimaryUnselected">#99FFFFFF</color>
 
+    <color name="colorBlack">#000000</color>
     <color name="colorGrey">#8C8C8C</color>
     <color name="colorPrimaryRed">#DF3838</color>
 

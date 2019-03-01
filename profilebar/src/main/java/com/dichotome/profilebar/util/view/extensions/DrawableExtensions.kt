@@ -3,7 +3,6 @@ package com.dichotome.profilebar.util.view.extensions
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 
-
 fun Drawable.setColor(color: Int): Drawable {
     var canBeColored = false
     var drawable: GradientDrawable? = null

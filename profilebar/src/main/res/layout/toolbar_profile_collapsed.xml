@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="@+id/title"
             app:layout_constraintWidth_percent="0.15">
 
-        <com.dichotome.profilebar.util.view.SquareImageView
+        <com.dichotome.profilebar.util.view.SquareRoundedImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

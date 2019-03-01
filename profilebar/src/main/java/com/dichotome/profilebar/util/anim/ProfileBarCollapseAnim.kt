@@ -1,4 +1,4 @@
-package com.dichotome.profilebar.util.view.profileBar
+package com.dichotome.profilebar.util.anim
 
 import android.animation.ObjectAnimator
 import android.animation.TimeInterpolator
@@ -7,71 +7,7 @@ import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.core.util.Pair
-import com.dichotome.profilebar.util.view.extensions.addTo
 import com.dichotome.profilebar.util.view.profileBar.ProfileCollapsingToolbar.Companion.TAG
-
-class DecelerateAccelerateInterpolator : TimeInterpolator {
-    override fun getInterpolation(t: Float): Float {
-        val y = 2 * t - 1
-        val powY = Math.pow(y.toDouble(), 7.0)
-
-        return (powY + 1).toFloat() / 2
-    }
-}
-
-abstract class AnimationHelper(
-    protected val view: View,
-    private val interp: TimeInterpolator,
-    protected val duration: Long
-) {
-    private var animators = ArrayList<ObjectAnimator>()
-    fun animate(
-        propertyName: String,
-        from: Float,
-        to: Float,
-        animInterpolator: TimeInterpolator = interp,
-        dur: Long = duration,
-        returnTo: Float? = null
-    ): ObjectAnimator? {
-        if (from != 0f) {
-            var path = floatArrayOf(from, to)
-            returnTo?.let {
-                path += returnTo
-            }
-            return ObjectAnimator.ofFloat(view, propertyName, *path)
-                .apply {
-                    interpolator = animInterpolator
-                    duration = dur
-                    start()
-                }.addTo(animators)
-        }
-        return null
-    }
-
-    fun cancel() {
-        val cancellable = animators
-        animators = arrayListOf()
-        cancellable.forEach {
-            it.cancel()
-        }
-    }
-}
-
-abstract class LinearAnimationHelper(
-    view: View,
-    interpolator: TimeInterpolator,
-    duration: Long
-) : AnimationHelper(view, interpolator, duration) {
-    abstract fun evaluate(): ObjectAnimator?
-}
-
-abstract class PlainAnimationHelper(
-    target: View,
-    interpolator: TimeInterpolator,
-    duration: Long
-) : AnimationHelper(target, interpolator, duration) {
-    abstract fun evaluateXY(): Pair<ObjectAnimator?, ObjectAnimator?>
-}
 
 class HorizontalAnimationHelper(
     target: View,
@@ -108,18 +44,17 @@ class ReturnAlphaAnimationHelper(
 class AlphaAnimationHelper(
     target: View,
     interpolator: TimeInterpolator,
-    duration: Long
+    duration: Long,
+    private val startValue: Float = 1f,
+    private val endValue: Float
 ) : LinearAnimationHelper(target, interpolator, duration) {
     private var collapsed = true
-    override fun evaluate(): ObjectAnimator? {
-        val anim = animate(
-            "alpha",
-            if (collapsed) 1f else 0.9f,
-            if (collapsed) 0.9f else 1f
-        )
+    override fun evaluate() = animate(
+        "alpha",
+        if (collapsed) startValue else endValue,
+        if (collapsed) endValue else startValue
+    ).also {
         collapsed = !collapsed
-
-        return anim
     }
 }
 

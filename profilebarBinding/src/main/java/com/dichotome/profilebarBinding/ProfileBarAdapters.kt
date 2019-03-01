@@ -1,6 +1,7 @@
 package com.dichotome.profilebarBinding
 
 import android.graphics.drawable.Drawable
+import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
 import com.dichotome.profilebar.util.constant.col
 import com.dichotome.profilebar.util.view.profileBar.ProfileBar
@@ -13,13 +14,6 @@ fun setPhoto(bar: ProfileBar, photo: Drawable?) {
 @BindingAdapter("app:wallpaper")
 fun setWallpaper(bar: ProfileBar, wallpaper: Drawable?) {
     bar.wallpaperDrawable = wallpaper
-}
-
-@BindingAdapter("app:fontColor")
-fun setFontColor(bar: ProfileBar, id: Int?) {
-    id?.let {
-        bar.fontColor = col(bar.context, id)
-    }
 }
 
 @BindingAdapter("app:title")
@@ -38,6 +32,7 @@ fun setTitleSize(bar: ProfileBar, dp: Int?) {
 fun setSubtitle(bar: ProfileBar, subtitle: String?) {
     bar.subtitleText = subtitle
 }
+
 
 @BindingAdapter("app:subtitleSize")
 fun setSubtitleSize(bar: ProfileBar, dp: Int?) {
@@ -60,27 +55,6 @@ fun setScrollFlags(bar: ProfileBar, flags: Int?) {
     }
 }
 
-@BindingAdapter("app:tabSelectedColor")
-fun setTabSelectedColor(bar: ProfileBar, id: Int?) {
-    id?.let {
-        bar.tabsSelectedColor = col(bar.context, id)
-    }
-}
-
-@BindingAdapter("app:tabUnselectedColor")
-fun setTabUnselectedColor(bar: ProfileBar, id: Int?) {
-    id?.let {
-        bar.tabsUnselectedColor = col(bar.context, id)
-    }
-}
-
-@BindingAdapter("app:tabIndicatorColor")
-fun setTabIndicatorColor(bar: ProfileBar, id: Int?) {
-    id?.let {
-        bar.tabsIndicatorColor = col(bar.context, id)
-    }
-}
-
 @BindingAdapter("app:dimDrawable")
 fun setDimDrawable(bar: ProfileBar, dim: Drawable?) {
     dim?.let {
@@ -96,7 +70,7 @@ fun setBottomGlowDrawable(bar: ProfileBar, glow: Drawable?) {
 }
 
 @BindingAdapter("app:frameColor")
-fun setFrameColor(bar: ProfileBar, id: Int?) {
+fun setFrameColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
         bar.photoFrameColor = col(bar.context, id)
     }

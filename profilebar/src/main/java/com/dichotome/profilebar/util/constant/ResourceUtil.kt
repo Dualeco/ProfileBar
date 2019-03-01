@@ -20,3 +20,7 @@ fun drw(context: Context, @DrawableRes res: Int): Drawable = ContextCompat.getDr
 fun dpToPx(context: Context, dp: Int): Int = dpToPx(context, dp.toFloat())
 
 fun dpToPx(context: Context, dp: Float): Int = Math.round(dp * context.resources.displayMetrics.density)
+
+fun pxToDp(context: Context, px: Float): Int = Math.round(px / context.resources.displayMetrics.density)
+
+fun pxToDp(context: Context, px: Int): Int =  pxToDp(context, px.toFloat())

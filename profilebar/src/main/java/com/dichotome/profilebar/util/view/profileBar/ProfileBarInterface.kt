@@ -5,15 +5,15 @@ import android.view.View
 import android.widget.*
 import androidx.viewpager.widget.ViewPager
 import com.dichotome.profilebar.ui.ProfileOptionWindow
-import com.dichotome.profilebar.util.view.SquareImageView
+import com.dichotome.profilebar.util.view.SquareRoundedImageView
 
 interface ProfileBarInterface {
     // Views
     val wallpaperImage: ImageView
     val dimView: View
     val bottomGlowView: View
-    val photoImage: SquareImageView
-    val photoFrameBackground: SquareImageView
+    val photoImage: SquareRoundedImageView
+    val photoFrameBackground: SquareRoundedImageView
     val photoFrame: FrameLayout
     val titleTV: TextView
     val subtitleTV: TextView

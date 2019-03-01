@@ -2,9 +2,9 @@ package com.dichotome.collapsingbar.util.view.extensions
 
 import android.animation.ValueAnimator
 import android.view.ViewPropertyAnimator
-import com.dichotome.profilebar.util.view.profileBar.AnimationHelper
-import com.dichotome.profilebar.util.view.profileBar.LinearAnimationHelper
-import com.dichotome.profilebar.util.view.profileBar.PlainAnimationHelper
+import com.dichotome.profilebar.util.anim.AnimationHelper
+import com.dichotome.profilebar.util.anim.LinearAnimationHelper
+import com.dichotome.profilebar.util.anim.PlainAnimationHelper
 
 
 fun ViewPropertyAnimator.addTo(collection: MutableCollection<ViewPropertyAnimator>) = apply {

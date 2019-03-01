@@ -16,7 +16,6 @@
         <com.dichotome.profilebar.util.view.profileBar.ProfileBar
                 android:id="@+id/profileBar"
                 android:layout_width="match_parent"
-                app:photo="@{logic.photo}"
                 app:wallpaper="@{logic.wallpaper}"
                 app:title="@{logic.title}"
                 app:subtitle="@{logic.subtitle}"

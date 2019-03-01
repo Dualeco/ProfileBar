@@ -7,10 +7,11 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
-import com.dichotome.profilebar.util.view.extensions.download
 import com.dichotome.profilebar.ui.FavListItem
 import com.dichotome.profilebar.ui.TabListItem
+import com.dichotome.profilebar.util.view.extensions.download
 
 class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -24,7 +25,12 @@ class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(bind
             subtitle?.let {
                 it.text = data.subtitle
             }
-        thumbnail.download(data.thumbnailUrl, isThumbnailCircular)
+        val options = RequestOptions().apply {
+            if (isThumbnailCircular)
+                circleCrop()
+        }
+
+        thumbnail.download(data.thumbnailUrl, options)
     }
 }
 

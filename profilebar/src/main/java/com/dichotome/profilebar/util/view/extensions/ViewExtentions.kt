@@ -1,15 +1,15 @@
 package com.dichotome.profilebar.util.view.extensions
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.TypedValue
+import android.view.KeyEvent
 import android.view.View
-import android.widget.ImageView
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.dichotome.profilebar.R
+import androidx.core.view.isVisible
 import com.dichotome.profilebar.util.constant.dpToPx
+import java.util.concurrent.locks.Condition
 
 
 fun Context.getStatusBarHeight(): Int {
@@ -26,7 +26,7 @@ fun Context.getToolbarHeight(): Int {
     return if (theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
         TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
     } else {
-        dpToPx(this,56)
+        dpToPx(this, 56)
     }
 }
 
@@ -37,34 +37,6 @@ fun Context.getNavBarHeight(): Int {
     } else 0
 }
 
-fun ImageView.download(url: String, isCircular: Boolean) {
-    val options = RequestOptions()
-        .error(R.drawable.ic_broken_image)
-
-    if (isCircular) {
-        options.circleCrop()
-    }
-
-    Glide.with(context)
-        .load(url)
-        .apply(options)
-        .into(this)
-}
-
-fun ImageView.download(drw: Drawable?, isCircular: Boolean) {
-    val options = RequestOptions()
-        .error(R.drawable.ic_broken_image)
-
-    if (isCircular) {
-        options.circleCrop()
-    }
-
-    Glide.with(context)
-        .load(drw)
-        .apply(options)
-        .into(this)
-}
-
 fun <T> T.addTo(collection: MutableCollection<T>): T {
     collection.add(this)
     return this
@@ -73,5 +45,31 @@ fun <T> T.addTo(collection: MutableCollection<T>): T {
 fun ConstraintLayout.addChildren(collection: Collection<View>) {
     collection.forEach {
         addView(it)
+    }
+}
+
+fun View.setViewAndChildrenEnabled(enabled: Boolean) {
+    isEnabled = enabled
+    if (this is ViewGroup) {
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+            child.setViewAndChildrenEnabled(enabled)
+        }
+    }
+}
+
+fun <T : View> ViewGroup.addAndGetView(view: T) = view.also { addView(it) }
+
+fun View.setOnBackButtonClickedOnce(condition: () -> Boolean, onClicked: () -> Unit) {
+    isFocusableInTouchMode = true
+    requestFocus()
+    setOnKeyListener { _, keyCode, event ->
+        if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK
+            && condition()
+        ) {
+            Toast.makeText(context, "Gruess Gott", Toast.LENGTH_LONG).show()
+            onClicked()
+            true
+        } else false
     }
 }

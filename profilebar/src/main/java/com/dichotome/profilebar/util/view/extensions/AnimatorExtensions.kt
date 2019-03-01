@@ -2,9 +2,10 @@ package com.dichotome.profilebar.util.view.extensions
 
 import android.animation.ValueAnimator
 import android.view.ViewPropertyAnimator
-import com.dichotome.profilebar.util.view.profileBar.AnimationHelper
-import com.dichotome.profilebar.util.view.profileBar.LinearAnimationHelper
-import com.dichotome.profilebar.util.view.profileBar.PlainAnimationHelper
+import com.dichotome.profilebar.util.anim.AnimationHelper
+import com.dichotome.profilebar.util.anim.LinearAnimationHelper
+import com.dichotome.profilebar.util.anim.PlainAnimationHelper
+import com.dichotome.profilebar.util.anim.SimpleAnimationHelper
 
 
 fun ViewPropertyAnimator.addTo(collection: MutableCollection<ViewPropertyAnimator>) = apply {
@@ -20,7 +21,9 @@ fun <H : AnimationHelper> H.addTo(collection: MutableCollection<in H>) = apply {
 }
 
 fun Collection<AnimationHelper>.evaluateAll() = forEach {
+    it.cancel()
     when (it) {
+        is SimpleAnimationHelper -> it.evaluate()
         is LinearAnimationHelper -> it.evaluate()
         is PlainAnimationHelper -> it.evaluateXY()
     }
