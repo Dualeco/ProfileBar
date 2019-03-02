@@ -1,43 +1,47 @@
-package com.dichotome.profilebar.util.anim
+package com.dichotome.profilephoto.anim
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.TimeInterpolator
 import android.view.View
 import android.view.ViewAnimationUtils
-import android.widget.Toast
-import androidx.core.animation.doOnCancel
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.util.Pair
 import androidx.core.view.isVisible
-import com.dichotome.profilebar.util.constant.Constants
-import com.dichotome.profilebar.util.view.SquareRoundedImageView
-import kotlin.concurrent.timer
+import com.dichotome.profileviewsshared.anim.LinearAnimationHelper
+import com.dichotome.profileviewsshared.anim.PlainAnimationHelper
+import com.dichotome.profileviewsshared.anim.SimpleAnimationHelper
+import com.dichotome.profileviewsshared.constants.Constants
+import com.dichotome.profileviewsshared.views.SquareRoundedImageView
 
 
 class DetachFromFrameAnimationHelper(
     private val targetView: SquareRoundedImageView,
-    interpolator: TimeInterpolator,
-    duration: Long
-) : LinearAnimationHelper(targetView, interpolator, duration) {
+    private val detachFrom: SquareRoundedImageView,
+    private val TimeInterpolator: TimeInterpolator,
+    private val animDuration: Long
+) : LinearAnimationHelper(targetView, TimeInterpolator, animDuration) {
 
     private val init = targetView.cornerRadius
     private var rounding = false
     override fun evaluate(): ObjectAnimator? {
 
-        val endValue = if (rounding) init else 0f
+        val endValue = if (rounding) init else 0
         rounding = !rounding
 
-        return animate("cornerRadius", targetView.cornerRadius, endValue, autoStart = false)?.apply {
+        return animateInt("cornerRadius", targetView.cornerRadius, endValue)?.apply {
             doOnStart {
-                if (rounding)
+                if (rounding) {
+                    detachFrom.isVisible = false
                     view.isVisible = true
+                }
             }
             doOnEnd {
-                //(view.parent as ViewGroup).removeView(view)
-                if (!rounding && targetView.cornerRadius == init)
+                if (!rounding && targetView.cornerRadius == init) {
                     view.isVisible = false
+                    detachFrom.isVisible = true
+                }
             }
             start()
         }
@@ -50,7 +54,7 @@ class ZoomAnimationHelper(
     duration: Long
 ) : PlainAnimationHelper(target, interpolator, duration) {
     private var zoomIn = true
-    override fun evaluateXY(): Pair<ObjectAnimator?, ObjectAnimator?> {
+    override fun evaluateXY(): Pair<Animator?, Animator?> {
 
         val animX: ObjectAnimator?
         val animY: ObjectAnimator?
@@ -58,8 +62,8 @@ class ZoomAnimationHelper(
         val ratio = Constants(view.context).DISPLAY_WIDTH.toFloat() / view.layoutParams.width
         val endValue = if (zoomIn) ratio else 1f
 
-        animX = animate("scaleX", view.scaleX, endValue)
-        animY = animate("scaleY", view.scaleY, endValue)
+        animX = animateFloat("scaleX", view.scaleX, endValue)
+        animY = animateFloat("scaleY", view.scaleY, endValue)
 
         zoomIn = !zoomIn
 
@@ -77,21 +81,21 @@ class ZoomTranslationHelper(
     private var initX = view.x
     private var initY = view.y
 
+    private val height = Constants(view.context).DISPLAY_HEIGHT - Constants(view.context).NAVBAR_SIZE
+    private val width = Constants(view.context).DISPLAY_WIDTH
+    private val dimension = view.layoutParams.width
     private var zoomIn = true
-    override fun evaluateXY(): Pair<ObjectAnimator?, ObjectAnimator?> {
-
-        val height = Constants(view.context).DISPLAY_HEIGHT.toFloat() - Constants(view.context).NAVBAR_SIZE.toFloat()
-        val width = Constants(view.context).DISPLAY_WIDTH.toFloat()
-        val dimension = view.layoutParams.width.toFloat()
-
-
-        val offsetX = width / 2f - initX - dimension / 2f
-        val offsetY = height / 2f - initY - dimension / 2f
-
+    override fun evaluateXY(): Pair<Animator?, Animator?> {
         val direction = if (zoomIn) 1 else -1
 
-        val animX = animate("translationX", view.x, view.x + offsetX * direction)
-        val animY = animate("translationY", view.y, view.y + offsetY * direction)
+        val viewCenterEndX = if (zoomIn) width / 2f else view.x  + dimension / 2f
+        val viewCenterEndY = if (zoomIn) height / 2f else view.y + dimension / 2f
+
+        val offsetX = viewCenterEndX - initX - dimension / 2
+        val offsetY = viewCenterEndY - initY - dimension / 2
+
+        val animX = animateFloat("translationX", view.x, view.x + offsetX * direction)
+        val animY = animateFloat("translationY", view.y, view.y + offsetY * direction)
 
         zoomIn = !zoomIn
 
@@ -102,27 +106,27 @@ class ZoomTranslationHelper(
 class ZoomCircularRevealHelper(
     photoView: SquareRoundedImageView,
     private val viewToReveal: View,
-    private val timeInterpolator: TimeInterpolator,
+    private val TimeInterpolator: TimeInterpolator,
+    private var startRadius: Int,
+    private var stopRadius: Int,
     private val animDuration: Long
-) : SimpleAnimationHelper(photoView, timeInterpolator, animDuration) {
+) : SimpleAnimationHelper(photoView, TimeInterpolator, animDuration) {
 
     private var zoomIn = true
 
     private val centerX = (photoView.x + photoView.layoutParams.width.toFloat() / 2).toInt()
     private val centerY = (photoView.y + photoView.layoutParams.height.toFloat() / 2).toInt()
 
-    private val revealRadius = photoView.cornerRadius
-    private val completeRadius = Constants(view.context).DISPLAY_HEIGHT.toFloat()
-
     override fun evaluate(): Animator? {
-        val startRadius = if (zoomIn) revealRadius else completeRadius
-        val endRadius = if (zoomIn) completeRadius else revealRadius
+        val beginRadius = if (zoomIn) startRadius else stopRadius
+        val endRadius = if (zoomIn) stopRadius else startRadius
+
         return ViewAnimationUtils.createCircularReveal(
             viewToReveal,
             centerX,
             centerY,
-            startRadius,
-            endRadius
+            beginRadius.toFloat(),
+            endRadius.toFloat()
         ).apply {
             doOnStart {
                 if (!zoomIn) viewToReveal.isVisible = true
@@ -132,7 +136,7 @@ class ZoomCircularRevealHelper(
             }
 
             zoomIn = !zoomIn
-            interpolator = timeInterpolator
+            interpolator = TimeInterpolator
             duration = animDuration
             start()
         }

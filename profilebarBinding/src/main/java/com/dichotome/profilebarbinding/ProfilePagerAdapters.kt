@@ -1,4 +1,4 @@
-package com.dichotome.profilebarBinding
+package com.dichotome.profilebarbinding
 
 import androidx.databinding.BindingAdapter
 import com.dichotome.profilebar.ui.TabPager

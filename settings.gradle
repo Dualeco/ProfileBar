@@ -1,2 +1,2 @@
-include ':app', ':profilebar', ':profilebarBinding'
+include ':app', ':profilebar', ':profilebarBinding', ':profilePhoto', ':profileViewsShared'
 rootProject.name='ProfileBar'

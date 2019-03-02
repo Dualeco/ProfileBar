@@ -1,15 +1,17 @@
 package com.dichotome.profilebar.util.view.extensions
 
 import android.content.Context
+import android.graphics.Rect
 import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
+import com.dichotome.profilebar.util.constant.Constants
 import com.dichotome.profilebar.util.constant.dpToPx
-import java.util.concurrent.locks.Condition
+import com.dichotome.profileviewsshared.views.SquareRoundedImageView
 
 
 fun Context.getStatusBarHeight(): Int {
@@ -60,16 +62,29 @@ fun View.setViewAndChildrenEnabled(enabled: Boolean) {
 
 fun <T : View> ViewGroup.addAndGetView(view: T) = view.also { addView(it) }
 
-fun View.setOnBackButtonClickedOnce(condition: () -> Boolean, onClicked: () -> Unit) {
+fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit) {
     isFocusableInTouchMode = true
     requestFocus()
     setOnKeyListener { _, keyCode, event ->
-        if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK
-            && condition()
+        if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK && condition()
         ) {
             Toast.makeText(context, "Gruess Gott", Toast.LENGTH_LONG).show()
             onClicked()
             true
         } else false
     }
+}
+
+fun SquareRoundedImageView.copyForOverlay(imageView: SquareRoundedImageView) = apply {
+    cornerRadius = imageView.cornerRadius
+    adjustViewBounds = true
+    layoutParams = FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredHeight)
+        .apply {
+            val coords = Rect()
+            imageView.getGlobalVisibleRect(coords)
+
+            x = coords.left.toFloat()
+            y = coords.top.toFloat() - Constants(context).STATUS_BAR_SIZE
+        }
+    setImageDrawable(imageView.drawable)
 }

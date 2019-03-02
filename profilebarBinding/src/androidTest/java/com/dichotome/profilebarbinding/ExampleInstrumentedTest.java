@@ -1,4 +1,4 @@
-package com.dichotome.profilebarBinding;
+package com.dichotome.profilebarbinding;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

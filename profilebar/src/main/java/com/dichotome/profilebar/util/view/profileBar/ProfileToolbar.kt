@@ -3,13 +3,14 @@ package com.dichotome.profilebar.util.view.profileBar
 import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.FrameLayout
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.request.RequestOptions
@@ -19,11 +20,12 @@ import com.dichotome.profilebar.util.constant.Constants
 import com.dichotome.profilebar.util.constant.col
 import com.dichotome.profilebar.util.constant.dpToPx
 import com.dichotome.profilebar.util.constant.drw
-import com.dichotome.profilebar.util.view.SquareRoundedImageView
 import com.dichotome.profilebar.util.view.extensions.addChildren
 import com.dichotome.profilebar.util.view.extensions.addTo
 import com.dichotome.profilebar.util.view.extensions.download
 import com.dichotome.profilebar.util.view.extensions.setColor
+import com.dichotome.profilephoto.view.ZoomableRoundImageView
+import com.dichotome.profileviewsshared.views.SquareRoundedImageView
 
 open class ProfileToolbar @JvmOverloads constructor(
     context: Context,
@@ -46,7 +48,6 @@ open class ProfileToolbar @JvmOverloads constructor(
         private val DEFAULT_TABS_UNSELECTED_COLOR_ID = R.color.colorPrimaryUnselected
         private val DEFAULT_PHOTO_ID = R.drawable.profile_photo_stub
     }
-
     protected var profilePager: ViewPager? = null
 
     var profilePicOptions = RequestOptions()
@@ -176,7 +177,7 @@ open class ProfileToolbar @JvmOverloads constructor(
         addTo(children)
     }
 
-    override val photoImage: SquareRoundedImageView = SquareRoundedImageView(context, makeRound = true).apply {
+    override val photoImage: ZoomableRoundImageView = ZoomableRoundImageView(context).apply {
         id = R.id.photo
         adjustViewBounds = true
         layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT).apply {
@@ -185,18 +186,6 @@ open class ProfileToolbar @JvmOverloads constructor(
         }
         download(R.drawable.cover2, profilePicOptions)
     }
-
-    protected fun copyPhotoImage() = SquareRoundedImageView(context)
-        .apply {
-            cornerRadius = photoImage.cornerRadius
-            adjustViewBounds = true
-            layoutParams = LayoutParams(photoImage.measuredWidth, photoImage.measuredHeight)
-                .apply {
-                    x = photoFrame.x + photoImage.x
-                    y = photoFrame.y + photoImage.y
-                }
-            setImageDrawable(photoImage.drawable)
-        }
 
     override val photoFrameBackground: SquareRoundedImageView = SquareRoundedImageView(context).apply {
         id = R.id.photo
@@ -261,10 +250,8 @@ open class ProfileToolbar @JvmOverloads constructor(
         LayoutParams.WRAP_CONTENT,
         LayoutParams.WRAP_CONTENT
     ).apply {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            elevation = dpToPx(context, 12).toFloat()
-            isOutsideTouchable = true
-        }
+        elevation = dpToPx(context, 12).toFloat()
+        isOutsideTouchable = true
     }
 
     init {

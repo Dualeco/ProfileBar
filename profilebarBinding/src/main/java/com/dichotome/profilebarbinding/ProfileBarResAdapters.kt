@@ -1,4 +1,4 @@
-package com.dichotome.profilebarBinding
+package com.dichotome.profilebarbinding
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes

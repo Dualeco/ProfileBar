@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.TimeInterpolator
 import android.view.View
-import android.view.animation.LinearInterpolator
 import androidx.core.util.Pair
 import com.dichotome.profilebar.util.view.extensions.addTo
 
@@ -19,15 +18,15 @@ class DecelerateAccelerateInterpolator : TimeInterpolator {
 
 abstract class AnimationHelper(
     protected val view: View,
-    private val interp: TimeInterpolator,
+    private val interp: TimeInterpolator?,
     protected val duration: Long
 ) {
     private var animators = ArrayList<ObjectAnimator>()
-    fun animate(
+    fun animateFloat(
         propertyName: String,
         from: Float,
         to: Float,
-        animInterpolator: TimeInterpolator = interp,
+        animInterpolator: TimeInterpolator? = interp,
         dur: Long = duration,
         returnTo: Float? = null,
         autoStart: Boolean = true
@@ -37,6 +36,26 @@ abstract class AnimationHelper(
             path += returnTo
         }
         return ObjectAnimator.ofFloat(view, propertyName, *path)
+            .apply {
+                interpolator = animInterpolator
+                duration = dur
+                if (autoStart) start()
+            }.addTo(animators)
+
+    }
+
+    fun animateInt(
+        propertyName: String,
+        from: Int,
+        to: Int,
+        animInterpolator: TimeInterpolator? = interp,
+        dur: Long = duration,
+        returnTo: Int? = null,
+        autoStart: Boolean = true
+    ): ObjectAnimator? {
+        var path = intArrayOf(from, to)
+        returnTo?.let { path += returnTo }
+        return ObjectAnimator.ofInt(view, propertyName, *path)
             .apply {
                 interpolator = animInterpolator
                 duration = dur
@@ -61,10 +80,10 @@ abstract class SimpleAnimationHelper(view: View, interpolator: TimeInterpolator,
 
 abstract class LinearAnimationHelper(
     view: View,
-    interpolator: TimeInterpolator,
+    interpolator: TimeInterpolator?,
     duration: Long
 ) : AnimationHelper(view, interpolator, duration) {
-    abstract fun evaluate(): ObjectAnimator?
+    abstract fun evaluate(): Animator?
 }
 
 abstract class PlainAnimationHelper(
@@ -72,5 +91,5 @@ abstract class PlainAnimationHelper(
     interpolator: TimeInterpolator,
     duration: Long
 ) : AnimationHelper(target, interpolator, duration) {
-    abstract fun evaluateXY(): Pair<ObjectAnimator?, ObjectAnimator?>
+    abstract fun evaluateXY(): Pair<Animator?, Animator?>
 }
