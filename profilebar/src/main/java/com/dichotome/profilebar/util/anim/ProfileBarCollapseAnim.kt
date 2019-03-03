@@ -10,6 +10,8 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.core.util.Pair
 import com.dichotome.profilebar.util.view.profileBar.ProfileCollapsingToolbar.Companion.TAG
+import com.dichotome.profileshared.anim.LinearAnimationHelper
+import com.dichotome.profileshared.anim.PlainAnimationHelper
 
 class HorizontalAnimationHelper(
     target: View,

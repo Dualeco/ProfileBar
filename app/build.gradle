@@ -32,9 +32,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //JAXB
-    implementation 'javax.xml.bind:jaxb-api:2.3.0'
-
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.core:core-ktx:$ktx_version"
@@ -47,6 +44,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     //ProfileBar
+    implementation project(path: ':profileShared')
     implementation project(path: ':profilebar')
     implementation project(path: ':profilebarBinding')
 }

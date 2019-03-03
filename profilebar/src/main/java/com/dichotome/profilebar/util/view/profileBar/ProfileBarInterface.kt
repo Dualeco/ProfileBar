@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.*
 import androidx.viewpager.widget.ViewPager
 import com.dichotome.profilebar.ui.ProfileOptionWindow
-import com.dichotome.profileviewsshared.views.SquareRoundedImageView
+import com.dichotome.profileshared.views.SquareRoundedImageView
 
 interface ProfileBarInterface {
     // Views

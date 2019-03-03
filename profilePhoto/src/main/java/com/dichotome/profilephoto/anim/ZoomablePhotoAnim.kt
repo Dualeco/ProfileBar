@@ -9,11 +9,11 @@ import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.util.Pair
 import androidx.core.view.isVisible
-import com.dichotome.profileviewsshared.anim.LinearAnimationHelper
-import com.dichotome.profileviewsshared.anim.PlainAnimationHelper
-import com.dichotome.profileviewsshared.anim.SimpleAnimationHelper
-import com.dichotome.profileviewsshared.constants.Constants
-import com.dichotome.profileviewsshared.views.SquareRoundedImageView
+import com.dichotome.profileshared.anim.LinearAnimationHelper
+import com.dichotome.profileshared.anim.PlainAnimationHelper
+import com.dichotome.profileshared.anim.SimpleAnimationHelper
+import com.dichotome.profileshared.constants.Constants
+import com.dichotome.profileshared.views.SquareRoundedImageView
 
 
 class DetachFromFrameAnimationHelper(

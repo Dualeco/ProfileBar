@@ -7,9 +7,11 @@ import android.view.animation.OvershootInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.util.anim.*
-import com.dichotome.profilebar.util.view.extensions.addTo
-import com.dichotome.profilebar.util.view.extensions.cancelAll
-import com.dichotome.profilebar.util.view.extensions.evaluateAll
+import com.dichotome.profileshared.anim.AnimationHelper
+import com.dichotome.profileshared.anim.DecelerateAccelerateInterpolator
+import com.dichotome.profileshared.extensions.addTo
+import com.dichotome.profileshared.extensions.cancelAll
+import com.dichotome.profileshared.extensions.evaluateAll
 import com.google.android.material.appbar.AppBarLayout
 
 class ProfileCollapsingToolbar @JvmOverloads constructor(

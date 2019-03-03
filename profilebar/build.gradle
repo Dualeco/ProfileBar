@@ -24,9 +24,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
-        enabled = true
-    }
     buildToolsVersion = '28.0.3'
 }
 
@@ -43,7 +40,7 @@ dependencies {
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    implementation project(path: ':profileViewsShared')
+    implementation project(path: ':profileShared')
     implementation project(path: ':profilePhoto')
 }
 repositories {

@@ -10,7 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/profilePhoto" />
-            <option value="$PROJECT_DIR$/profileViewsShared" />
+            <option value="$PROJECT_DIR$/profileShared" />
             <option value="$PROJECT_DIR$/profilebar" />
             <option value="$PROJECT_DIR$/profilebarBinding" />
           </set>

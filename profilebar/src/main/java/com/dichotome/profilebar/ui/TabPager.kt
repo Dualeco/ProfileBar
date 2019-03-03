@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.dichotome.profilebar.ui.adapter.TabPagerAdapter
-import com.dichotome.profilebar.ui.fragment.TabFragment
+import com.dichotome.profilebar.stubFragments.TabFragment
+import com.dichotome.profilebarbinding.viewContentAdapters.TabPagerAdapter
 
 class TabPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     ViewPager(context, attrs) {

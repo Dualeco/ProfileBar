@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.dichotome.profilebar.util.constant.Constants
+import com.dichotome.profileshared.constants.Constants
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
@@ -18,8 +18,6 @@ class ProfileBar @JvmOverloads constructor(
     companion object {
         const val SCROLL_FLAGS = SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
     }
-
-    lateinit var parentCoordinator: CoordinatorLayout
 
     private val appbarHeight = Constants(context).DISPLAY_HEIGHT / 2
     private var heightSet = false
@@ -43,13 +41,6 @@ class ProfileBar @JvmOverloads constructor(
                 appbarHeight
             )
             heightSet = true
-        }
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        parent?.let {
-            parentCoordinator = parent as CoordinatorLayout
         }
     }
 }
