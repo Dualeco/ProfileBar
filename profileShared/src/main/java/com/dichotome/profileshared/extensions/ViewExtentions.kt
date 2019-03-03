@@ -5,9 +5,8 @@ import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.dichotome.profilebar.util.constant.dpToPx
 import com.dichotome.profileshared.constants.Constants
+import com.dichotome.profileshared.constants.ResourceUtil
 import com.dichotome.profileshared.views.SquareRoundedImageView
 
 
@@ -25,7 +24,7 @@ fun Context.getToolbarHeight(): Int {
     return if (theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
         TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
     } else {
-        dpToPx(this, 56)
+        ResourceUtil(this).dpToPx(56)
     }
 }
 
@@ -59,7 +58,6 @@ fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit)
     setOnKeyListener { _, keyCode, event ->
         if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK && condition()
         ) {
-            Toast.makeText(context, "Gruess Gott", Toast.LENGTH_LONG).show()
             onClicked()
             true
         } else false

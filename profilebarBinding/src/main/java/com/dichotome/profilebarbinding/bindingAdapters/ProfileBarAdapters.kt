@@ -3,8 +3,8 @@ package com.dichotome.profilebarbinding.bindingAdapters
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
-import com.dichotome.profilebar.util.constant.col
-import com.dichotome.profilebar.util.view.profileBar.ProfileBar
+import com.dichotome.profilebar.ui.profileBar.ProfileBar
+import com.dichotome.profileshared.extensions.col
 
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, photo: Drawable?) {
@@ -72,7 +72,7 @@ fun setBottomGlowDrawable(bar: ProfileBar, glow: Drawable?) {
 @BindingAdapter("app:frameColor")
 fun setFrameColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
-        bar.photoFrameColor = col(bar.context, id)
+        bar.photoFrameColor = bar.col(id)
     }
 }
 

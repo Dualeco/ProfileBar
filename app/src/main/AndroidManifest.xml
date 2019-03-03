@@ -13,7 +13,7 @@
             android:theme="@style/AppTheme">
         <activity android:name="com.dichotome.profilebarapp.ui.main.ProfileActivity">
         </activity>
-        <activity android:name="com.dichotome.profilebarapp.ui.databinding.ProfileActivityBinding">
+        <activity android:name="com.dichotome.profilebarapp.ui.mainBinding.ProfileBindingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

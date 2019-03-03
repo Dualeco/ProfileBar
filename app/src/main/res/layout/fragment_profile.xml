@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dichotome.profilebar.util.view.profileBar.ProfileBar
+    <com.dichotome.profilebar.ui.profileBar.ProfileBar
         android:id="@+id/profileBar"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
-    <com.dichotome.profilebar.ui.TabPager
+    <com.dichotome.profilebar.ui.tabPager.TabPager
         android:id="@+id/profilePager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

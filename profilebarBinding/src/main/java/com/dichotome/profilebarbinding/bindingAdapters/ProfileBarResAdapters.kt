@@ -4,30 +4,30 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
-import com.dichotome.profilebar.util.constant.col
-import com.dichotome.profilebar.util.constant.drw
-import com.dichotome.profilebar.util.constant.str
-import com.dichotome.profilebar.util.view.profileBar.ProfileBar
+import com.dichotome.profilebar.ui.profileBar.ProfileBar
+import com.dichotome.profileshared.extensions.col
+import com.dichotome.profileshared.extensions.drw
+import com.dichotome.profileshared.extensions.str
 
 
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.photoDrawable = drw(bar.context, id)
+        bar.photoDrawable = bar.drw(id)
     }
 }
 
 @BindingAdapter("app:wallpaper")
 fun setWallpaper(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.wallpaperDrawable = drw(bar.context, id)
+        bar.wallpaperDrawable = bar.drw(id)
     }
 }
 
 @BindingAdapter("app:fontColor")
 fun setFontColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
-        bar.fontColor = col(bar.context, id)
+        bar.fontColor = bar.col(id)
     }
 }
 
@@ -35,55 +35,55 @@ fun setFontColor(bar: ProfileBar, @ColorRes id: Int?) {
 @BindingAdapter("app:title")
 fun setTitle(bar: ProfileBar, @StringRes id: Int?) {
     id?.let {
-        bar.titleText = str(bar.context, id)
+        bar.titleText = bar.str(id)
     }
 }
 
 @BindingAdapter("app:subtitle")
 fun setSubtitle(bar: ProfileBar, @StringRes id: Int?) {
     id?.let {
-        bar.subtitleText = str(bar.context, id)
+        bar.subtitleText = bar.str(id)
     }
 }
 
 @BindingAdapter("app:tabSelectedColor")
 fun setTabSelectedColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
-        bar.tabsSelectedColor = col(bar.context, id)
+        bar.tabsSelectedColor = bar.col(id)
     }
 }
 
 @BindingAdapter("app:frameDrawable")
 fun setFrameDrawable(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.dimDrawable = drw(bar.context, id)
+        bar.dimDrawable = bar.drw(id)
     }
 }
 
 @BindingAdapter("app:tabUnselectedColor")
 fun setTabUnselectedColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
-        bar.tabsUnselectedColor = col(bar.context, id)
+        bar.tabsUnselectedColor = bar.col(id)
     }
 }
 
 @BindingAdapter("app:tabIndicatorColor")
 fun setTabIndicatorColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
-        bar.tabsIndicatorColor = col(bar.context, id)
+        bar.tabsIndicatorColor = bar.col(id)
     }
 }
 
 @BindingAdapter("app:dimDrawable")
 fun setDimDrawable(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.dimDrawable = drw(bar.context, id)
+        bar.dimDrawable = bar.drw(id)
     }
 }
 
 @BindingAdapter("app:bottomGlowDrawable")
 fun setBottomGlowDrawable(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.bottomGlowDrawable = drw(bar.context, id)
+        bar.bottomGlowDrawable = bar.drw(id)
     }
 }

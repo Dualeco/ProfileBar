@@ -7,7 +7,7 @@
 
         <variable
             name="logic"
-            type="com.dichotome.profilebarapp.ui.databinding.ProfileLogic" />
+            type="com.dichotome.profilebarapp.ui.mainBinding.ProfileBindingLogic" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.dichotome.profilebar.util.view.profileBar.ProfileBar
+        <com.dichotome.profilebar.ui.profileBar.ProfileBar
             android:id="@+id/profileBar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -25,7 +25,7 @@
             app:title="@{logic.title}"
             app:wallpaper="@{logic.wallpaper}" />
 
-        <com.dichotome.profilebar.ui.TabPager
+        <com.dichotome.profilebar.ui.tabPager.TabPager
             android:id="@+id/profilePager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

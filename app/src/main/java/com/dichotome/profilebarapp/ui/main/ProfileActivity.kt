@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dichotome.profilebarapp.R
 import com.dichotome.profilebarapp.util.constant.drw
-import com.dichotome.profilebar.stubFragments.SubscriptionsTabFragment
-import com.dichotome.profilebar.stubFragments.FavouritesTabFragment
+import com.dichotome.profilebar.stubs.fragments.SubscriptionsTabFragment
+import com.dichotome.profilebar.stubs.fragments.FavouritesTabFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileActivity : AppCompatActivity() {
