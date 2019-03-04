@@ -82,7 +82,7 @@ class FavouritesTabBindingFragment() : TabFragment() {
         recyclerView.adapter =
             TabListAdapter<ItemTabFavouritesBinding>(
                 favList,
-                R.layout.item_tab_favourites,
+                R.layout.item_tab_binding_favourites,
                 false
             )
     }

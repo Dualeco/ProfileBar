@@ -17,7 +17,7 @@ import com.dichotome.profilebar.ui.ProfileOptionWindow
 import com.dichotome.profilebar.ui.ProfileTabLayout
 import com.dichotome.profilebar.ui.profileBar.ProfileBarViews
 import com.dichotome.profilebar.util.extensions.addViews
-import com.dichotome.profilephoto.ui.ZoomableImageView
+import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.extensions.dpToPx
 import com.dichotome.profileshared.extensions.drw
 import com.dichotome.profileshared.views.SquareRoundedImageView
@@ -37,7 +37,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
 
     final override val bottomGlowView: View = View(context).apply { id = R.id.bottom_glow }
 
-    final override val photoImage: ZoomableImageView = ZoomableImageView(context).apply {
+    final override val photoImage: ZoomingImageView = ZoomingImageView(context).apply {
         id = R.id.photo
         adjustViewBounds = true
         makeCircular()

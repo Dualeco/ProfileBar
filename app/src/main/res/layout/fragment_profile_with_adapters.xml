@@ -23,6 +23,7 @@
             app:onChangedWallpaper="@{logic.onChangedWallpaper}"
             app:subtitle="@{logic.subtitle}"
             app:title="@{logic.title}"
+            app:photo="@{logic.photo}"
             app:wallpaper="@{logic.wallpaper}" />
 
         <com.dichotome.profilebar.ui.tabPager.TabPager

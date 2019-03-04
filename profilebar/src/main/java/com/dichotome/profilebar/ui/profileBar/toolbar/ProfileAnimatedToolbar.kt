@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.anim.*
-import com.dichotome.profilephoto.ui.ZoomableImageView
+import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.anim.DecelerateAccelerateInterpolator
 import com.dichotome.profileshared.extensions.addTo
@@ -106,10 +106,10 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
         photoFrame.let {
             appearancePhotoFrame = SmoothAlphaAnimationHelper(
                 it,
-                ZoomableImageView.DURATION_ZOOM,
+                ZoomingImageView.DURATION_ZOOM,
                 1f, 0f
             ).apply {
-                photoImage.addOnZoomListener {
+                photoImage.setOnZoomListener {
                     evaluate()
                 }
             }

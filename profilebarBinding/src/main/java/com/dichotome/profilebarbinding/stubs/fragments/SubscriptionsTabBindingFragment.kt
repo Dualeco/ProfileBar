@@ -128,7 +128,7 @@ class SubscriptionsTabBindingFragment : TabFragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = TabListAdapter<ItemTabSubscriptionsBinding>(
             subList,
-            R.layout.item_tab_subscriptions,
+            R.layout.item_tab_binding_subscriptions,
             true
         )
     }

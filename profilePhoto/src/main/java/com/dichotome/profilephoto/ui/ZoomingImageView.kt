@@ -2,6 +2,7 @@ package com.dichotome.profilephoto.ui
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.GestureDetector
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
@@ -15,34 +16,41 @@ import com.dichotome.profileshared.anim.AlphaAnimationHelper
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.extensions.*
+import com.dichotome.profileshared.gestureListeners.SwipeUpListener
 import com.dichotome.profileshared.views.SquareRoundedImageView
 
-class ZoomableImageView @JvmOverloads constructor(
+class ZoomingImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : SquareRoundedImageView(context, attrs, defStyle) {
 
     companion object {
-        const val DURATION_ZOOM = 180L
-        private const val DURATION_CORNERS = 230L
+        const val DURATION_ZOOM = 200L
+        private const val DURATION_CORNERS = 250L
     }
-    private val listeners = mutableListOf<(it: ZoomableImageView) -> Unit>()
 
-    private var onZoom = {
-        listeners.forEach { it(this) }
+    private var onZoomListener: ((it: ZoomingImageView) -> Unit)? = null
+
+    fun setOnZoomListener(listener: (it: ZoomingImageView) -> Unit) {
+        onZoomListener = listener
+    }
+
+    private fun onZoom() {
+        onZoomListener?.invoke(this)
         zoomAnimators.evaluateAll()
     }
 
-    fun addOnZoomListener(listener: (it: ZoomableImageView) -> Unit) {
-        listeners.add(listener)
-    }
+    private var swipeUpDetector = GestureDetector(context, SwipeUpListener(this) {
+        onZoom()
+    })
 
     private var zoomablePhoto = SquareRoundedImageView(context).apply {
         isVisible = false
         layoutParams = FrameLayout.LayoutParams(0, 0)
-        setOnClickListener {
-            onZoom()
+        setOnTouchListener { _, event ->
+            swipeUpDetector?.onTouchEvent(event)
+            true
         }
     }
 
@@ -53,8 +61,9 @@ class ZoomableImageView @JvmOverloads constructor(
             FrameLayout.LayoutParams.MATCH_PARENT
         )
         setBackgroundColor(col(R.color.colorBlack))
-        setOnClickListener {
-            /*intercepts touch events to the overlaid views*/
+        setOnTouchListener { v, event ->
+            swipeUpDetector?.onTouchEvent(event)
+            true
         }
     }
 
@@ -70,11 +79,11 @@ class ZoomableImageView @JvmOverloads constructor(
     }
 
     private val zoomAnimators = ArrayList<AnimationHelper>()
-
     private var detachOnClick: AnimationHelper? = null
     private var translationOnClick: AnimationHelper? = null
     private var zoomOnClick: AnimationHelper? = null
     private var revealOnClick: AnimationHelper? = null
+
     private var alphaOverlay = AlphaAnimationHelper(
         overlayBackgroundDark,
         DecelerateInterpolator(),
