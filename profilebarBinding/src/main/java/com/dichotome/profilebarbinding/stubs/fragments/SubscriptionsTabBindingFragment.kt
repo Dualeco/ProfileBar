@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dichotome.profilebar.stubs.fragments.TabFragment
 import com.dichotome.profilebar.stubs.TabListItem
 import com.dichotome.profilebarbinding.R
-import com.dichotome.profilebarbinding.databinding.ItemTabSubscriptionsBinding
+import com.dichotome.profilebarbinding.databinding.ItemTabBindingSubscriptionsBinding
 import com.dichotome.profilebarbinding.stubs.TabListAdapter
 import kotlinx.android.synthetic.main.fragment_profile_tab_binding.*
 
@@ -126,7 +126,7 @@ class SubscriptionsTabBindingFragment : TabFragment() {
         val recyclerView = tabRecyclerViewBinding
 
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = TabListAdapter<ItemTabSubscriptionsBinding>(
+        recyclerView.adapter = TabListAdapter<ItemTabBindingSubscriptionsBinding>(
             subList,
             R.layout.item_tab_binding_subscriptions,
             true

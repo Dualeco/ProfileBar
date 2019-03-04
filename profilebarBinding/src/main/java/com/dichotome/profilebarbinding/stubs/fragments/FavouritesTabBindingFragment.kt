@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dichotome.profilebar.stubs.fragments.TabFragment
 import com.dichotome.profilebar.stubs.FavListItem
 import com.dichotome.profilebarbinding.R
-import com.dichotome.profilebarbinding.databinding.ItemTabFavouritesBinding
 import com.dichotome.profilebarbinding.stubs.TabListAdapter
 import kotlinx.android.synthetic.main.fragment_profile_tab_binding.*
+import com.dichotome.profilebarbinding.databinding.ItemTabBindingFavouritesBinding
 
 class FavouritesTabBindingFragment() : TabFragment() {
     companion object {
@@ -80,7 +80,7 @@ class FavouritesTabBindingFragment() : TabFragment() {
 
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter =
-            TabListAdapter<ItemTabFavouritesBinding>(
+            TabListAdapter<ItemTabBindingFavouritesBinding>(
                 favList,
                 R.layout.item_tab_binding_favourites,
                 false
