@@ -62,7 +62,7 @@ class ZoomingImageView @JvmOverloads constructor(
         )
         setBackgroundColor(col(R.color.colorBlack))
         setOnTouchListener { v, event ->
-            swipeUpDetector?.onTouchEvent(event)
+            swipeUpDetector.onTouchEvent(event)
             true
         }
     }
@@ -123,17 +123,24 @@ class ZoomingImageView @JvmOverloads constructor(
                 DecelerateInterpolator(),
                 DURATION_ZOOM
             ).addTo(zoomAnimators)
+
+
+
+
+            val dispHeight = Constants(context).DISPLAY_HEIGHT
+            val dispWidth = Constants(context).DISPLAY_WIDTH
             revealOnClick = ZoomCircularRevealHelper(
                 it,
                 overlayBackgroundDark,
                 DecelerateInterpolator(),
                 it.cornerRadius,
-                Constants(context).DISPLAY_HEIGHT,
+                max(dispHeight, dispWidth),
                 DURATION_CORNERS
             ).addTo(zoomAnimators)
             alphaOverlay.addTo(zoomAnimators)
         }
     }
+    private fun max(a: Int, b: Int) = if (a > b) a else b
 
     init {
         setOnClickListener {

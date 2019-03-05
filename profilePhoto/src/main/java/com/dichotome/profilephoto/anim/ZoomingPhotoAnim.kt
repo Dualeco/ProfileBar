@@ -56,20 +56,22 @@ class ZoomAnimationHelper(
     private var zoomIn = true
     override fun evaluateXY(): Pair<Animator?, Animator?> {
 
-        val animX: ObjectAnimator?
-        val animY: ObjectAnimator?
+        val zoomHeight = Constants(view.context).DISPLAY_HEIGHT.toFloat() - Constants(view.context).STATUS_BAR_SIZE
+        val zoomWidth = Constants(view.context).DISPLAY_WIDTH.toFloat()
 
-        val ratio = Constants(view.context).DISPLAY_WIDTH.toFloat() / view.layoutParams.width
+        val ratio = (min(zoomWidth, zoomHeight)) / view.layoutParams.width
         val endValue = if (zoomIn) ratio else 1f
 
-        animX = animateFloat("scaleX", view.scaleX, endValue)
-        animY = animateFloat("scaleY", view.scaleY, endValue)
+        val animX = animateFloat("scaleX", view.scaleX, endValue)
+        val animY = animateFloat("scaleY", view.scaleY, endValue)
 
         zoomIn = !zoomIn
 
 
         return Pair(animX, animY)
     }
+
+    private fun min(a: Float, b: Float) = if (a < b) a else b
 }
 
 class ZoomTranslationHelper(
