@@ -13,8 +13,6 @@ class SwipeUpListener<T: View> (
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
 
-        Log.d("Zoomable", "${e1?.rawY} ${e2?.rawY}")
-
         if (velocityY < 0 && Math.abs(velocityY) > Math.abs(velocityX))
             action?.invoke(view)
 

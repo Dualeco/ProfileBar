@@ -43,8 +43,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
-    //ProfileBar
+    //Components
     implementation project(path: ':profileShared')
+
+    //ProfileBar
     implementation project(path: ':profilebar')
     implementation project(path: ':profilebarBinding')
 }

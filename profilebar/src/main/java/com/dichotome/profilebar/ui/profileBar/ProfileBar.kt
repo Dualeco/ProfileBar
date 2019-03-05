@@ -6,6 +6,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.dichotome.profilebar.ui.profileBar.toolbar.ProfileAnimatedToolbar
 import com.dichotome.profileshared.constants.Constants
+import com.dichotome.profileshared.extensions.dpToPx
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
@@ -24,7 +25,7 @@ class ProfileBar @JvmOverloads constructor(
         const val SCROLL_FLAGS = SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
     }
 
-    private val appbarHeight = Constants(context).DISPLAY_HEIGHT / 2
+    private val appbarHeight = dpToPx(300)
     private var heightSet = false
 
     fun setScrollFlags(flags: Int) {

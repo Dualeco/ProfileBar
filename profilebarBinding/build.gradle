@@ -36,7 +36,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.core:core-ktx:$ktx_version"
 
+    //Components
     implementation project(path: ':profileShared')
+
+    //ProfileBar
     implementation project(path: ':profilebar')
 }
 repositories {

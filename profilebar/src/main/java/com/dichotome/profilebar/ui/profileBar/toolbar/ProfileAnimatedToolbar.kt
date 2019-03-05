@@ -31,14 +31,13 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
         private const val DURATION_SHORT = (0.9 * DURATION).toLong()
         private const val DURATION_SHORTER = (0.85 * DURATION).toLong()
 
-        private const val TRANSITION_THRESHOLD: Float = 0.52f
+        private var TRANSITION_THRESHOLD: Float = 0.52f
     }
 
     private var lastPosition = 0
     private var toolbarOpen = true
     private var constraintsChanged = false
     private var dimAdjusted = false
-    private var minHeightSet = false
     private var animatorsInitialised = false
 
     private lateinit var appBar: ProfileBar
@@ -54,7 +53,6 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
     private lateinit var alphaDim: AnimationHelper
 
     private lateinit var appearancePhotoFrame: AnimationHelper
-    private var frameInitialized = false
 
     private val fullSizeConstraintSet = ConstraintSet()
     private val collapsedConstraintSet = ConstraintSet()
@@ -88,16 +86,16 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
         }
 
         if (appBar.measuredHeight > 0) {
-            val dimHeight = (appBar.measuredHeight * (1 - TRANSITION_THRESHOLD)).toInt()
             if (!dimAdjusted) {
+                val appBarHeight = appBar.measuredHeight.toFloat()
+                val dimHeight = tabs.measuredHeight + appBarHeight / 3
+                TRANSITION_THRESHOLD = 1f - (dimHeight / appBarHeight)
+
                 dimView.layoutParams = dimView.layoutParams.apply {
-                    height = dimHeight
+                    height = dimHeight.toInt()
                 }
                 dimAdjusted = true
-            }
-            if (!minHeightSet) {
-                minimumHeight = dimHeight
-                minHeightSet = true
+                minimumHeight = dimHeight.toInt()
             }
         }
     }
@@ -186,7 +184,7 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
             }
             val progress = Math.abs(verticalOffset / it.height.toFloat())
 
-            if (toolbarOpen && progress > TRANSITION_THRESHOLD) {
+            if (toolbarOpen && progress >= TRANSITION_THRESHOLD) {
                 if (!animatorsInitialised) {
                     initAnimators()
                     animatorsInitialised = true
