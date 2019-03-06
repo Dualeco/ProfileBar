@@ -1,6 +1,8 @@
 package com.dichotome.profilebar.ui.profileBar.toolbar
 
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
@@ -31,6 +33,9 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
         private const val DURATION_SHORT = (0.9 * DURATION).toLong()
         private const val DURATION_SHORTER = (0.85 * DURATION).toLong()
 
+        private const val SUPER_STATE = "superState"
+        private const val FRAME_BACKGROUND_ALPHA = "frameBackgroundAlpha"
+
         private var TRANSITION_THRESHOLD: Float = 0.52f
     }
 
@@ -52,12 +57,13 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
     private lateinit var rotationOptionButton: AnimationHelper
     private lateinit var alphaDim: AnimationHelper
 
-    private lateinit var appearancePhotoFrame: AnimationHelper
+    private lateinit var alphaPhotoFrameBackground: AnimationHelper
 
     private val fullSizeConstraintSet = ConstraintSet()
     private val collapsedConstraintSet = ConstraintSet()
 
     init {
+        id = R.id.toolbar_animated
         initFrameTransparency()
     }
 
@@ -101,15 +107,13 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
     }
 
     private fun initFrameTransparency() {
-        photoFrame.let {
-            appearancePhotoFrame = SmoothAlphaAnimationHelper(
-                it,
-                ZoomingImageView.DURATION_ZOOM,
-                1f, 0f
-            ).apply {
-                photoImage.setOnZoomListener {
-                    evaluate()
-                }
+
+        alphaPhotoFrameBackground = SmoothAlphaAnimationHelper(
+            photoFrameBackground,
+            ZoomingImageView.DURATION_ZOOM
+        ).apply {
+            photoImage.setOnZoomListener {
+                evaluate()
             }
         }
     }
@@ -202,9 +206,25 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
         }
     }
 
+    override fun onSaveInstanceState() = Bundle().apply {
+        putParcelable(SUPER_STATE, super.onSaveInstanceState())
+        putFloat(FRAME_BACKGROUND_ALPHA, photoFrameBackground.alpha)
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+
+        val superState = state?.let { it as Bundle
+            photoFrameBackground.alpha = it.getFloat(FRAME_BACKGROUND_ALPHA)
+
+            it.getParcelable<Parcelable>(SUPER_STATE)
+        }
+
+        super.onRestoreInstanceState(superState)
+    }
+
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         collapseAnimators.cancelAll()
-        appearancePhotoFrame.cancel()
+        alphaPhotoFrameBackground.cancel()
     }
 }

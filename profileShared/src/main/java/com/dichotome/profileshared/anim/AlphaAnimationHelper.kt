@@ -1,6 +1,8 @@
 package com.dichotome.profileshared.anim
 
+import android.animation.ObjectAnimator
 import android.animation.TimeInterpolator
+import android.util.Log
 import android.view.View
 
 class AlphaAnimationHelper(
@@ -10,12 +12,14 @@ class AlphaAnimationHelper(
     private val startValue: Float = 1f,
     private val endValue: Float
 ) : LinearAnimationHelper(target, interpolator, duration) {
-    private var collapsed = true
-    override fun evaluate() = animateFloat(
-        "alpha",
-        if (collapsed) startValue else endValue,
-        if (collapsed) endValue else startValue
-    ).also {
-        collapsed = !collapsed
+    override fun evaluate(): ObjectAnimator? {
+        Log.d("ZoomingImageView", "${view.alpha}")
+        val collapsed = view.alpha == 0f
+
+        return animateFloat(
+            "alpha",
+            if (collapsed) startValue else endValue,
+            if (collapsed) endValue else startValue
+        )
     }
 }

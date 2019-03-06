@@ -1,17 +1,18 @@
 package com.dichotome.profilephoto.ui
 
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.GestureDetector
+import android.view.Gravity
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
 import com.dichotome.profilephoto.R
-import com.dichotome.profilephoto.anim.DetachFromFrameAnimationHelper
-import com.dichotome.profilephoto.anim.ZoomAnimationHelper
-import com.dichotome.profilephoto.anim.ZoomCircularRevealHelper
-import com.dichotome.profilephoto.anim.ZoomTranslationHelper
+import com.dichotome.profilephoto.anim.*
 import com.dichotome.profileshared.anim.AlphaAnimationHelper
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.constants.Constants
@@ -26,9 +27,26 @@ class ZoomingImageView @JvmOverloads constructor(
 ) : SquareRoundedImageView(context, attrs, defStyle) {
 
     companion object {
+        const val TAG = "ZoomingImageView"
+
         const val DURATION_ZOOM = 200L
         private const val DURATION_CORNERS = 250L
+
+        private const val SUPER_STATE = "superState"
+        private const val PHOTO_WIDTH = "photoWidth"
+        private const val PHOTO_HEIGHT = "photoWidth"
+        private const val PHOTO_BITMAP = "photoDrawable"
+        private const val IS_PHOTO_VISIBLE = "isPhotoVisible"
+        private const val OVERLAY_ALPHA = "overlayAlpha"
+        private const val SCALE = "scale"
     }
+
+    private val displayHeight = Constants(context).DISPLAY_HEIGHT
+    private val displayWidth = Constants(context).DISPLAY_WIDTH
+
+    private fun max(a: Int, b: Int) = if (a > b) a else b
+
+    private val photoZoomedSize = max(displayHeight, displayWidth)
 
     private var onZoomListener: ((it: ZoomingImageView) -> Unit)? = null
 
@@ -37,6 +55,10 @@ class ZoomingImageView @JvmOverloads constructor(
     }
 
     private fun onZoom() {
+        if (!isPhotoAdjusted) {
+            initPhoto()
+            isPhotoAdjusted = true
+        }
         onZoomListener?.invoke(this)
         zoomAnimators.evaluateAll()
     }
@@ -49,12 +71,13 @@ class ZoomingImageView @JvmOverloads constructor(
         isVisible = false
         layoutParams = FrameLayout.LayoutParams(0, 0)
         setOnTouchListener { _, event ->
-            swipeUpDetector?.onTouchEvent(event)
+            swipeUpDetector.onTouchEvent(event)
             true
         }
     }
 
     private val overlayBackgroundDark = View(context).apply {
+        alpha = 0f
         isVisible = false
         layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
@@ -73,7 +96,9 @@ class ZoomingImageView @JvmOverloads constructor(
         layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
             FrameLayout.LayoutParams.MATCH_PARENT
-        )
+        ).apply {
+            gravity = Gravity.CENTER
+        }
         addView(overlayBackgroundDark)
         addView(zoomablePhoto)
     }
@@ -91,6 +116,8 @@ class ZoomingImageView @JvmOverloads constructor(
         0f, 1f
     )
 
+    private var isPhotoAdjusted = true
+
     private fun isPhotoImageUpToDate(image: SquareRoundedImageView?) = image?.let {
         val currentPhoto = SquareRoundedImageView(context).copyForOverlay(this)
         Math.abs(image.y - currentPhoto.y) < 10
@@ -99,6 +126,7 @@ class ZoomingImageView @JvmOverloads constructor(
     private fun initPhoto() = zoomablePhoto.let {
         if (!isPhotoImageUpToDate(it)) {
             it.copyForOverlay(this)
+            isPhotoAdjusted = false
             initZoom()
         }
     }
@@ -123,33 +151,72 @@ class ZoomingImageView @JvmOverloads constructor(
                 DecelerateInterpolator(),
                 DURATION_ZOOM
             ).addTo(zoomAnimators)
-
-
-
-
-            val dispHeight = Constants(context).DISPLAY_HEIGHT
-            val dispWidth = Constants(context).DISPLAY_WIDTH
             revealOnClick = ZoomCircularRevealHelper(
                 it,
                 overlayBackgroundDark,
                 DecelerateInterpolator(),
                 it.cornerRadius,
-                max(dispHeight, dispWidth),
+                photoZoomedSize,
                 DURATION_CORNERS
             ).addTo(zoomAnimators)
             alphaOverlay.addTo(zoomAnimators)
         }
     }
-    private fun max(a: Int, b: Int) = if (a > b) a else b
+
+    override fun makeCircular() = also { super.makeCircular() }
 
     init {
         setOnClickListener {
-            initPhoto()
+            isPhotoAdjusted = false
             onZoom()
         }
     }
 
-    override fun makeCircular() = also { super.makeCircular() }
+    override fun onSaveInstanceState() = Bundle().apply {
+        zoomablePhoto.apply {
+            putParcelable(SUPER_STATE, super.onSaveInstanceState())
+            putInt(PHOTO_WIDTH, layoutParams.width)
+            putInt(PHOTO_HEIGHT, layoutParams.height)
+            drawable?.let {
+                putParcelable(PHOTO_BITMAP, it.toBitmap())
+            }
+            putBoolean(IS_PHOTO_VISIBLE, isVisible)
+            putFloat(SCALE, scaleX)
+        }
+        putFloat(OVERLAY_ALPHA, overlayBackgroundDark.alpha)
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+
+        val superState = (state as? Bundle)?.let {
+            overlayBackgroundDark.apply {
+                isVisible = it.getBoolean(IS_PHOTO_VISIBLE)
+                alpha = it.getFloat(OVERLAY_ALPHA)
+            }
+            zoomablePhoto.apply {
+                isVisible = it.getBoolean(IS_PHOTO_VISIBLE)
+
+                layoutParams.apply {
+                    width = it.getInt(PHOTO_WIDTH)
+                    height = it.getInt(PHOTO_HEIGHT)
+                }
+                x = getViewCenteredX(this)
+                y = getViewCenteredY(this)
+                setImageBitmap(it.getParcelable(PHOTO_BITMAP))
+
+                scaleX = it.getFloat(SCALE)
+                scaleY = it.getFloat(SCALE)
+            }
+
+            isPhotoAdjusted = false
+            val superState = it.getParcelable<Parcelable>(SUPER_STATE)
+            it.clear()
+
+            superState
+        }
+
+        super.onRestoreInstanceState(superState)
+    }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -160,7 +227,6 @@ class ZoomingImageView @JvmOverloads constructor(
                 onZoom()
             }
         }
-
     }
 
     override fun onDetachedFromWindow() {

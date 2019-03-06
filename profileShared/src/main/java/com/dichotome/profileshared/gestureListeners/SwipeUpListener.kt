@@ -13,7 +13,7 @@ class SwipeUpListener<T: View> (
 
     override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
 
-        if (velocityY < 0 && Math.abs(velocityY) > Math.abs(velocityX) / 1.7)
+        if (velocityY <= 0)
             action?.invoke(view)
 
         return true

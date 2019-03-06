@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="zoom_overlay" type="id"/>
+    <item name="toolbar_animated" type="id"/>
+    <item name="photo_frame_background" type="id"/>
 </resources>

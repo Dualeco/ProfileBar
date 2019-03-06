@@ -9,11 +9,12 @@
     <com.dichotome.profilebar.ui.profileBar.ProfileBar
         android:id="@+id/profileBar"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="300dp" />
 
     <com.dichotome.profilebar.ui.tabPager.TabPager
         android:id="@+id/profilePager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

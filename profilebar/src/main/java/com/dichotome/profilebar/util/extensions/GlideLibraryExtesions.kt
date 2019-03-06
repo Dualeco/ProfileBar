@@ -1,9 +1,11 @@
 package com.dichotome.profilebar.util.extensions
 
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profileshared.extensions.drw
 
@@ -38,7 +40,11 @@ private fun ImageView.glideDownload(obj: Any?, options: RequestOptions?) {
     val requestOptions = RequestOptions()
 
     options?.let {
-        requestOptions.apply(it)
+        requestOptions.apply {
+            apply(it)
+            format(DecodeFormat.PREFER_RGB_565)
+        }
+
     }
 
     Glide.with(context)

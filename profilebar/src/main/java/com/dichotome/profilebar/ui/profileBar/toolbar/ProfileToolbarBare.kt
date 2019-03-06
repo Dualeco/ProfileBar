@@ -2,7 +2,9 @@ package com.dichotome.profilebar.ui.profileBar.toolbar
 
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -28,6 +30,8 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
     defStyle: Int = 0
 ) : ConstraintLayout(context, attrs, defStyle), ProfileBarViews {
 
+    private var imageId = 0
+
     final override val wallpaperImage: ImageView = ImageView(context).apply {
         id = R.id.wallpaper
         scaleType = ImageView.ScaleType.CENTER_CROP
@@ -44,7 +48,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
     }
 
     final override val photoFrameBackground: SquareRoundedImageView = SquareRoundedImageView(context).apply {
-        id = R.id.photo
+        id = R.id.photo_frame_background
         adjustViewBounds = true
     }
 

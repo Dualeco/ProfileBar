@@ -23,4 +23,8 @@ open class SquareRoundedImageView @JvmOverloads constructor(
 
         setMeasuredDimension(dimension, dimension)
     }
+
+    init {
+        scaleType = ScaleType.CENTER_CROP
+    }
 }

@@ -25,9 +25,6 @@ class ProfileBar @JvmOverloads constructor(
         const val SCROLL_FLAGS = SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
     }
 
-    private val appbarHeight = dpToPx(300)
-    private var heightSet = false
-
     fun setScrollFlags(flags: Int) {
         toolbar.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT).apply {
             scrollFlags = flags
@@ -37,16 +34,5 @@ class ProfileBar @JvmOverloads constructor(
     init {
         setScrollFlags(SCROLL_FLAGS)
         addView(toolbar)
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (!heightSet && measuredWidth > 0) {
-            layoutParams = CoordinatorLayout.LayoutParams(
-                CoordinatorLayout.LayoutParams.MATCH_PARENT,
-                appbarHeight
-            )
-            heightSet = true
-        }
     }
 }

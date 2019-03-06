@@ -9,7 +9,9 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.core.util.Pair
+import androidx.core.view.isVisible
 import com.dichotome.profilebar.ui.profileBar.toolbar.ProfileAnimatedToolbar.Companion.TAG
+import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.anim.LinearAnimationHelper
 import com.dichotome.profileshared.anim.PlainAnimationHelper
 
@@ -64,18 +66,16 @@ class AlphaAnimationHelper(
 
 class SmoothAlphaAnimationHelper(
     target: View,
-    duration: Long,
-    private val startValue: Float = 1f,
-    private val endValue: Float
+    duration: Long
 ) : LinearAnimationHelper(target, null, duration) {
-    private var collapsed = true
-    override fun evaluate() = animateFloat(
-        "alpha",
-        if (collapsed) startValue else endValue,
-        if (collapsed) endValue else startValue,
-        if (collapsed) DecelerateInterpolator() else AccelerateInterpolator()
-    ).also {
-        collapsed = !collapsed
+    override fun evaluate(): ObjectAnimator? {
+        val visible = (view.alpha == 1f && view.isVisible)
+        return animateFloat(
+            "alpha",
+            if (visible) 1f else 0f,
+            if (visible) 0f else 1f,
+            if (visible) DecelerateInterpolator() else AccelerateInterpolator()
+        )
     }
 }
 
@@ -111,8 +111,6 @@ class PlainTranslationHelper(
         val deltaX = initX.toFloat() - view.left + view.translationX
         val animX = animateFloat("translationX", deltaX, 0f)
         initX = view.left
-
-        Log.d(TAG, "$initY ${view.bottom}")
 
         val deltaY = initY.toFloat() - view.bottom + view.translationY
         val animY = animateFloat("translationY", deltaY, 0f)

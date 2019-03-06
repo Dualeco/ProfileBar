@@ -68,7 +68,7 @@ fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit)
 fun SquareRoundedImageView.copyForOverlay(imageView: SquareRoundedImageView) = apply {
     cornerRadius = imageView.cornerRadius
     adjustViewBounds = true
-    layoutParams = android.widget.FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredHeight)
+    layoutParams = android.widget.FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredWidth)
         .apply {
             val coords = android.graphics.Rect()
             imageView.getGlobalVisibleRect(coords)
