@@ -35,6 +35,10 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
 
         private const val SUPER_STATE = "superState"
         private const val FRAME_BACKGROUND_ALPHA = "frameBackgroundAlpha"
+        private const val TOOLBAR_OPEN = "toolbarOpen"
+        private const val DIM_ALPHA = "dimAlpha"
+        private const val DIM_HEIGHT = "dimHeight"
+        private const val TOP_MARGIN = "wallpaper_margin"
 
         private var TRANSITION_THRESHOLD: Float = 0.52f
     }
@@ -43,9 +47,12 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
     private var toolbarOpen = true
     private var constraintsChanged = false
     private var dimAdjusted = false
+    private var dimHeight = -1f
+    private var dimCollapsedAlpha = 0.8f
     private var animatorsInitialised = false
 
     private lateinit var appBar: ProfileBar
+    private var appBarHeight = 0f
 
     private var collapseAnimators = ArrayList<AnimationHelper>()
 
@@ -59,12 +66,12 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
 
     private lateinit var alphaPhotoFrameBackground: AnimationHelper
 
-    private val fullSizeConstraintSet = ConstraintSet()
+    private val openConstraintSet = ConstraintSet()
     private val collapsedConstraintSet = ConstraintSet()
 
     init {
         id = R.id.toolbar_animated
-        initFrameTransparency()
+        initFrameAnimOnZoom()
     }
 
     override fun onAttachedToWindow() {
@@ -74,11 +81,27 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
             appBar = parent as ProfileBar
             appBar.addOnOffsetChangedListener(this)
 
-            fullSizeConstraintSet.clone(context, R.layout.toolbar_profile)
+            openConstraintSet.clone(context, R.layout.toolbar_profile)
             collapsedConstraintSet.clone(context, R.layout.toolbar_profile_collapsed)
 
-            fullSizeConstraintSet.applyTo(this)
+            if (toolbarOpen) applyToolbarOpen()
+            else applyToolbarCollapsed()
         }
+    }
+
+    private fun applyToolbarOpen() {
+        openConstraintSet.applyTo(this)
+
+        constraintsChanged = true
+        toolbarOpen = true
+    }
+
+    private fun applyToolbarCollapsed() {
+        collapsedConstraintSet.applyTo(this)
+        dimView.alpha = dimCollapsedAlpha
+
+        constraintsChanged = true
+        toolbarOpen = false
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -93,21 +116,22 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
 
         if (appBar.measuredHeight > 0) {
             if (!dimAdjusted) {
-                val appBarHeight = appBar.measuredHeight.toFloat()
-                val dimHeight = tabs.measuredHeight + appBarHeight / 3
+                appBarHeight = appBar.measuredHeight.toFloat()
+                if (dimHeight == -1f)
+                    dimHeight = tabs.measuredHeight + appBarHeight / 3
+
                 TRANSITION_THRESHOLD = 1f - (dimHeight / appBarHeight)
 
                 dimView.layoutParams = dimView.layoutParams.apply {
                     height = dimHeight.toInt()
                 }
-                dimAdjusted = true
                 minimumHeight = dimHeight.toInt()
+                dimAdjusted = true
             }
         }
     }
 
-    private fun initFrameTransparency() {
-
+    private fun initFrameAnimOnZoom() {
         alphaPhotoFrameBackground = SmoothAlphaAnimationHelper(
             photoFrameBackground,
             ZoomingImageView.DURATION_ZOOM
@@ -169,8 +193,33 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
                 it,
                 DecelerateInterpolator(),
                 DURATION_SHORT,
-                1f, 0.8f
+                dimCollapsedAlpha, 1f
             ).addTo(collapseAnimators)
+        }
+
+        animatorsInitialised = true
+    }
+
+    private fun setTopMargin(value: Int) {
+        layoutParams = (layoutParams as AppBarLayout.LayoutParams).apply {
+            topMargin = value
+        }
+    }
+
+    private fun initAnimatorsOpen() {
+        if (!animatorsInitialised) initAnimators()
+    }
+
+    private fun initAnimatorsCollapsed() {
+        val oldHeight = appBarHeight
+        if (!animatorsInitialised) {
+            appBar.layoutParams = appBar.layoutParams.apply {
+                height = dimHeight.toInt()
+            }
+            initAnimators()
+            appBar.layoutParams = appBar.layoutParams.apply {
+                height = oldHeight.toInt()
+            }
         }
     }
 
@@ -181,44 +230,50 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
             }
             lastPosition = verticalOffset
 
-            if (toolbarOpen) {
-                layoutParams = (layoutParams as AppBarLayout.LayoutParams).apply {
-                    topMargin = -verticalOffset
-                }
-            }
+            if (toolbarOpen) setTopMargin(-verticalOffset)
+
             val progress = Math.abs(verticalOffset / it.height.toFloat())
 
             if (toolbarOpen && progress >= TRANSITION_THRESHOLD) {
-                if (!animatorsInitialised) {
-                    initAnimators()
-                    animatorsInitialised = true
-                }
-
-                collapsedConstraintSet.applyTo(this)
-                constraintsChanged = true
-                toolbarOpen = false
+                initAnimatorsOpen()
+                applyToolbarCollapsed()
 
             } else if (!toolbarOpen && progress < TRANSITION_THRESHOLD) {
-                fullSizeConstraintSet.applyTo(this)
-                constraintsChanged = true
-                toolbarOpen = true
+                initAnimatorsCollapsed()
+                applyToolbarOpen()
             }
         }
     }
 
     override fun onSaveInstanceState() = Bundle().apply {
         putParcelable(SUPER_STATE, super.onSaveInstanceState())
+
+        putBoolean(TOOLBAR_OPEN, toolbarOpen)
+        putFloat(DIM_HEIGHT, dimHeight)
+        putFloat(DIM_ALPHA, dimView.alpha)
+
+        if (!toolbarOpen)
+            putInt(TOP_MARGIN, (layoutParams as AppBarLayout.LayoutParams).topMargin)
+
         putFloat(FRAME_BACKGROUND_ALPHA, photoFrameBackground.alpha)
     }
 
     override fun onRestoreInstanceState(state: Parcelable?) {
+        val superState = state?.let {
+            it as Bundle
 
-        val superState = state?.let { it as Bundle
+            toolbarOpen = it.getBoolean(TOOLBAR_OPEN)
+            dimHeight = it.getFloat(DIM_HEIGHT)
+            dimView.alpha = it.getFloat(DIM_ALPHA)
+
+            if (!toolbarOpen) setTopMargin(
+                it.getInt(TOP_MARGIN)
+            )
+
             photoFrameBackground.alpha = it.getFloat(FRAME_BACKGROUND_ALPHA)
 
             it.getParcelable<Parcelable>(SUPER_STATE)
         }
-
         super.onRestoreInstanceState(superState)
     }
 

@@ -25,6 +25,7 @@ class ProfileBar @JvmOverloads constructor(
         const val SCROLL_FLAGS = SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
     }
 
+
     fun setScrollFlags(flags: Int) {
         toolbar.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT).apply {
             scrollFlags = flags

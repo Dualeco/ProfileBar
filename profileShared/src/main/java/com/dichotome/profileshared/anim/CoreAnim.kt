@@ -91,5 +91,5 @@ abstract class PlainAnimationHelper(
     interpolator: TimeInterpolator,
     duration: Long
 ) : AnimationHelper(target, interpolator, duration) {
-    abstract fun evaluateXY(): Pair<Animator?, Animator?>
+    abstract fun evaluateXY(): Pair<out Animator?, out Animator?>
 }

@@ -7,8 +7,8 @@ abstract class TabFragment : Fragment() {
     companion object {
         const val ARGS_TITLE = "title"
     }
-    var title: String?
-        get() = arguments?.getString(ARGS_TITLE)
+    var title: String
+        get() = arguments?.getString(ARGS_TITLE) ?: ""
         set(title) {
             val args = arguments ?: Bundle()
             arguments = args.apply {

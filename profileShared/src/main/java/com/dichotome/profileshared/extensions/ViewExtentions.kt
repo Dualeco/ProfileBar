@@ -51,30 +51,3 @@ fun View.setViewAndChildrenEnabled(enabled: Boolean) {
 }
 
 fun <T : View> ViewGroup.addAndGetView(view: T) = view.also { addView(it) }
-
-fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit) {
-    isFocusableInTouchMode = true
-    requestFocus()
-    setOnKeyListener { _, keyCode, event ->
-        if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK && condition()
-        ) {
-            onClicked()
-            true
-        } else false
-    }
-}
-
-
-fun SquareRoundedImageView.copyForOverlay(imageView: SquareRoundedImageView) = apply {
-    cornerRadius = imageView.cornerRadius
-    adjustViewBounds = true
-    layoutParams = android.widget.FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredWidth)
-        .apply {
-            val coords = android.graphics.Rect()
-            imageView.getGlobalVisibleRect(coords)
-
-            x = coords.left.toFloat()
-            y = coords.top.toFloat() - Constants(context).STATUS_BAR_SIZE
-        }
-    setImageDrawable(imageView.drawable)
-}
