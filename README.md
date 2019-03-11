@@ -31,7 +31,8 @@ allprojects {
     }
 ```
 2. In *build.gradle(Module)* add the following code:
-* If you need databinding:
+
+* With databinding:
 ```
 android {
     ...
@@ -42,7 +43,8 @@ android {
 ...
 implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.1"
 ```
-* Otherwise:
+
+* Without databinding:
 ```
 implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1"
 ```
@@ -70,7 +72,7 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
-**Note:** if you are using databinding, set `<layout>` as your layout root and specify the data you are going to bind:
+**Note:** if you are using databinding, set `<layout>` as your root tag and specify the data to be bound:
 ```
 <layout>
     <data>
@@ -83,3 +85,52 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
     ...
 </layout>
 ```
+
+### Hooking up data
+**Note:** all of the values listed are optional
+
+* With databinding:
+
+**1.In layout.xml**
+```
+<data>
+    <variable name="logic"
+    ... />
+</data>
+<com.dichotome.profilebar.ui.profileBar.ProfileBar
+    android:id="@+id/profileBar"
+    
+    app:photo="@{logic.photo}"
+    app:wallpaper="@{logic.wallpaper}" 
+    app:subtitle="@{logic.subtitle}"
+    app:title="@{logic.title}" 
+    ... />
+    
+<com.dichotome.profilebar.ui.tabPager.TabPager 
+    android:id="@+id/profilePager"
+    app:fragments="@{logic.pagerFragments}" 
+    ... />
+```
+See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/res/layout/fragment_profile_with_adapters.xml "XML binding example")
+
+**2.In code:**
+```
+profileBar.setupWithViewPager(profilePager)
+```
+See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")
+
+* Without databinding:
+
+**In code:**
+```
+profileBar.apply {
+            photoDrawable = photo
+            subtitleText = "Joined on 19 April 2017"
+            titleText = "Pavlo Bondan"
+            wallpaperDrawable = wallpaper
+            tabsEnabled = true
+        }
+        profilePager.fragments = pagerFragments
+        profileBar.setupWithViewPager(profilePager)
+```
+See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")
