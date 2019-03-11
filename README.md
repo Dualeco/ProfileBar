@@ -109,7 +109,7 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
 
 #### Adding fragments to the pager
 
-TabPager is designed to work with the [TabFragment]("TabFragment") class. Its difference from the simple Fragment is the **mutable `title` field**. It stands for the name of the tab, that contains the fragment.
+TabPager is designed to work with the [TabFragment](https://github.com/DichotoMe/ProfileBar/blob/master/profilebar/src/main/java/com/dichotome/profilebar/ui/tabPager/TabFragment.kt "TabFragment") class. Its difference from the simple Fragment is the **mutable `title` field**. It stands for the name of the tab, that contains the fragment.
 
 To add fragments to a TabPager, first of all, you need to extend TabFragment and implement a *static newInstance() method*, similar to this: 
 ```
