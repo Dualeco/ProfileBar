@@ -3,6 +3,10 @@ Custom animated AppbarLayout designed as a profile screen
 
 ![zoom_resized](https://user-images.githubusercontent.com/31614124/54141780-fc161200-442e-11e9-84e6-225942c3d5b4.gif)
 
+### Note: the animation *always* starts from the place it has been triggered!
+# Try it yourself!
+#### [Download the apk](http:// "Apk")
+
 # More examples
 
 ![gogh_full](https://user-images.githubusercontent.com/31614124/54158363-0a762500-4453-11e9-9563-4f6fb8fc6e1e.jpg) 
