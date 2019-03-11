@@ -89,9 +89,12 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
 ### Hooking up data
 **Note:** all of the values listed are optional
 
+#### Parameters featured:
+*
+
 * With databinding:
 
-**1.In layout.xml**
+*1. In layout.xml*
 ```
 <data>
     <variable name="logic"
@@ -111,17 +114,18 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
     app:fragments="@{logic.pagerFragments}" 
     ... />
 ```
-See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/res/layout/fragment_profile_with_adapters.xml "XML binding example")
+**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/res/layout/fragment_profile_with_adapters.xml "XML binding example")**
 
-**2.In code:**
+*2. In code:*
 ```
 profileBar.setupWithViewPager(profilePager)
 ```
-See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")
+**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
+
 
 * Without databinding:
 
-**In code:**
+    *In code:*
 ```
 profileBar.apply {
             photoDrawable = photo
@@ -130,7 +134,8 @@ profileBar.apply {
             wallpaperDrawable = wallpaper
             tabsEnabled = true
         }
-        profilePager.fragments = pagerFragments
-        profileBar.setupWithViewPager(profilePager)
+profilePager.fragments = pagerFragments
+
+profileBar.setupWithViewPager(profilePager)
 ```
-See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")
+**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")**
