@@ -132,12 +132,12 @@ val pagerFragments = arrayListOf(
 
 #### Supplying the values
 
-[See the full list of values](https:// "In development")
-
 **Note:** all of the values listed are optional
 
 * Without databinding:
+    
 
+[See the full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
     *In code:*
 ```
 profileBar.apply {
