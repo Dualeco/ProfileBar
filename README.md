@@ -134,7 +134,7 @@ val pagerFragments = arrayListOf(
 
 * Without databinding:
     
-[See the full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
+[See a full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
 
     *In code:*
 ```
@@ -152,7 +152,8 @@ profileBar.setupWithViewPager(profilePager)
 **See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")**
 
 * With databinding:
-[See the full binding interface](https://github.com/DichotoMe/ProfileBar/blob/master/BINDING_INTERFACE.md "Profilebar binding interface")
+
+[See a full binding interface](https://github.com/DichotoMe/ProfileBar/blob/master/BINDING_INTERFACE.md "Profilebar binding interface")
 
 *1. In layout.xml*
 ```
