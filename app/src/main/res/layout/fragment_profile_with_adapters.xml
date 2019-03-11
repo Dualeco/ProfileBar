@@ -19,8 +19,6 @@
                 android:id="@+id/profileBar"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                app:onChangedPhoto="@{logic::onChangedPhoto}"
-                app:onChangedWallpaper="@{logic.onChangedWallpaper}"
                 app:subtitle="@{logic.subtitle}"
                 app:title="@{logic.title}"
                 app:photo="@{logic.photo}"

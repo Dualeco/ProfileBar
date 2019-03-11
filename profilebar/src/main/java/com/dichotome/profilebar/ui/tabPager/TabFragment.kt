@@ -1,4 +1,4 @@
-package com.dichotome.profilebar.stubs.fragments
+package com.dichotome.profilebar.ui.tabPager
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

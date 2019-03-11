@@ -2,7 +2,6 @@ package com.dichotome.profilebar.ui.tabPager
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.dichotome.profilebar.stubs.fragments.TabFragment
 
 class TabPagerAdapter(fm: FragmentManager, var tabFragments: List<TabFragment> = mutableListOf()) :
     FragmentPagerAdapter(fm) {

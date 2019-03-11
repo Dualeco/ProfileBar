@@ -28,8 +28,8 @@
 
     <color name="glowColor">#B3FFFFFF</color>
 
-    <color name="shadowMiddle">#B3000000</color>
-    <color name="shadowColor">#CC000000</color>
+    <color name="shadowMiddle">#99000000</color>
+    <color name="shadowColor">#A6000000</color>
     <color name="liningColor">#66000000</color>
     <!--Common-->
     <string name="common_ok">OK</string>

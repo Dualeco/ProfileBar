@@ -44,10 +44,13 @@ class ZoomingImageView @JvmOverloads constructor(
         private const val SUPER_STATE = "superState"
         private const val PHOTO_WIDTH = "photoWidth"
         private const val PHOTO_HEIGHT = "photoWidth"
-        private const val IS_PHOTO_VISIBLE = "isPhotoVisible"
+        private const val IS_ZOOMING_PHOTO_VISIBLE = "isZoomingPhotoVisible"
+        private const val IS_PHOTO_VIEW_VISIBLE = "isPhotoViewVisible"
         private const val OVERLAY_ALPHA = "overlayAlpha"
         private const val SCALE = "scale"
     }
+
+    private var goInvisible = false
 
     private val displayHeight = Constants(context).DISPLAY_HEIGHT
     private val displayWidth = Constants(context).DISPLAY_WIDTH
@@ -198,9 +201,11 @@ class ZoomingImageView @JvmOverloads constructor(
                 putInt(PHOTO_WIDTH, width)
                 putInt(PHOTO_HEIGHT, height)
             }
-            putBoolean(IS_PHOTO_VISIBLE, isVisible)
+            putBoolean(IS_ZOOMING_PHOTO_VISIBLE, isVisible)
             putFloat(SCALE, scaleX)
         }
+
+        putBoolean(IS_PHOTO_VIEW_VISIBLE, isVisible)
 
         overlayBackgroundDark.apply {
             putFloat(OVERLAY_ALPHA, alpha)
@@ -211,7 +216,7 @@ class ZoomingImageView @JvmOverloads constructor(
         val superState = state?.let {
             it as Bundle
             overlayBackgroundDark.apply {
-                isVisible = it.getBoolean(IS_PHOTO_VISIBLE)
+                isVisible = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
                 alpha = it.getFloat(OVERLAY_ALPHA)
             }
 
@@ -220,12 +225,13 @@ class ZoomingImageView @JvmOverloads constructor(
                     width = it.getInt(PHOTO_WIDTH)
                     height = it.getInt(PHOTO_HEIGHT)
                 }
-                isVisible = it.getBoolean(IS_PHOTO_VISIBLE)
+                isVisible = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
                 scaleX = it.getFloat(SCALE)
                 scaleY = it.getFloat(SCALE)
 
                 setInCenter()
             }
+
             wasViewRestored = true
 
             it.getParcelable<Parcelable>(SUPER_STATE)

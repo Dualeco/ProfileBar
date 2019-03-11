@@ -7,15 +7,12 @@ import com.dichotome.profilebar.stubs.fragments.FavouritesTabFragment
 import com.dichotome.profilebarbinding.stubs.fragments.SubscriptionsTabBindingFragment
 
 class ProfileBindingLogic : ViewModel() {
-    val photo = drw(R.drawable.avatar)
-    val wallpaper = drw(R.drawable.cover2)
-    val title = "Pavlo Bohdan"
-    val subtitle = "Joined on 19 Apr 2017"
+    var photo = drw(R.drawable.picasso_av)
+    var wallpaper = drw(R.drawable.picasso_wall)
+    val title = "Pablo Picasso"
+    val subtitle = "Joined on 5 December 1960"
     val pagerFragments = arrayListOf(
-        SubscriptionsTabBindingFragment.newInstance("Subsriptions (324)"),
-        FavouritesTabFragment.newInstance("Favourites (626)")
+        SubscriptionsTabBindingFragment.newInstance("Subscriptions"),
+        FavouritesTabFragment.newInstance("Favourites")
     )
-
-    fun onChangedPhoto() {}
-    val onChangedWallpaper: () -> Unit = {}
 }

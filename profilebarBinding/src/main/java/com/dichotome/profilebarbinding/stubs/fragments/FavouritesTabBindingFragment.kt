@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.dichotome.profilebar.stubs.fragments.TabFragment
+import com.dichotome.profilebar.ui.tabPager.TabFragment
 import com.dichotome.profilebar.stubs.FavListItem
 import com.dichotome.profilebarbinding.R
 import com.dichotome.profilebarbinding.stubs.TabListAdapter

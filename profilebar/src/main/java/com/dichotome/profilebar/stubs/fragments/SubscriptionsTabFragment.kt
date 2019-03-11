@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.stubs.TabListItem
 import com.dichotome.profilebar.stubs.TabListAdapter
+import com.dichotome.profilebar.ui.tabPager.TabFragment
 import kotlinx.android.synthetic.main.fragment_profile_tab.*
 
 class SubscriptionsTabFragment : TabFragment() {

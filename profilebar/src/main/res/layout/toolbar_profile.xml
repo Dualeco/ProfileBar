@@ -25,15 +25,6 @@
             app:layout_constraintStart_toStartOf="@+id/bottom_glow" />
 
     <View
-            android:id="@+id/brim_glow"
-            android:layout_width="0dp"
-            android:layout_height="12dp"
-            android:background="@drawable/bottom_glow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    <View
             android:id="@+id/bottom_glow"
             android:layout_width="0dp"
             android:layout_height="12dp"
@@ -133,5 +124,5 @@
             app:layout_constraintBottom_toTopOf="@+id/tabs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo_frame"
-            app:layout_constraintWidth_percent="0.3" />
+            app:layout_constraintWidth_percent="0.2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

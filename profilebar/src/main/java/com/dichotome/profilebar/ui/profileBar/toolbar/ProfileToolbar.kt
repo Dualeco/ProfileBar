@@ -37,8 +37,11 @@ open class ProfileToolbar @JvmOverloads constructor(
         private val DEFAULT_PHOTO_ID = R.drawable.profile_photo_stub
     }
 
-    private var profilePicOptions = RequestOptions()
+    private val profilePicOptions = RequestOptions()
         .override(Constants(context).DISPLAY_WIDTH)
+        .centerCrop()
+
+    private val wallpaperOptions = RequestOptions()
         .centerCrop()
 
     override var tabsEnabled: Boolean = false
@@ -65,13 +68,13 @@ open class ProfileToolbar @JvmOverloads constructor(
             tabs.setSelectedTabIndicatorColor(field)
         }
 
-    final override var wallpaperDrawable: Drawable? = null
+    final override var wallpaper: Drawable? = null
         set(value) {
             field = value
-            wallpaperImage.setImageDrawable(field)
+            wallpaperImage.download(field, wallpaperOptions)
         }
 
-    override var photoDrawable: Drawable? = drw(DEFAULT_PHOTO_ID)
+    override var photo: Drawable? = drw(DEFAULT_PHOTO_ID)
         set(value) {
             field = value
             photoImage.download(field, profilePicOptions)
@@ -84,26 +87,26 @@ open class ProfileToolbar @JvmOverloads constructor(
             subtitleTV.setTextColor(value)
         }
 
-    override var titleText: String? = null
+    override var title: String? = null
         set(value) {
             field = value
             titleTV.text = field
         }
 
-    override var titleTextSize: Float =
+    override var titleSize: Float =
         DEFAULT_TITLE_TEXT_SIZE
         set(value) {
             field = value
             titleTV.textSize = field
         }
 
-    override var subtitleText: String? = null
+    override var subtitle: String? = null
         set(value) {
             field = value
             subtitleTV.text = field
         }
 
-    override var subtitleTextSize: Float =
+    override var subtitleSize: Float =
         DEFAULT_SUBTITLE_TITLE_TEXT_SIZE
         set(value) {
             field = value
@@ -143,7 +146,7 @@ open class ProfileToolbar @JvmOverloads constructor(
     }
 
     init {
-        wallpaperImage.setImageDrawable(wallpaperDrawable)
+        wallpaperImage.setImageDrawable(wallpaper)
         dimView.background = dimDrawable
         bottomGlowView.background = bottomGlowDrawable
 
@@ -151,18 +154,17 @@ open class ProfileToolbar @JvmOverloads constructor(
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT).apply {
                 setMargins(dpToPx(DEFAULT_FRAME_THICKNESS_DP))
             }
-            download(R.drawable.cover2, profilePicOptions)
         }
         photoFrameBackground.setImageDrawable(photoFrameDrawable)
 
         titleTV.apply {
-            text = titleText
-            textSize = titleTextSize
+            text = title
+            textSize = titleSize
             setTextColor(fontColor)
         }
         subtitleTV.apply {
-            text = subtitleText
-            textSize = subtitleTextSize
+            text = subtitle
+            textSize = subtitleSize
             setTextColor(fontColor)
         }
 

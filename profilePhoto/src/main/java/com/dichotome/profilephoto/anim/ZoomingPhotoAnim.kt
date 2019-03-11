@@ -12,6 +12,7 @@ import com.dichotome.profilephoto.util.extensions.getZoomWidth
 import com.dichotome.profileshared.anim.LinearAnimationHelper
 import com.dichotome.profileshared.anim.PlainAnimationHelper
 import com.dichotome.profileshared.anim.SimpleAnimationHelper
+import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.views.SquareRoundedImageView
 import kotlin.math.ceil
 import kotlin.math.min
@@ -78,7 +79,7 @@ class ZoomTranslationHelper(
     private var initY = view.y
 
     private val width = view.getZoomWidth()
-    private val height = view.getZoomHeight()
+    private val height = view.getZoomHeight() - Constants(view.context).NAVBAR_SIZE
 
     private val dimension = view.layoutParams.width
 

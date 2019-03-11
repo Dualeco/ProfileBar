@@ -1,43 +1,41 @@
 package com.dichotome.profilebarbinding.bindingAdapters
 
 import android.graphics.drawable.Drawable
-import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
-import com.dichotome.profileshared.extensions.col
 
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, photo: Drawable?) {
-    bar.photoDrawable = photo
+    bar.photo = photo
 }
 
 @BindingAdapter("app:wallpaper")
 fun setWallpaper(bar: ProfileBar, wallpaper: Drawable?) {
-    bar.wallpaperDrawable = wallpaper
+    bar.wallpaper = wallpaper
 }
 
 @BindingAdapter("app:title")
 fun setTitle(bar: ProfileBar, title: String?) {
-    bar.titleText = title
+    bar.title = title
 }
 
 @BindingAdapter("app:titleSize")
 fun setTitleSize(bar: ProfileBar, dp: Int?) {
     dp?.let {
-        bar.titleTextSize = dp.toFloat()
+        bar.titleSize = dp.toFloat()
     }
 }
 
 @BindingAdapter("app:subtitle")
 fun setSubtitle(bar: ProfileBar, subtitle: String?) {
-    bar.subtitleText = subtitle
+    bar.subtitle = subtitle
 }
 
 
 @BindingAdapter("app:subtitleSize")
 fun setSubtitleSize(bar: ProfileBar, dp: Int?) {
     dp?.let {
-        bar.subtitleTextSize = dp.toFloat()
+        bar.subtitleSize = dp.toFloat()
     }
 }
 
@@ -69,12 +67,6 @@ fun setBottomGlowDrawable(bar: ProfileBar, glow: Drawable?) {
     }
 }
 
-@BindingAdapter("app:frameColor")
-fun setFrameColor(bar: ProfileBar, @ColorRes id: Int?) {
-    id?.let {
-        bar.photoFrameColor = bar.col(id)
-    }
-}
 
 @BindingAdapter("app:frameDrawable")
 fun setFrameDrawable(bar: ProfileBar, frame: Drawable?) {

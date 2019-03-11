@@ -13,14 +13,14 @@ import com.dichotome.profileshared.extensions.str
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.photoDrawable = bar.drw(id)
+        bar.photo = bar.drw(id)
     }
 }
 
 @BindingAdapter("app:wallpaper")
 fun setWallpaper(bar: ProfileBar, @DrawableRes id: Int?) {
     id?.let {
-        bar.wallpaperDrawable = bar.drw(id)
+        bar.wallpaper = bar.drw(id)
     }
 }
 
@@ -35,14 +35,14 @@ fun setFontColor(bar: ProfileBar, @ColorRes id: Int?) {
 @BindingAdapter("app:title")
 fun setTitle(bar: ProfileBar, @StringRes id: Int?) {
     id?.let {
-        bar.titleText = bar.str(id)
+        bar.title = bar.str(id)
     }
 }
 
 @BindingAdapter("app:subtitle")
 fun setSubtitle(bar: ProfileBar, @StringRes id: Int?) {
     id?.let {
-        bar.subtitleText = bar.str(id)
+        bar.subtitle = bar.str(id)
     }
 }
 
@@ -50,6 +50,13 @@ fun setSubtitle(bar: ProfileBar, @StringRes id: Int?) {
 fun setTabSelectedColor(bar: ProfileBar, @ColorRes id: Int?) {
     id?.let {
         bar.tabsSelectedColor = bar.col(id)
+    }
+}
+
+@BindingAdapter("app:frameColor")
+fun setFrameColor(bar: ProfileBar, @ColorRes id: Int?) {
+    id?.let {
+        bar.photoFrameColor = bar.col(id)
     }
 }
 

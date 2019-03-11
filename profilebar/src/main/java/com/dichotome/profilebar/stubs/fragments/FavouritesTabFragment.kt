@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.stubs.FavListItem
 import com.dichotome.profilebar.stubs.TabListAdapter
+import com.dichotome.profilebar.ui.tabPager.TabFragment
 import kotlinx.android.synthetic.main.fragment_profile_tab.*
 
 class FavouritesTabFragment() : TabFragment() {

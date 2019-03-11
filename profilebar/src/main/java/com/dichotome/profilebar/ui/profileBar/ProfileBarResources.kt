@@ -15,14 +15,14 @@ interface ProfileBarResources {
     var tabsUnselectedColor: Int
     var tabsIndicatorColor: Int
 
-    var wallpaperDrawable: Drawable?
-    var photoDrawable: Drawable?
+    var wallpaper: Drawable?
+    var photo: Drawable?
 
     var fontColor: Int
-    var titleText: String?
-    var titleTextSize: Float
-    var subtitleText: String?
-    var subtitleTextSize: Float
+    var title: String?
+    var titleSize: Float
+    var subtitle: String?
+    var subtitleSize: Float
 
     var dimDrawable: Drawable?
     var bottomGlowDrawable: Drawable?

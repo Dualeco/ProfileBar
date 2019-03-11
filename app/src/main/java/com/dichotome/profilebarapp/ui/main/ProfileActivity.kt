@@ -22,10 +22,10 @@ class ProfileActivity : AppCompatActivity() {
         )
 
         profileBar.apply {
-            photoDrawable = photo
-            subtitleText = "Joined on 19 April 2017"
-            titleText = "Pavlo Bondan"
-            wallpaperDrawable = wallpaper
+            this.photo = photo
+            subtitle = "Joined on 19 April 2017"
+            title = "Pavlo Bondan"
+            this.wallpaper = wallpaper
             tabsEnabled = true
         }
         profilePager.fragments = pagerFragments

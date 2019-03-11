@@ -126,6 +126,6 @@
             app:layout_constraintBottom_toTopOf="@+id/tabs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintWidth_percent="0.3"/>
+            app:layout_constraintWidth_percent="0.2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

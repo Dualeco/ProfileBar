@@ -48,7 +48,7 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
     private var constraintsChanged = false
     private var dimAdjusted = false
     private var dimHeight = -1f
-    private var dimCollapsedAlpha = 0.8f
+    private var dimCollapsedAlpha = 0.7f
     private var animatorsInitialised = false
 
     private lateinit var appBar: ProfileBar
