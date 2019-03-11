@@ -149,7 +149,7 @@ profilePager.fragments = pagerFragments
 
 profileBar.setupWithViewPager(profilePager)
 ```
-**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")**
+**See the full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")**
 
 * With databinding:
 
