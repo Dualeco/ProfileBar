@@ -1,5 +1,6 @@
 # ProfileBar
-Custom animated AppbarLayout designed as a profile screen
+A beautiful animated profile screen with a zooming photo and tabs.
+Implemented as an AppBar with a ViewPager
 
 ![zoom_resized](https://user-images.githubusercontent.com/31614124/54141780-fc161200-442e-11e9-84e6-225942c3d5b4.gif)
 
