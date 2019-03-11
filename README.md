@@ -3,9 +3,23 @@ Custom animated AppbarLayout designed as a profile screen
 
 ![zoom_resized](https://user-images.githubusercontent.com/31614124/54141780-fc161200-442e-11e9-84e6-225942c3d5b4.gif)
 
+# More examples
+
+![gogh_full](https://user-images.githubusercontent.com/31614124/54158363-0a762500-4453-11e9-9563-4f6fb8fc6e1e.jpg) 
+![gogh_small](https://user-images.githubusercontent.com/31614124/54158364-0b0ebb80-4453-11e9-8cb0-acfe3b2a4db4.jpg)
+
+
+
+![dali_full](https://user-images.githubusercontent.com/31614124/54158561-693b9e80-4453-11e9-92fb-a2e853175d82.jpg)
+![dali_small](https://user-images.githubusercontent.com/31614124/54158562-693b9e80-4453-11e9-8250-6186e97318e5.jpg)
+
+![pic_full](https://user-images.githubusercontent.com/31614124/54159479-bde01900-4455-11e9-86c6-71d951507cec.jpg)
+![pic_small](https://user-images.githubusercontent.com/31614124/54159480-bde01900-4455-11e9-80e9-b2c600eae9e1.jpg)
+
 ## Supported Android versions
 * API 22 and higher
-Earlier versions are to be added soon
+
+*Earlier versions are to be added soon*
 
 ## Supported technologies
 * Databinding
@@ -88,15 +102,12 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
 ```
 
 ### Hooking up data
-[See the full list of values](https:// "In development")
 
-**Note:** all of the values listed are optional
+#### Adding fragments to the pager
 
-### Adding fragments to the pager
+TabPager is designed to work with the [TabFragment]("TabFragment") class. Its difference from the simple Fragment is the **mutable `title` field**. It stands for the name of the tab, that contains the fragment.
 
-TabPager is designed to work with [TabFragment]("TabFragment") class. Its difference from a simple Fragment is a **mutable `title` field**. It stands for the name of the tab, that contains the fragment.
-
-To add fragments to a TabPager, first of all, you need to extend a TabFragment and implement a *static newInstance() method*, similar to this: 
+To add fragments to a TabPager, first of all, you need to extend TabFragment and implement a *static newInstance() method*, similar to this: 
 ```
 class FavouritesTabFragment() : TabFragment() {
     companion object {
@@ -117,6 +128,10 @@ val pagerFragments = arrayListOf(
 ```
 
 #### Supplying the values
+
+[See the full list of values](https:// "In development")
+
+**Note:** all of the values listed are optional
 
 * Without databinding:
 
