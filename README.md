@@ -127,6 +127,9 @@ val pagerFragments = arrayListOf(
 )
 ```
 
+**Note:** titles can be changed dynamically via TabPager.adapter using [the following interface](https://github.com/DichotoMe/ProfileBar/blob/master/profilebar/src/main/java/com/dichotome/profilebar/ui/tabPager/TabPagerAdapter.kt "TabAdapter")
+
+
 #### Supplying the values
 
 [See the full list of values](https:// "In development")
