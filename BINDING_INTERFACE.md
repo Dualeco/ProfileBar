@@ -28,5 +28,8 @@ The following attributes should be used in such a way:
 * `dimDrawable: Drawable = DEFAULT_DIM_DRAWABLE  or @DrawableRes Int?` - semi-transparent rectangular view that occupies half of `profileBar`
 * `bottomGlowDrawable: Drawable = DEFAULT_BOTTOM_GLOW  or @DrawableRes Int?` - glowing strip on the border between `tabPager` and `profileBar`
 
+* `onChangedPhoto()` - listener for the `Photo` button click in the option menu
+* `onChangedWallpaper()` - listener for the `Wallpaper` button click in the option menu
+
 ## `TabPager`
 * `fragments: List<TabFragments>` - the list of TabFragments to be displayed
