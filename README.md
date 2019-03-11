@@ -5,7 +5,7 @@ Custom animated AppbarLayout designed as a profile screen
 
 ### Note: the animation *always* starts from the place it has been triggered!
 # Try it yourself!
-#### [Download the apk](http:// "Apk")
+#### [Download the apk](https://github.com/DichotoMe/ProfileBar/releases/download/1.1.1/ProfileBar.apk "Apk")
 
 # More examples
 
