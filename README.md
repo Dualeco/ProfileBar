@@ -30,7 +30,13 @@ allprojects {
         url "https://jitpack.io"
     }
 ```
+
 2. In *build.gradle(Module)* add the following code:
+
+* Without databinding:
+```
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1"
+```
 
 * With databinding:
 ```
@@ -42,11 +48,6 @@ android {
 }
 ...
 implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.1"
-```
-
-* Without databinding:
-```
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1"
 ```
 
 ### Building a layout
@@ -87,10 +88,52 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
 ```
 
 ### Hooking up data
+[See the full list of values](https:// "In development")
+
 **Note:** all of the values listed are optional
 
-#### Parameters featured:
-*
+### Adding fragments to the pager
+
+TabPager is designed to work with [TabFragment]("TabFragment") class. Its difference from a simple Fragment is a **mutable `title` field**. It stands for the name of the tab, that contains the fragment.
+
+To add fragments to a TabPager, first of all, you need to extend a TabFragment and implement a *static newInstance() method*, similar to this: 
+```
+class FavouritesTabFragment() : TabFragment() {
+    companion object {
+        fun newInstance(tabTitle: String) = FavouritesTabFragment().apply {
+            title = tabTitle
+        }
+    }
+}
+```
+**See an example [here](https://github.com/DichotoMe/ProfileBar/blob/master/profilebar/src/main/java/com/dichotome/profilebar/stubs/fragments/FavouritesTabFragment.kt "FavouritesTabFragment")**
+
+Next, create an arrayList named `pagerFragment` and add all the fragments to it, in the order you want to see them in the TabLayout
+```
+val pagerFragments = arrayListOf(
+    SubscriptionsTabFragment.newInstance("Subsriptions"),
+    FavouritesTabFragment.newInstance("Favourites")
+)
+```
+
+#### Supplying the values
+
+* Without databinding:
+
+    *In code:*
+```
+profileBar.apply {
+    photoDrawable = photo
+    subtitleText = "Joined on 19 April 2017"
+    titleText = "Pavlo Bondan"
+    wallpaperDrawable = wallpaper
+    tabsEnabled = true
+}
+profilePager.fragments = pagerFragments
+
+profileBar.setupWithViewPager(profilePager)
+```
+**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")**
 
 * With databinding:
 
@@ -121,21 +164,3 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
 profileBar.setupWithViewPager(profilePager)
 ```
 **See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
-
-
-* Without databinding:
-
-    *In code:*
-```
-profileBar.apply {
-            photoDrawable = photo
-            subtitleText = "Joined on 19 April 2017"
-            titleText = "Pavlo Bondan"
-            wallpaperDrawable = wallpaper
-            tabsEnabled = true
-        }
-profilePager.fragments = pagerFragments
-
-profileBar.setupWithViewPager(profilePager)
-```
-**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/main/ProfileActivity.kt "Activity no binding example")**
