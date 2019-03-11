@@ -1,6 +1,8 @@
 ### Binding interface
 These are the attributes that can be used to bind data to a ProfileBar or a TabPager
 
+**Also see the [binding adapters folder](https://github.com/DichotoMe/ProfileBar/tree/master/profilebarBinding/src/main/java/com/dichotome/profilebarbinding/bindingAdapters "Binding adapters folder")**
+
 The following attributes should be used in such a way:
 
 `app:attribute = @{value}`
@@ -27,6 +29,9 @@ The following attributes should be used in such a way:
     
 * `dimDrawable: Drawable = DEFAULT_DIM_DRAWABLE  or @DrawableRes Int?` - semi-transparent rectangular view that occupies half of `profileBar`
 * `bottomGlowDrawable: Drawable = DEFAULT_BOTTOM_GLOW  or @DrawableRes Int?` - glowing strip on the border between `tabPager` and `profileBar`
+
+
+#### Listeners
 
 * `onChangedPhoto()` - listener for the `Photo` button click in the option menu
 * `onChangedWallpaper()` - listener for the `Wallpaper` button click in the option menu
