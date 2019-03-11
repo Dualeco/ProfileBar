@@ -136,7 +136,7 @@ val pagerFragments = arrayListOf(
     
 [See the full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
 
-    *In code:*
+*In code:*
 ```
 profileBar.apply {
     photoDrawable = photo
