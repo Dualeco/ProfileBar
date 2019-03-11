@@ -117,7 +117,7 @@ class FavouritesTabFragment() : TabFragment() {
     }
 }
 ```
-**See an example [here](https://github.com/DichotoMe/ProfileBar/blob/master/profilebar/src/main/java/com/dichotome/profilebar/stubs/fragments/FavouritesTabFragment.kt "FavouritesTabFragment")**
+**See the example [here](https://github.com/DichotoMe/ProfileBar/blob/master/profilebar/src/main/java/com/dichotome/profilebar/stubs/fragments/FavouritesTabFragment.kt "FavouritesTabFragment")**
 
 Next, create an arrayList named `pagerFragment` and add all the fragments to it, in the order you want to see them in the TabLayout
 ```
@@ -134,7 +134,7 @@ val pagerFragments = arrayListOf(
 
 * Without databinding:
     
-[See a full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
+[See the full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
 
     *In code:*
 ```
@@ -153,7 +153,7 @@ profileBar.setupWithViewPager(profilePager)
 
 * With databinding:
 
-[See a full binding interface](https://github.com/DichotoMe/ProfileBar/blob/master/BINDING_INTERFACE.md "Profilebar binding interface")
+[See the full binding interface](https://github.com/DichotoMe/ProfileBar/blob/master/BINDING_INTERFACE.md "Profilebar binding interface")
 
 *1. In layout.xml*
 ```
@@ -175,10 +175,10 @@ profileBar.setupWithViewPager(profilePager)
     app:fragments="@{logic.pagerFragments}" 
     ... />
 ```
-**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/res/layout/fragment_profile_with_adapters.xml "XML binding example")**
+**See the full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/res/layout/fragment_profile_with_adapters.xml "XML binding example")**
 
 *2. In code:*
 ```
 profileBar.setupWithViewPager(profilePager)
 ```
-**See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
+**See tge full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
