@@ -181,4 +181,4 @@ profileBar.setupWithViewPager(profilePager)
 ```
 profileBar.setupWithViewPager(profilePager)
 ```
-**See tge full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
+**See the full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
