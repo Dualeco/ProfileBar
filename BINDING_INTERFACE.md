@@ -33,8 +33,10 @@ The following attributes should be used in such a way:
 
 #### Listeners
 
-* `onChangedPhoto()` - listener for the `Photo` button click in the option menu
-* `onChangedWallpaper()` - listener for the `Wallpaper` button click in the option menu
+* `onPhotoChanged()` - listener for the `Photo` button click in the option menu
+* `onWallpaperChanged()` - listener for the `Wallpaper` button click in the option menu
+* `onUsernameChanged()` - listener for the `Username` button click in the option menu
+* `onLoggedOut()` - listener for the `Log out` button click in the option menu
 
 ## `TabPager`
 * `fragments: List<TabFragments>` - the list of TabFragments to be displayed
