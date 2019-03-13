@@ -21,6 +21,6 @@ interface ProfileBarViews {
     val subtitleTV: TextView
     val optionButton: ImageButton
     val tabs: ProfileTabLayout
-    val popupWindow: ProfileOptionWindow
+    val optionWindow: ProfileOptionWindow
 
 }

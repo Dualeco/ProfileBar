@@ -22,17 +22,12 @@
         <item name="android:background">@color/colorTransparent</item>
     </style>
 
-    <style name="Comic_EditTextStyle" parent="@android:style/Widget.EditText">
-        <item name="android:background">@drawable/comic_item_pages_background</item>
-        <item name="android:textColor">@color/textColorPrimary</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:alpha">0.9</item>
-    </style>
-
     <style name="AppTheme.Translucent">
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="WhiteRipple" parent="Base.Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/rippleColor</item>
     </style>
 
 </resources>

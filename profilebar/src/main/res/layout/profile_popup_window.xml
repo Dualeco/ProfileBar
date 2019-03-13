@@ -1,57 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/popup_window"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical">
+    android:id="@+id/popup_window"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:background="@drawable/bottom_glow"
+    android:outlineProvider="bounds">
 
-    <LinearLayout
-            android:id="@+id/change_photo"
+    <FrameLayout
+        android:id="@+id/change_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:padding="8dp">
 
-        <ImageView
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
                 android:src="@drawable/ic_add_a_photo" />
 
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
-                android:text="@string/change_profile_photo"
+                android:paddingEnd="2dp"
+                android:text="@string/profile_change_photo"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="16sp" />
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-            android:id="@+id/change_wallpaper"
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/change_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:padding="8dp">
 
-        <ImageView
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
                 android:src="@drawable/ic_photo_black" />
 
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
-                android:text="@string/change_profile_wallpaper"
+                android:paddingEnd="2dp"
+                android:text="@string/profile_change_wallpaper"
                 android:textColor="@color/colorTextBlack"
                 android:textSize="16sp" />
-    </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/change_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_account_box_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="2dp"
+                android:text="@string/profile_change_username"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/log_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dimColor"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/WhiteRipple"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_exit_to_app_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="2dp"
+                android:text="@string/profile_log_out"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </FrameLayout>
+
 </LinearLayout>

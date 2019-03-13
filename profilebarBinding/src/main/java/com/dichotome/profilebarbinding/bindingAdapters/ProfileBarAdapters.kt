@@ -75,19 +75,38 @@ fun setFrameDrawable(bar: ProfileBar, frame: Drawable?) {
     }
 }
 
-@BindingAdapter("app:onChangedPhoto")
+@BindingAdapter("app:onPhotoChanged")
 fun setOnChangedPhoto(bar: ProfileBar, listener: (() -> Unit)?) {
     listener?.let {
-        bar.popupWindow.changePhotoButton.setOnClickListener {
+        bar.optionWindow.changePhotoButton.setOnClickListener {
             listener()
         }
     }
 }
 
-@BindingAdapter("app:onChangedWallpaper")
+@BindingAdapter("app:onWallpaperChanged")
 fun setOnChangedWallpaper(bar: ProfileBar, listener: (() -> Unit)?) {
     listener?.let {
-        bar.popupWindow.changePhotoButton.setOnClickListener {
+        bar.optionWindow.changePhotoButton.setOnClickListener {
+            listener()
+        }
+    }
+}
+
+@BindingAdapter("app:onUsernameChanged")
+fun setOnChangedUsername(bar: ProfileBar, listener: (() -> Unit)?) {
+    listener?.let {
+        bar.optionWindow.changeUsernameButton.setOnClickListener {
+            listener()
+        }
+    }
+}
+
+
+@BindingAdapter("app:onLoggedOut")
+fun setOnLoggedOut(bar: ProfileBar, listener: (() -> Unit)?) {
+    listener?.let {
+        bar.optionWindow.logOutButton.setOnClickListener {
             listener()
         }
     }

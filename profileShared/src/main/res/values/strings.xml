@@ -2,7 +2,9 @@
 
     <!--Login-->
     <string name="app_name">ProfileBar</string>
-    <string name="change_profile_photo">Photo</string>
-    <string name="change_profile_wallpaper">Wallpaper</string>
+    <string name="profile_change_photo">Photo</string>
+    <string name="profile_change_wallpaper">Wallpaper</string>
+    <string name="profile_change_username">Username</string>
+    <string name="profile_log_out">Log out</string>
 
 </resources>

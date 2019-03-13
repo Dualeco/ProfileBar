@@ -2,9 +2,7 @@ package com.dichotome.profilebar.ui.profileBar.toolbar
 
 import android.content.Context
 import android.graphics.Typeface
-import android.os.Parcelable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -73,7 +71,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         background = drw(R.color.colorTransparent)
         rotation = 90f
         setOnClickListener {
-            popupWindow.showAsDropDown(popupAnchor)
+            optionWindow.showAsDropDown(popupAnchor)
         }
     }
 
@@ -84,12 +82,12 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         }
     }
 
-    final override val popupWindow = ProfileOptionWindow(
+    final override val optionWindow = ProfileOptionWindow(
         LayoutInflater.from(context).inflate(R.layout.profile_popup_window, this, false),
         WRAP_CONTENT,
         WRAP_CONTENT
     ).apply {
-        elevation = dpToPx(12).toFloat()
+        elevation = dpToPx(8).toFloat()
         isOutsideTouchable = true
     }
 

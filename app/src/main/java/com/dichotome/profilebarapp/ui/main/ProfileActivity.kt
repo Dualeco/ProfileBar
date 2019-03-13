@@ -17,8 +17,8 @@ class ProfileActivity : AppCompatActivity() {
         val photo = drw(R.drawable.avatar)
         val wallpaper = drw(R.drawable.cover2)
         val pagerFragments = arrayListOf(
-            SubscriptionsTabFragment.newInstance("Subsriptions (324)"),
-            FavouritesTabFragment.newInstance("Favourites (626)")
+            SubscriptionsTabFragment.newInstance("Subsriptions"),
+            FavouritesTabFragment.newInstance("Favourites")
         )
 
         profileBar.apply {
@@ -31,10 +31,10 @@ class ProfileActivity : AppCompatActivity() {
         profilePager.fragments = pagerFragments
         profileBar.setupWithViewPager(profilePager)
 
-        profileBar.popupWindow.changePhotoButton.setOnClickListener {
+        profileBar.optionWindow.changePhotoButton.setOnClickListener {
 
         }
-        profileBar.popupWindow.changeWallpaperButton.setOnClickListener {
+        profileBar.optionWindow.changeWallpaperButton.setOnClickListener {
 
         }
     }
