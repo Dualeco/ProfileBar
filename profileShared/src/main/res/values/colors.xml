@@ -31,11 +31,5 @@
     <color name="shadowMiddle">#99000000</color>
     <color name="shadowColor">#A6000000</color>
     <color name="liningColor">#66000000</color>
-    <!--Common-->
-    <string name="common_ok">OK</string>
-    <string name="common_none">None</string>
-    <string name="common_yes">Yes</string>
-    <string name="common_no">No</string>
-    <string name="common_loading">Loading</string>
 
 </resources>
