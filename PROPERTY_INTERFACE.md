@@ -25,7 +25,10 @@ Here all the ProfileBar and Toolbar public fields and methods are described
 * `bottomGlowDrawable: Drawable = DEFAULT_BOTTOM_GLOW` - glowing strip on the border between `tabPager` and `profileBar`
 
 #### Methods
-* `setupWithViewPager(ViewPager)` - link up `profileBar` and the ViewPager in the arguments
+* `setupWithViewPager(ViewPager)` - link up `profileBar` and the ViewPager in the arguments`
+
+#### Access option buttons
+* **To set a listener to an option button, navigate to `profileBar.optionWindow.NEEDED_BUTTON.setOnClick...`**
 
 ## `TabPager`
 * `fragments: List<TabFragments>` - the list of TabFragments to be displayed
