@@ -53,7 +53,7 @@ allprojects {
 
 * Without databinding:
 ```
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1.1"
 ```
 
 * With databinding:
@@ -65,7 +65,7 @@ android {
     }
 }
 ...
-implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.1"
+implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.1.1"
 ```
 
 ### Building a layout
