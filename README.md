@@ -65,6 +65,7 @@ android {
     }
 }
 ...
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1.1"
 implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.1.1"
 ```
 
