@@ -13,13 +13,13 @@ import com.dichotome.profileshared.anim.LinearAnimationHelper
 import com.dichotome.profileshared.anim.PlainAnimationHelper
 import com.dichotome.profileshared.anim.SimpleAnimationHelper
 import com.dichotome.profileshared.constants.Constants
-import com.dichotome.profileshared.views.SquareRoundedImageView
+import com.dichotome.profileshared.views.CircularImageView
 import kotlin.math.ceil
 import kotlin.math.min
 
 class DetachFromFrameAnimationHelper(
-    private val targetView: SquareRoundedImageView,
-    private val detachFrom: SquareRoundedImageView,
+    private val targetView: CircularImageView,
+    private val detachFrom: CircularImageView,
     timeInterpolator: TimeInterpolator,
     animDuration: Long
 ) : LinearAnimationHelper(targetView, timeInterpolator, animDuration) {
@@ -109,7 +109,7 @@ class ZoomTranslationHelper(
 }
 
 class ZoomCircularRevealHelper(
-    photoView: SquareRoundedImageView,
+    photoView: CircularImageView,
     private val viewToReveal: View,
     private val TimeInterpolator: TimeInterpolator,
     private var startRadius: Int,

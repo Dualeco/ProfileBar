@@ -20,7 +20,7 @@ import com.dichotome.profilebar.util.extensions.addViews
 import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.extensions.dpToPx
 import com.dichotome.profileshared.extensions.drw
-import com.dichotome.profileshared.views.SquareRoundedImageView
+import com.dichotome.profileshared.views.CircularImageView
 
 abstract class ProfileToolbarBare @JvmOverloads constructor(
     context: Context,
@@ -45,7 +45,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         makeCircular()
     }
 
-    final override val photoFrameBackground: SquareRoundedImageView = SquareRoundedImageView(context).apply {
+    final override val photoFrameBackground: CircularImageView = CircularImageView(context).apply {
         id = R.id.photo_frame_background
         adjustViewBounds = true
     }

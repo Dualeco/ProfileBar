@@ -26,14 +26,14 @@ import com.dichotome.profileshared.extensions.cancelAll
 import com.dichotome.profileshared.extensions.col
 import com.dichotome.profileshared.extensions.evaluateAll
 import com.dichotome.profileshared.gestureListeners.SwipeUpListener
-import com.dichotome.profileshared.views.SquareRoundedImageView
+import com.dichotome.profileshared.views.CircularImageView
 import kotlin.math.max
 
 class ZoomingImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
-) : SquareRoundedImageView(context, attrs, defStyle) {
+) : CircularImageView(context, attrs, defStyle) {
 
     companion object {
         const val TAG = "ZoomingImageView"
@@ -74,7 +74,7 @@ class ZoomingImageView @JvmOverloads constructor(
         onZoom()
     })
 
-    private var zoomablePhoto = SquareRoundedImageView(context).apply {
+    private var zoomablePhoto = CircularImageView(context).apply {
         isVisible = false
         layoutParams = FrameLayout.LayoutParams(0, 0)
         setOnTouchListener { _, event ->
@@ -125,8 +125,8 @@ class ZoomingImageView @JvmOverloads constructor(
 
     private var wasViewRestored = false
 
-    private fun isPhotoImageUpToDate(image: SquareRoundedImageView?) = image?.let {
-        val currentPhoto = SquareRoundedImageView(context)
+    private fun isPhotoImageUpToDate(image: CircularImageView?) = image?.let {
+        val currentPhoto = CircularImageView(context)
             .copyForOverlay(this)
 
         Math.abs(image.y - currentPhoto.y) < 10

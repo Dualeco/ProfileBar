@@ -1,12 +1,7 @@
 package com.dichotome.profilebar.ui.profileBar
 
 import android.graphics.drawable.Drawable
-import android.view.View
-import android.widget.*
 import androidx.viewpager.widget.ViewPager
-import com.dichotome.profilebar.ui.ProfileOptionWindow
-import com.dichotome.profilebar.ui.ProfileTabLayout
-import com.dichotome.profileshared.views.SquareRoundedImageView
 
 interface ProfileBarResources {
     var tabsEnabled: Boolean

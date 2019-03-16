@@ -1,10 +1,9 @@
 package com.dichotome.profilephoto.util.extensions
 
-import android.content.Context
 import android.view.KeyEvent
 import android.view.View
 import com.dichotome.profileshared.constants.Constants
-import com.dichotome.profileshared.views.SquareRoundedImageView
+import com.dichotome.profileshared.views.CircularImageView
 import kotlin.math.ceil
 
 
@@ -31,7 +30,7 @@ fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit)
     }
 }
 
-fun SquareRoundedImageView.copyForOverlay(imageView: SquareRoundedImageView) = apply {
+fun CircularImageView.copyForOverlay(imageView: CircularImageView) = apply {
     cornerRadius = imageView.cornerRadius
     adjustViewBounds = true
     layoutParams = android.widget.FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredWidth)

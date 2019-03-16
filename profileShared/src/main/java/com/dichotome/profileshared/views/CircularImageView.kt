@@ -3,7 +3,7 @@ package com.dichotome.profileshared.views
 import android.content.Context
 import android.util.AttributeSet
 
-open class SquareRoundedImageView @JvmOverloads constructor(
+open class CircularImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0

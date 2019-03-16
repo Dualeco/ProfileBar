@@ -2,12 +2,9 @@ package com.dichotome.profileshared.extensions
 
 import android.content.Context
 import android.util.TypedValue
-import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
-import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.constants.ResourceUtil
-import com.dichotome.profileshared.views.SquareRoundedImageView
 
 
 fun Context.getStatusBarHeight(): Int {
