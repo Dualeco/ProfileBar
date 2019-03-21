@@ -53,7 +53,7 @@ allprojects {
 
 * Without databinding:
 ```
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1.2"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.2.1"
 ```
 
 * With databinding:
@@ -65,8 +65,8 @@ android {
     }
 }
 ...
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.1.2"
-implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.1.2"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.2.1"
+implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.2.1"
 ```
 
 ### Building a layout
@@ -150,6 +150,7 @@ profileBar.apply {
     wallpaperDrawable = wallpaper
     tabsEnabled = true
 }
+profilePager.adapter = TabAdapter(*your fragment manager*)
 profilePager.fragments = pagerFragments
 
 profileBar.setupWithViewPager(profilePager)
@@ -184,6 +185,7 @@ profileBar.setupWithViewPager(profilePager)
 
 *2. In code:*
 ```
+profilePager.adapter = TabAdapter(*your fragment manager*)
 profileBar.setupWithViewPager(profilePager)
 ```
 **See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
