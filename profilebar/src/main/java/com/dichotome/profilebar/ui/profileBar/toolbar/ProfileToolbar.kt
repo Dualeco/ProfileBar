@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_PARENT
 import androidx.core.view.setMargins
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R

@@ -24,9 +24,6 @@ buildscript {
     //Maven
     ext.maven_version = '2.1'
 
-    //ProfileBar
-    ext.profilebar_version = '1.1.2'
-
     repositories {
         google()
         jcenter()

@@ -47,7 +47,8 @@ dependencies {
     implementation project(path: ':profileShared')
 
     //ProfileBar
-    implementation "com.github.DichotoMe.ProfileBar:profilebar:$profilebar_version"
-    implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:$profilebar_version"
-    implementation "com.github.DichotoMe.ProfileBar:profilePhoto:$profilebar_version"
+    implementation project(path: ':profilebar')
+    implementation project(path: ':profilebarBinding')
+
+    implementation project(path: ':profilePhoto')
 }

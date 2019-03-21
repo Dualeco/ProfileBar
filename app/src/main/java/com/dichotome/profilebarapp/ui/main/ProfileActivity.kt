@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dichotome.profilebar.stubs.fragments.FavouritesTabFragment
 import com.dichotome.profilebar.stubs.fragments.SubscriptionsTabFragment
+import com.dichotome.profilebar.ui.tabPager.TabPagerAdapter
 import com.dichotome.profilebarapp.R
 import com.dichotome.profilebarapp.util.constant.drw
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -28,7 +29,10 @@ class ProfileActivity : AppCompatActivity() {
             this.wallpaper = wallpaper
             tabsEnabled = true
         }
+
+        profilePager.adapter = TabPagerAdapter(supportFragmentManager)
         profilePager.fragments = pagerFragments
+
         profileBar.setupWithViewPager(profilePager)
 
         profileBar.optionWindow.changePhotoButton.setOnClickListener {

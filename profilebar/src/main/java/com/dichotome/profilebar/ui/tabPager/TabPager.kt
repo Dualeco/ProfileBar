@@ -2,26 +2,35 @@ package com.dichotome.profilebar.ui.tabPager
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import androidx.viewpager.widget.ViewPager
 
 class TabPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     ViewPager(context, attrs) {
 
-    private val fragmentManager = (context as AppCompatActivity).supportFragmentManager
-    private var adapter: TabPagerAdapter = TabPagerAdapter(fragmentManager)
+    var adapter: TabPagerAdapter? = null
+        get() {
+            return super.getAdapter().let {
+                if (it is TabPagerAdapter)
+                    it
+                else
+                    null
+            }
+        }
         set(value) {
-            field = value
+            field = value?.apply {
+                tabFragments = fragments
+            }
+            Log.d("PAGER", "$field $fragments")
             super.setAdapter(field)
         }
 
-    var fragments: List<TabFragment>?
-        get() = adapter.tabFragments
+    var fragments: List<TabFragment> = arrayListOf()
         set(value) {
-            value?.let {
-                adapter = adapter?.apply {
-                    tabFragments = it
-                }
+            Log.d("PAGER", "$adapter")
+            field = value
+            adapter = adapter?.apply {
+                tabFragments = value
             }
         }
 }
