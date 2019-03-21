@@ -11,14 +11,10 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import com.dichotome.profilephoto.R
-import com.dichotome.profilephoto.anim.DetachFromFrameAnimationHelper
-import com.dichotome.profilephoto.anim.ZoomAnimationHelper
-import com.dichotome.profilephoto.anim.ZoomCircularRevealHelper
-import com.dichotome.profilephoto.anim.ZoomTranslationHelper
+import com.dichotome.profilephoto.anim.*
 import com.dichotome.profilephoto.util.extensions.copyForOverlay
 import com.dichotome.profilephoto.util.extensions.setInCenter
 import com.dichotome.profilephoto.util.extensions.setOnBackButtonClicked
-import com.dichotome.profilephoto.anim.AlphaAnimationHelper
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.extensions.addTo
@@ -50,7 +46,7 @@ class ZoomingImageView @JvmOverloads constructor(
         private const val SCALE = "scale"
     }
 
-    private var goInvisible = false
+    private var isOverlayAttached = false
 
     private val displayHeight = Constants(context).DISPLAY_HEIGHT
     private val displayWidth = Constants(context).DISPLAY_WIDTH
@@ -243,12 +239,14 @@ class ZoomingImageView @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        rootView.findViewById<FrameLayout>(android.R.id.content).apply {
-            addView(zoomOverlayView)
-            setOnBackButtonClicked(::isOverlayVisible) {
-                onZoom()
+        if (!isOverlayAttached)
+            rootView.findViewById<FrameLayout>(android.R.id.content).apply {
+                addView(zoomOverlayView)
+                setOnBackButtonClicked(::isOverlayVisible) {
+                    onZoom()
+                }
+                isOverlayAttached = true
             }
-        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
