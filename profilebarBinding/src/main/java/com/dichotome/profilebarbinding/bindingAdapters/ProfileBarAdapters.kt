@@ -87,7 +87,7 @@ fun setOnChangedPhoto(bar: ProfileBar, listener: (() -> Unit)?) {
 @BindingAdapter("app:onWallpaperChanged")
 fun setOnChangedWallpaper(bar: ProfileBar, listener: (() -> Unit)?) {
     listener?.let {
-        bar.optionWindow.changePhotoButton.setOnClickListener {
+        bar.optionWindow.changeWallpaperButton.setOnClickListener {
             listener()
         }
     }
