@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.util.extensions.download
 
@@ -22,8 +23,11 @@ class TabListHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int) 
             subtitle?.let {
                 it.text = data.subtitle
             }
-
-        thumbnail.download(data.thumbnailUrl, isThumbnailCircular)
+        val options = RequestOptions().apply {
+            if (isThumbnailCircular)
+                circleCrop()
+        }
+        thumbnail.download(data.thumbnailUrl, options)
     }
 }
 

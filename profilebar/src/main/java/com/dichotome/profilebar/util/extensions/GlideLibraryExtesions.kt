@@ -2,6 +2,7 @@ package com.dichotome.profilebar.util.extensions
 
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
@@ -18,11 +19,8 @@ fun ImageView.download(url: String, options: RequestOptions? = null) {
     glideDownload(url, options)
 }
 
-fun ImageView.download(url: String, circular: Boolean) {
-    glideDownload(url, RequestOptions().apply {
-        if (circular)
-            circleCrop()
-    })
+fun ImageView.download(uri: Uri, options: RequestOptions? = null) {
+    glideDownload(uri, options)
 }
 
 fun ImageView.download(drw: Drawable?, options: RequestOptions? = null) {
