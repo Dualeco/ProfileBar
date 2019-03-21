@@ -32,7 +32,7 @@ fun setWallpaperUri(bar: ProfileBar, uri: Uri) {
     val wallpaperOptions = RequestOptions()
         .centerCrop()
 
-    bar.photoImage.download(uri, wallpaperOptions)
+    bar.wallpaperImage.download(uri, wallpaperOptions)
 }
 
 @BindingAdapter("app:title")
