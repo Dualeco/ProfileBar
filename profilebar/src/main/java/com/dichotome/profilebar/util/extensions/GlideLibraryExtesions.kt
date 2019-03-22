@@ -27,13 +27,6 @@ fun ImageView.download(drw: Drawable?, options: RequestOptions? = null) {
     glideDownload(drw, options)
 }
 
-fun ImageView.download(drw: Drawable?, circular: Boolean) {
-    glideDownload(drw, RequestOptions().apply {
-        if (circular)
-            circleCrop()
-    })
-}
-
 private fun ImageView.glideDownload(obj: Any?, options: RequestOptions?) {
     val requestOptions = RequestOptions()
 

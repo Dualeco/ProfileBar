@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_PARENT
 import androidx.core.view.setMargins
-import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
@@ -35,14 +34,15 @@ open class ProfileToolbar @JvmOverloads constructor(
         private val DEFAULT_BOTTOM_GLOW_ID = R.drawable.bottom_glow
         private val DEFAULT_TABS_SELECTED_COLOR_ID = R.color.colorPrimary
         private val DEFAULT_TABS_UNSELECTED_COLOR_ID = R.color.colorPrimaryUnselected
-        private val DEFAULT_PHOTO_ID = R.drawable.profile_photo_stub
+        private val DEFAULT_PHOTO_ID = R.drawable.default_avatar
+        private val DEFAULT_WALLPAPER_ID = R.drawable.default_wallpaper
     }
 
-    private val profilePicOptions = RequestOptions()
+    private val photoImageOptions = RequestOptions()
         .override(Constants(context).DISPLAY_WIDTH)
         .centerCrop()
 
-    private val wallpaperOptions = RequestOptions()
+    private val wallpaperImageOptions = RequestOptions()
         .centerCrop()
 
     override var tabsEnabled: Boolean = false
@@ -72,13 +72,13 @@ open class ProfileToolbar @JvmOverloads constructor(
     final override var wallpaper: Drawable? = null
         set(value) {
             field = value
-            wallpaperImage.download(field, wallpaperOptions)
+            wallpaperImage.download(field, wallpaperImageOptions)
         }
 
-    override var photo: Drawable? = drw(DEFAULT_PHOTO_ID)
+    override var photo: Drawable? = null
         set(value) {
             field = value
-            photoImage.download(field, profilePicOptions)
+            photoImage.download(field, photoImageOptions)
         }
 
     override var fontColor: Int = col(DEFAULT_TEXT_COLOR_ID)
@@ -147,7 +147,9 @@ open class ProfileToolbar @JvmOverloads constructor(
     }
 
     init {
-        wallpaperImage.setImageDrawable(wallpaper)
+        photoImage.download(DEFAULT_PHOTO_ID, photoImageOptions)
+        wallpaperImage.download(DEFAULT_WALLPAPER_ID, wallpaperImageOptions)
+
         dimView.background = dimDrawable
         bottomGlowView.background = bottomGlowDrawable
 

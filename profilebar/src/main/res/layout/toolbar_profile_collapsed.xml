@@ -10,8 +10,7 @@
     <ImageView
             android:id="@+id/wallpaper"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
+            android:layout_height="@dimen/profilebar_height"
             android:src="@drawable/cover2"
             app:layout_constraintBottom_toBottomOf="@+id/tabs"
             app:layout_constraintEnd_toEndOf="parent"

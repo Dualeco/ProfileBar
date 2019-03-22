@@ -3,10 +3,7 @@ package com.dichotome.profilebar.ui.profileBar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.dichotome.profilebar.ui.profileBar.toolbar.ProfileAnimatedToolbar
-import com.dichotome.profileshared.constants.Constants
-import com.dichotome.profileshared.extensions.dpToPx
+import com.dichotome.profilebar.ui.profileBar.toolbar.ProfileToolbarAnimated
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
@@ -14,7 +11,7 @@ import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_
 class ProfileBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    private val toolbar: ProfileAnimatedToolbar = ProfileAnimatedToolbar(
+    private val toolbar: ProfileToolbarAnimated = ProfileToolbarAnimated(
         context
     )
 ) : AppBarLayout(context, attrs),

@@ -21,13 +21,11 @@ class TabPager @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
             field = value?.apply {
                 tabFragments = fragments
             }
-            Log.d("PAGER", "$field $fragments")
             super.setAdapter(field)
         }
 
     var fragments: List<TabFragment> = arrayListOf()
         set(value) {
-            Log.d("PAGER", "$adapter")
             field = value
             adapter = adapter?.apply {
                 tabFragments = value

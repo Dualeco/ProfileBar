@@ -10,29 +10,37 @@ import com.dichotome.profileshared.constants.Constants
 
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, photo: Drawable?) {
-    bar.photo = photo
+    photo?.let {
+        bar.photo = it
+    }
 }
 
 @BindingAdapter("app:photoUri")
-fun setPhotoUri(bar: ProfileBar, uri: Uri) {
-    val profilePicOptions = RequestOptions()
-        .override(Constants(bar.context).DISPLAY_WIDTH)
-        .centerCrop()
+fun setPhotoUri(bar: ProfileBar, uri: Uri?) {
+    uri?.let {
+        val profilePicOptions = RequestOptions()
+            .override(Constants(bar.context).DISPLAY_WIDTH)
+            .centerCrop()
 
-    bar.photoImage.download(uri, profilePicOptions)
+        bar.photoImage.download(uri, profilePicOptions)
+    }
 }
 
 @BindingAdapter("app:wallpaper")
 fun setWallpaper(bar: ProfileBar, wallpaper: Drawable?) {
-    bar.wallpaper = wallpaper
+    wallpaper?.let {
+        bar.wallpaper = it
+    }
 }
 
 @BindingAdapter("app:wallpaperUri")
-fun setWallpaperUri(bar: ProfileBar, uri: Uri) {
-    val wallpaperOptions = RequestOptions()
-        .centerCrop()
+fun setWallpaperUri(bar: ProfileBar, uri: Uri?) {
+    uri?.let {
+        val wallpaperOptions = RequestOptions()
+            .centerCrop()
 
-    bar.wallpaperImage.download(uri, wallpaperOptions)
+        bar.wallpaperImage.download(uri, wallpaperOptions)
+    }
 }
 
 @BindingAdapter("app:title")
