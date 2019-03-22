@@ -5,7 +5,7 @@ A beautiful animated profile screen implemented as an AppBar with a ViewPager
 
 ### Note: the animation *always* starts from the place it has been triggered!
 # Try it yourself!
-#### [Download the apk](https://github.com/DichotoMe/ProfileBar/releases/download/1.1.1/ProfileBar.apk "Apk")
+#### [Download the apk](https://github.com/DichotoMe/ProfileBar/releases/download/1.3/ProfileBarDemo.apk "Apk")
 
 # More examples
 
@@ -53,7 +53,7 @@ allprojects {
 
 * Without databinding:
 ```
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.2.1"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.3"
 ```
 
 * With databinding:
@@ -65,8 +65,8 @@ android {
     }
 }
 ...
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.2.1"
-implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.2.1"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.3"
+implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.3"
 ```
 
 ### Building a layout
@@ -82,7 +82,7 @@ Place a ProfileBar and a TabPager inside a **CoordinatorLayout** as follows:
     <com.dichotome.profilebar.ui.profileBar.ProfileBar
         android:id="@+id/profileBar"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="@dimen/profilebar_height" />
 
     <com.dichotome.profilebar.ui.tabPager.TabPager
         android:id="@+id/profilePager"
