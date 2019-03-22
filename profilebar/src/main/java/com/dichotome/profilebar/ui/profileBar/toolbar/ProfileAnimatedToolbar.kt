@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
@@ -26,7 +27,7 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
     AppBarLayout.OnOffsetChangedListener {
 
     companion object {
-        const val TAG = "ToolbarCollapsing"
+        const val TAG = "ProfileAnimatedToolbar"
 
         private const val DURATION = 550L
         private const val DURATION_MEDIUM = (0.95 * DURATION).toLong()
@@ -84,6 +85,7 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
             openConstraintSet.clone(context, R.layout.toolbar_profile)
             collapsedConstraintSet.clone(context, R.layout.toolbar_profile_collapsed)
 
+            Log.d(TAG, "Attached $toolbarOpen")
             if (toolbarOpen) applyToolbarOpen()
             else applyToolbarCollapsed()
         }
@@ -249,6 +251,8 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
         putParcelable(SUPER_STATE, super.onSaveInstanceState())
 
         putBoolean(TOOLBAR_OPEN, toolbarOpen)
+        Log.d(TAG, "Saved $toolbarOpen")
+
         putFloat(DIM_HEIGHT, dimHeight)
         putFloat(DIM_ALPHA, dimView.alpha)
 
@@ -263,6 +267,8 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
             it as Bundle
 
             toolbarOpen = it.getBoolean(TOOLBAR_OPEN)
+            Log.d(TAG, "Restored $toolbarOpen")
+
             dimHeight = it.getFloat(DIM_HEIGHT)
             dimView.alpha = it.getFloat(DIM_ALPHA)
 
@@ -279,6 +285,8 @@ class ProfileAnimatedToolbar @JvmOverloads constructor(
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        Log.d(TAG, "Detached $toolbarOpen")
+
         collapseAnimators.cancelAll()
         alphaPhotoFrameBackground.cancel()
     }
