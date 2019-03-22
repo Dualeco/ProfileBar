@@ -4,9 +4,11 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.signature.ObjectKey
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.extensions.download
 import com.dichotome.profileshared.constants.Constants
+import java.io.File
 
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, photo: Drawable?) {
@@ -21,6 +23,11 @@ fun setPhotoUri(bar: ProfileBar, uri: Uri?) {
         val profilePicOptions = RequestOptions()
             .override(Constants(bar.context).DISPLAY_WIDTH)
             .centerCrop()
+            .signature(
+                ObjectKey(
+                    File(uri.toString()).lastModified()
+                )
+            )
 
         bar.photoImage.download(uri, profilePicOptions)
     }
@@ -38,6 +45,11 @@ fun setWallpaperUri(bar: ProfileBar, uri: Uri?) {
     uri?.let {
         val wallpaperOptions = RequestOptions()
             .centerCrop()
+            .signature(
+                ObjectKey(
+                    File(uri.toString()).lastModified()
+                )
+            )
 
         bar.wallpaperImage.download(uri, wallpaperOptions)
     }
