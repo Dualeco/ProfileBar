@@ -3,8 +3,12 @@ package com.dichotome.profilebar.ui.profileBar.toolbar
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.Log
+import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_PARENT
+import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.request.RequestOptions
@@ -25,6 +29,7 @@ open class ProfileToolbar @JvmOverloads constructor(
 
     companion object {
         private val DEFAULT_TEXT_COLOR_ID = R.color.colorPrimary
+        private val DEFAULT_HINT_COLOR_ID = R.color.colorPrimaryUnselected
         private const val DEFAULT_TITLE_TEXT_SIZE = 20f
         private const val DEFAULT_SUBTITLE_TITLE_TEXT_SIZE = 12f
         private val DEFAULT_FRAME_DRAWABLE_ID = R.drawable.profile_photo_stroke
@@ -37,6 +42,32 @@ open class ProfileToolbar @JvmOverloads constructor(
         private val DEFAULT_PHOTO_ID = R.drawable.default_avatar
         private val DEFAULT_WALLPAPER_ID = R.drawable.default_wallpaper
     }
+
+    final override var isOwnProfile: Boolean = false
+        set(value) {
+            Log.d("SETTER", "Called")
+            field = value
+            optionButton.isVisible = value
+            followButton.isVisible = !value
+        }
+
+    override var isFollowed: Boolean = false
+        set(value) {
+            field = value
+            followButton.setImageDrawable(
+                if (value)
+                    drw(R.drawable.ic_notifications_active)
+                else
+                    drw(R.drawable.ic_notifications_none)
+            )
+        }
+
+    override var isTitleEditable: Boolean = false
+        set(value) {
+            field = value
+            editTitle.isVisible = value
+            titleTV.isVisible = !value
+        }
 
     private val photoImageOptions = RequestOptions()
         .override(Constants(context).DISPLAY_WIDTH)
@@ -85,13 +116,21 @@ open class ProfileToolbar @JvmOverloads constructor(
         set(value) {
             field = value
             titleTV.setTextColor(value)
+            editTitle.setTextColor(value)
             subtitleTV.setTextColor(value)
+        }
+
+    override var hintTextColor = col(DEFAULT_HINT_COLOR_ID)
+        set(value) {
+            field = value
+            editTitle.setHintTextColor(value)
         }
 
     override var title: String? = null
         set(value) {
             field = value
             titleTV.text = field
+            editTitle.setText(field, TextView.BufferType.EDITABLE)
         }
 
     override var titleSize: Float =
@@ -99,6 +138,7 @@ open class ProfileToolbar @JvmOverloads constructor(
         set(value) {
             field = value
             titleTV.textSize = field
+            editTitle.textSize = field
         }
 
     override var subtitle: String? = null
@@ -165,12 +205,17 @@ open class ProfileToolbar @JvmOverloads constructor(
             textSize = titleSize
             setTextColor(fontColor)
         }
+        editTitle.apply {
+            setText(title, TextView.BufferType.EDITABLE)
+            textSize = titleSize
+            setTextColor(fontColor)
+            setHintTextColor(hintTextColor)
+        }
         subtitleTV.apply {
             text = subtitle
             textSize = subtitleSize
             setTextColor(fontColor)
         }
-
         tabs.apply {
             enabled = tabsEnabled
             setSelectedTabIndicatorColor(tabsIndicatorColor)

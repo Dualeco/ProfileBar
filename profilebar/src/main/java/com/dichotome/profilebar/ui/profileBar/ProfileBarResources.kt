@@ -4,6 +4,11 @@ import android.graphics.drawable.Drawable
 import androidx.viewpager.widget.ViewPager
 
 interface ProfileBarResources {
+
+    var isTitleEditable: Boolean
+    var isOwnProfile: Boolean
+    var isFollowed: Boolean
+
     var tabsEnabled: Boolean
 
     var tabsSelectedColor: Int
@@ -14,6 +19,7 @@ interface ProfileBarResources {
     var photo: Drawable?
 
     var fontColor: Int
+    var hintTextColor: Int
     var title: String?
     var titleSize: Float
     var subtitle: String?

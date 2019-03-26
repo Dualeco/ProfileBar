@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#E6000000</color>
-    <color name="colorAccent">#DA0606</color>
+    <color name="colorAccent">#FFFF</color>
     <color name="colorTextHintRed">#80950000</color>
     <color name="colorTextRed">#CC950000</color>
     <color name="colorTextBlack">#141414</color>
@@ -19,7 +19,6 @@
     <color name="dimColor">#CB000000</color>
 
     <color name="textColorPrimary">#FFFFFF</color>
-
 
     <color name="buttonColorRed">#DA0606</color>
 

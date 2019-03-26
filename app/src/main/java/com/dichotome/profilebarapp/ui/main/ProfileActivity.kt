@@ -1,7 +1,9 @@
 package com.dichotome.profilebarapp.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.dichotome.profilebar.stubs.fragments.FavouritesTabFragment
 import com.dichotome.profilebar.stubs.fragments.SubscriptionsTabFragment
 import com.dichotome.profilebar.ui.tabPager.TabPagerAdapter
@@ -27,7 +29,8 @@ class ProfileActivity : AppCompatActivity() {
             subtitle = "Joined on 19 April 2017"
             title = "Pavlo Bondan"
             this.wallpaper = wallpaper
-            tabsEnabled = true
+            isOwnProfile = true
+            isTitleEditable = false
         }
 
         profilePager.adapter = TabPagerAdapter(supportFragmentManager)

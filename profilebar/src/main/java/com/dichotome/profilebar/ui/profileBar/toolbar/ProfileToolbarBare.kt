@@ -3,14 +3,13 @@ package com.dichotome.profilebar.ui.profileBar.toolbar
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.widget.FrameLayout
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.ui.ProfileOptionWindow
@@ -20,6 +19,7 @@ import com.dichotome.profilebar.util.extensions.addViews
 import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.extensions.dpToPx
 import com.dichotome.profileshared.extensions.drw
+import com.dichotome.profileshared.extensions.str
 import com.dichotome.profileshared.views.CircularImageView
 
 abstract class ProfileToolbarBare @JvmOverloads constructor(
@@ -61,6 +61,14 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
     }
 
+    final override val editTitle: EditText = EditText(context).apply {
+        gravity = Gravity.CENTER
+        id = R.id.editTitle
+        hint = str(R.string.your_username)
+        typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+        maxLines = 1
+    }
+
     final override val subtitleTV: TextView = TextView(context).apply { id = R.id.subtitle }
 
     final override val tabs: ProfileTabLayout = ProfileTabLayout(context).apply { id = R.id.tabs }
@@ -73,6 +81,12 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         setOnClickListener {
             optionWindow.showAsDropDown(popupAnchor)
         }
+    }
+
+    final override val followButton: ImageButton = ImageButton(context).apply {
+        id = R.id.follow_button
+        setImageDrawable(drw(R.drawable.ic_notifications_none))
+        background = drw(R.color.colorTransparent)
     }
 
     private val popupAnchor = View(context).apply {
@@ -98,9 +112,11 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
             bottomGlowView,
             photoFrame,
             titleTV,
+            editTitle,
             subtitleTV,
             tabs,
             optionButton,
+            followButton,
             popupAnchor
         )
     }

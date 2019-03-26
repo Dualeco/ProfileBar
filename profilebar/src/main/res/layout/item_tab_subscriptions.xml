@@ -76,5 +76,5 @@
             android:layout_marginBottom="4dp"
             android:adjustViewBounds="true"
             android:background="@null"
-            android:src="@drawable/ic_notification_off_states"/>
+            android:src="@drawable/ic_notifications_none"/>
 </RelativeLayout>

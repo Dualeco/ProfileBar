@@ -5,11 +5,16 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.isVisible
 import androidx.core.view.marginTop
 import com.dichotome.profilebar.R
+import com.dichotome.profilebar.ui.ProfileOptionWindow
+import com.dichotome.profilebar.ui.ProfileTabLayout
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.anim.*
 import com.dichotome.profilephoto.ui.ZoomingImageView
@@ -18,6 +23,7 @@ import com.dichotome.profileshared.anim.DecelerateAccelerateInterpolator
 import com.dichotome.profileshared.extensions.addTo
 import com.dichotome.profileshared.extensions.cancelAll
 import com.dichotome.profileshared.extensions.evaluateAll
+import com.dichotome.profileshared.views.CircularImageView
 import com.google.android.material.appbar.AppBarLayout
 
 class ProfileToolbarAnimated @JvmOverloads constructor(
@@ -44,6 +50,18 @@ class ProfileToolbarAnimated @JvmOverloads constructor(
 
         private var TRANSITION_THRESHOLD: Float = 0.52f
     }
+    private var wallpaperImageVisible: Boolean = wallpaperImage.isVisible
+    private var dimViewVisible: Boolean = dimView.isVisible
+    private var bottomGlowViewVisible: Boolean = bottomGlowView.isVisible
+    private var photoImageVisible: Boolean = photoImage.isVisible
+    private var photoFrameBackgroundVisible: Boolean = photoFrameBackground.isVisible
+    private var photoFrameVisible: Boolean = photoFrame.isVisible
+    private var titleTvVisible: Boolean = photoFrame.isVisible
+    private var editTitleVisible: Boolean = editTitle.isVisible
+    private var subtitleTvVisible: Boolean = subtitleTV.isVisible
+    private var optionButtonVisible: Boolean = optionButton.isVisible
+    private var followButtonVisible: Boolean = followButton.isVisible
+    private var tabsVisible: Boolean = tabs.isVisible
 
     private var lastPosition = 0
     private var toolbarOpen = true
@@ -90,21 +108,57 @@ class ProfileToolbarAnimated @JvmOverloads constructor(
         }
     }
 
-    private fun defineConstraints() = if (toolbarOpen)
-        applyToolbarOpen()
-    else
-        applyToolbarCollapsed()
+    private fun saveVisibility() {
+        wallpaperImageVisible = wallpaperImage.isVisible
+        dimViewVisible = dimView.isVisible
+        bottomGlowViewVisible = bottomGlowView.isVisible
+        photoImageVisible = photoImage.isVisible
+        photoFrameBackgroundVisible = photoFrameBackground.isVisible
+        photoFrameVisible = photoFrame.isVisible
+        titleTvVisible = photoFrame.isVisible
+        editTitleVisible = editTitle.isVisible
+        subtitleTvVisible = subtitleTV.isVisible
+        optionButtonVisible = optionButton.isVisible
+        followButtonVisible = followButton.isVisible
+        tabsVisible = tabs.isVisible
+    }
+
+    private fun restoreVisibility() {
+        wallpaperImage.isVisible = wallpaperImageVisible
+        dimView.isVisible = dimViewVisible
+        bottomGlowView.isVisible = bottomGlowViewVisible
+        photoImage.isVisible = photoImageVisible
+        photoFrameBackground.isVisible = photoFrameBackgroundVisible
+        photoFrame.isVisible = photoFrameVisible
+        photoFrame.isVisible = titleTvVisible
+        editTitle.isVisible = editTitleVisible
+        subtitleTV.isVisible = subtitleTvVisible
+        optionButton.isVisible = optionButtonVisible
+        followButton.isVisible = followButtonVisible
+        tabs.isVisible = tabsVisible
+    }
+
+    private fun defineConstraints() =
+        if (toolbarOpen)
+            applyToolbarOpen()
+        else
+            applyToolbarCollapsed()
+
 
     private fun applyToolbarOpen() {
+        saveVisibility()
         openConstraintSet.applyTo(this)
+        restoreVisibility()
 
         toolbarOpen = true
     }
 
     private fun applyToolbarCollapsed() {
+        saveVisibility()
         collapsedConstraintSet.applyTo(this)
-        dimView.alpha = dimCollapsedAlpha
+        restoreVisibility()
 
+        dimView.alpha = dimCollapsedAlpha
         toolbarOpen = false
     }
 
