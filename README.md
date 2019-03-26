@@ -53,7 +53,7 @@ allprojects {
 
 * Without databinding:
 ```
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.3"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.4"
 ```
 
 * With databinding:
@@ -65,8 +65,8 @@ android {
     }
 }
 ...
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.3"
-implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.3"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.4"
+implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.4"
 ```
 
 ### Building a layout
@@ -139,7 +139,7 @@ val pagerFragments = arrayListOf(
 
 * Without databinding:
     
-[See the full property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
+[See the property interface](https://github.com/DichotoMe/ProfileBar/blob/master/PROPERTY_INTERFACE.md "Profilebar property interface")
 
 *In code:*
 ```
@@ -159,7 +159,7 @@ profileBar.setupWithViewPager(profilePager)
 
 * With databinding:
 
-[See the full binding interface](https://github.com/DichotoMe/ProfileBar/blob/master/BINDING_INTERFACE.md "Profilebar binding interface")
+[See the binding interface](https://github.com/DichotoMe/ProfileBar/blob/master/BINDING_INTERFACE.md "Profilebar binding interface")
 
 *1. In layout.xml*
 ```
