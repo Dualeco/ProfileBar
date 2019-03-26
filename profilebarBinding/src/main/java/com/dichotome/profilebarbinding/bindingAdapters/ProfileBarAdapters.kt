@@ -23,11 +23,6 @@ fun setPhotoUri(bar: ProfileBar, uri: Uri?) {
         val profilePicOptions = RequestOptions()
             .override(Constants(bar.context).DISPLAY_WIDTH)
             .centerCrop()
-            .signature(
-                ObjectKey(
-                    File(uri.toString()).lastModified()
-                )
-            )
 
         bar.photoImage.download(uri, profilePicOptions)
     }
@@ -45,11 +40,6 @@ fun setWallpaperUri(bar: ProfileBar, uri: Uri?) {
     uri?.let {
         val wallpaperOptions = RequestOptions()
             .centerCrop()
-            .signature(
-                ObjectKey(
-                    File(uri.toString()).lastModified()
-                )
-            )
 
         bar.wallpaperImage.download(uri, wallpaperOptions)
     }
