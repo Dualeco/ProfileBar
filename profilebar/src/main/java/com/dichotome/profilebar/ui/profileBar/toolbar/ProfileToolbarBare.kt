@@ -7,19 +7,19 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.ui.ProfileOptionWindow
 import com.dichotome.profilebar.ui.ProfileTabLayout
 import com.dichotome.profilebar.ui.profileBar.ProfileBarViews
 import com.dichotome.profilebar.util.extensions.addViews
+import com.dichotome.profilebar.util.extensions.hideKeyboard
 import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.extensions.dpToPx
 import com.dichotome.profileshared.extensions.drw
-import com.dichotome.profileshared.extensions.str
 import com.dichotome.profileshared.views.CircularImageView
 
 abstract class ProfileToolbarBare @JvmOverloads constructor(
@@ -62,6 +62,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
     }
 
     final override val editTitle: EditText = EditText(context).apply {
+        imeOptions = EditorInfo.IME_ACTION_DONE
         gravity = Gravity.CENTER
         id = R.id.editTitle
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)

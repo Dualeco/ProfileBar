@@ -3,6 +3,7 @@ package com.dichotome.profilebar.ui.profileBar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import com.dichotome.profilebar.ui.profileBar.toolbar.ProfileBarActions
 import com.dichotome.profilebar.ui.profileBar.toolbar.ProfileToolbarAnimated
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
@@ -16,7 +17,8 @@ class ProfileBar @JvmOverloads constructor(
     )
 ) : AppBarLayout(context, attrs),
     ProfileBarResources by toolbar,
-    ProfileBarViews by toolbar {
+    ProfileBarViews by toolbar,
+    ProfileBarActions by toolbar {
 
     companion object {
         const val SCROLL_FLAGS = SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED

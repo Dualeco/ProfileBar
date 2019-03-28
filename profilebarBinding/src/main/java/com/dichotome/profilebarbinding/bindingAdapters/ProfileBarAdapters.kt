@@ -4,11 +4,9 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.signature.ObjectKey
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.extensions.download
 import com.dichotome.profileshared.constants.Constants
-import java.io.File
 
 @BindingAdapter("app:isOwnProfile")
 fun setIsOwnProfile(bar: ProfileBar, isOwn: Boolean?) {
@@ -127,39 +125,48 @@ fun setFrameDrawable(bar: ProfileBar, frame: Drawable?) {
     }
 }
 
-@BindingAdapter("app:onPhotoChanged")
-fun setOnChangedPhoto(bar: ProfileBar, listener: (() -> Unit)?) {
-    listener?.let {
-        bar.optionWindow.changePhotoButton.setOnClickListener {
-            listener()
+@BindingAdapter("app:onPhotoChange")
+fun setOnChangePhoto(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnChangePhoto {
+            it()
         }
     }
 }
 
-@BindingAdapter("app:onWallpaperChanged")
-fun setOnChangedWallpaper(bar: ProfileBar, listener: (() -> Unit)?) {
-    listener?.let {
-        bar.optionWindow.changeWallpaperButton.setOnClickListener {
-            listener()
+@BindingAdapter("app:onWallpaperChange")
+fun setOnChangeWallpaper(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnChangeWallpaper {
+            it()
         }
     }
 }
 
-@BindingAdapter("app:onUsernameChanged")
-fun setOnChangedUsername(bar: ProfileBar, listener: (() -> Unit)?) {
-    listener?.let {
-        bar.optionWindow.changeUsernameButton.setOnClickListener {
-            listener()
+@BindingAdapter("app:onUsernameChange")
+fun setOnChangeUsername(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnChangeUsername {
+            it()
         }
     }
 }
 
 
-@BindingAdapter("app:onLoggedOut")
-fun setOnLoggedOut(bar: ProfileBar, listener: (() -> Unit)?) {
-    listener?.let {
-        bar.optionWindow.logOutButton.setOnClickListener {
-            listener()
+@BindingAdapter("app:onLogOut")
+fun setOnLogOut(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnLogOut {
+            it()
+        }
+    }
+}
+
+@BindingAdapter("app:onUsernameChangeFinished")
+fun setOnUsernameChangeFinished(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnUsernameChangeFinished {
+            it()
         }
     }
 }

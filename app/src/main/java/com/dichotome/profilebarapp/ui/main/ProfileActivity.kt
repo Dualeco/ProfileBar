@@ -35,11 +35,7 @@ class ProfileActivity : AppCompatActivity() {
         profilePager.fragments = pagerFragments
 
         profileBar.setupWithViewPager(profilePager)
-
-        profileBar.optionWindow.changePhotoButton.setOnClickListener {
-
-        }
-        profileBar.optionWindow.changeWallpaperButton.setOnClickListener {
+        profileBar.setOnFollowed {
 
         }
     }

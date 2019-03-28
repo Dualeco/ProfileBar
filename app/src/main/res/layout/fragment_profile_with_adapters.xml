@@ -25,7 +25,8 @@
             app:photo="@{logic.photo}"
             app:subtitle="@{logic.subtitle}"
             app:title="@{logic.title}"
-            app:wallpaper="@{logic.wallpaper}" />
+            app:wallpaper="@{logic.wallpaper}"
+            app:onUsernameChangeFinished="@{() -> logic.onUsernameChanged()}"/>
 
         <com.dichotome.profilebar.ui.tabPager.TabPager
             android:id="@+id/profilePager"

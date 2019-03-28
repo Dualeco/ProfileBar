@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_PARENT
@@ -25,7 +26,7 @@ open class ProfileToolbar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
-) : ProfileToolbarBare(context, attrs, defStyle), ProfileBarResources {
+) : ProfileToolbarBare(context, attrs, defStyle), ProfileBarResources, ProfileBarActions {
 
     companion object {
         private val DEFAULT_TEXT_COLOR_ID = R.color.colorPrimary
@@ -186,6 +187,44 @@ open class ProfileToolbar @JvmOverloads constructor(
         tabs.setupWithViewPager(viewPager)
     }
 
+    override fun setOnChangePhoto(action: () -> Unit) {
+        optionWindow.changePhotoButton.setOnClickListener {
+            action()
+        }
+    }
+
+    override fun setOnChangeWallpaper(action: () -> Unit) {
+        optionWindow.changeWallpaperButton.setOnClickListener {
+            action()
+        }
+    }
+
+    override fun setOnChangeUsername(action: () -> Unit) {
+        optionWindow.changeUsernameButton.setOnClickListener {
+            action()
+        }
+    }
+
+    override fun setOnLogOut(action: () -> Unit) {
+        optionWindow.logOutButton.setOnClickListener {
+            action()
+        }
+    }
+
+    override fun setOnUsernameChangeFinished(action: (EditText) -> Unit) {
+        editTitle.setOnEditorActionListener { v, _, _ ->
+            action(v as EditText)
+            true
+        }
+    }
+
+    override fun setOnFollowed(action: () -> Unit) {
+        followButton.setOnClickListener {
+            isFollowed = !isFollowed
+            action()
+        }
+    }
+
     init {
         photoImage.download(DEFAULT_PHOTO_ID, photoImageOptions)
         wallpaperImage.download(DEFAULT_WALLPAPER_ID, wallpaperImageOptions)
@@ -224,5 +263,7 @@ open class ProfileToolbar @JvmOverloads constructor(
         isOwnProfile = true
         isFollowed = false
         isTitleEditable = false
+
+        setOnFollowed {  }
     }
 }

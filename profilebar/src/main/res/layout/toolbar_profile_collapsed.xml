@@ -70,6 +70,7 @@
         app:layout_constraintStart_toEndOf="@+id/photo_frame" />
 
     <EditText
+        android:imeOptions="actionDone"
         android:id="@+id/editTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
