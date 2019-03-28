@@ -64,7 +64,6 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
     final override val editTitle: EditText = EditText(context).apply {
         gravity = Gravity.CENTER
         id = R.id.editTitle
-        hint = str(R.string.your_username)
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
         maxLines = 1
     }

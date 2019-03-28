@@ -10,6 +10,27 @@ import com.dichotome.profilebar.util.extensions.download
 import com.dichotome.profileshared.constants.Constants
 import java.io.File
 
+@BindingAdapter("app:isOwnProfile")
+fun setIsOwnProfile(bar: ProfileBar, isOwn: Boolean?) {
+    isOwn?.let {
+        bar.isOwnProfile = it
+    }
+}
+
+@BindingAdapter("app:isFollowed")
+fun setIsFollowed(bar: ProfileBar, isFollowed: Boolean?) {
+    isFollowed?.let {
+        bar.isFollowed = it
+    }
+}
+
+@BindingAdapter("app:isTitleEditable")
+fun setIsTitleEditable(bar: ProfileBar, isEditable: Boolean?) {
+    isEditable?.let {
+        bar.isTitleEditable = it
+    }
+}
+
 @BindingAdapter("app:photo")
 fun setPhoto(bar: ProfileBar, photo: Drawable?) {
     photo?.let {

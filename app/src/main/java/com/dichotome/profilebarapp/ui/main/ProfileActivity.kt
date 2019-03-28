@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
         val photo = drw(R.drawable.avatar)
         val wallpaper = drw(R.drawable.cover2)
         val pagerFragments = arrayListOf(
-            SubscriptionsTabFragment.newInstance("Subsriptions"),
+            SubscriptionsTabFragment.newInstance("Subscriptions"),
             FavouritesTabFragment.newInstance("Favourites")
         )
 
@@ -29,8 +29,6 @@ class ProfileActivity : AppCompatActivity() {
             subtitle = "Joined on 19 April 2017"
             title = "Pavlo Bondan"
             this.wallpaper = wallpaper
-            isOwnProfile = true
-            isTitleEditable = false
         }
 
         profilePager.adapter = TabPagerAdapter(supportFragmentManager)

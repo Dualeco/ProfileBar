@@ -45,13 +45,12 @@ open class ProfileToolbar @JvmOverloads constructor(
 
     final override var isOwnProfile: Boolean = false
         set(value) {
-            Log.d("SETTER", "Called")
             field = value
             optionButton.isVisible = value
             followButton.isVisible = !value
         }
 
-    override var isFollowed: Boolean = false
+    final override var isFollowed: Boolean = false
         set(value) {
             field = value
             followButton.setImageDrawable(
@@ -62,7 +61,7 @@ open class ProfileToolbar @JvmOverloads constructor(
             )
         }
 
-    override var isTitleEditable: Boolean = false
+    final override var isTitleEditable: Boolean = false
         set(value) {
             field = value
             editTitle.isVisible = value
@@ -131,6 +130,7 @@ open class ProfileToolbar @JvmOverloads constructor(
             field = value
             titleTV.text = field
             editTitle.setText(field, TextView.BufferType.EDITABLE)
+            editTitle.hint = field
         }
 
     override var titleSize: Float =
@@ -221,5 +221,8 @@ open class ProfileToolbar @JvmOverloads constructor(
             setSelectedTabIndicatorColor(tabsIndicatorColor)
             setTabTextColors(tabsUnselectedColor, tabsSelectedColor)
         }
+        isOwnProfile = true
+        isFollowed = false
+        isTitleEditable = false
     }
 }

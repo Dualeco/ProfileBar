@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-                name="logic"
-                type="com.dichotome.profilebarapp.ui.mainBinding.ProfileBindingLogic"/>
+            name="logic"
+            type="com.dichotome.profilebarapp.ui.mainBinding.ProfileBindingLogic" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinator"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.dichotome.profilebar.ui.profileBar.ProfileBar
-                android:id="@+id/profileBar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/profilebar_height"
-                app:subtitle="@{logic.subtitle}"
-                app:title="@{logic.title}"
-                app:photo="@{logic.photo}"
-                app:wallpaper="@{logic.wallpaper}"/>
+            android:id="@+id/profileBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/profilebar_height"
+            app:isTitleEditable="@{logic.isEditable}"
+            app:isOwnProfile="@{logic.isOwn}"
+            app:isFollowed="@{logic.isFollowed}"
+            app:photo="@{logic.photo}"
+            app:subtitle="@{logic.subtitle}"
+            app:title="@{logic.title}"
+            app:wallpaper="@{logic.wallpaper}" />
 
         <com.dichotome.profilebar.ui.tabPager.TabPager
-                android:id="@+id/profilePager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:fragments="@{logic.pagerFragments}"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:id="@+id/profilePager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fragments="@{logic.pagerFragments}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
