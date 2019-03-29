@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.dichotome.profileshared.constants.ResourceUtil
 
 
@@ -48,3 +49,10 @@ fun View.setViewAndChildrenEnabled(enabled: Boolean) {
 }
 
 fun <T : View> ViewGroup.addAndGetView(view: T) = view.also { addView(it) }
+
+
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
+}

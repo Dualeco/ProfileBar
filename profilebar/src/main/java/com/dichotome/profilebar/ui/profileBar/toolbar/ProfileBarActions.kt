@@ -1,7 +1,5 @@
 package com.dichotome.profilebar.ui.profileBar.toolbar
 
-import android.widget.EditText
-
 interface ProfileBarActions {
     fun setOnChangePhoto(action: () -> Unit)
     fun setOnChangeWallpaper(action: () -> Unit)
@@ -9,4 +7,5 @@ interface ProfileBarActions {
     fun setOnLogOut(action: () -> Unit)
     fun setOnUsernameChangeFinished(action: (String) -> Unit)
     fun setOnFollowed(action: () -> Unit)
+    fun setOnUsernameChangeCancelled(action: () -> Unit)
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -16,10 +17,10 @@ import com.dichotome.profilebar.ui.ProfileOptionWindow
 import com.dichotome.profilebar.ui.ProfileTabLayout
 import com.dichotome.profilebar.ui.profileBar.ProfileBarViews
 import com.dichotome.profilebar.util.extensions.addViews
-import com.dichotome.profilebar.util.extensions.hideKeyboard
 import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.extensions.dpToPx
 import com.dichotome.profileshared.extensions.drw
+import com.dichotome.profileshared.extensions.hideKeyboard
 import com.dichotome.profileshared.views.CircularImageView
 
 abstract class ProfileToolbarBare @JvmOverloads constructor(
@@ -61,7 +62,16 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
     }
 
-    final override val editTitle: EditText = EditText(context).apply {
+    protected var onEditCancelledListener: (() -> Unit)? = null
+    final override val editTitle: EditText = object : EditText(context) {
+        override fun onKeyPreIme(keyCode: Int, event: KeyEvent?): Boolean {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                hideKeyboard()
+                onEditCancelledListener?.invoke()
+            }
+            return true
+        }
+    }.apply {
         imeOptions = EditorInfo.IME_ACTION_DONE
         gravity = Gravity.CENTER
         id = R.id.editTitle
