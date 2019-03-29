@@ -67,7 +67,12 @@ open class ProfileToolbar @JvmOverloads constructor(
         set(value) {
             field = value
             editTitle.isVisible = value
-            titleTV.isVisible = !value
+            titleTV.visibility = if (value) View.INVISIBLE else View.VISIBLE
+
+            if (field) editTitle.apply {
+                requestFocus()
+                setSelection(text.length)
+            }
         }
 
     private val photoImageOptions = RequestOptions()
@@ -223,7 +228,7 @@ open class ProfileToolbar @JvmOverloads constructor(
         }
     }
 
-    override fun setOnFollowed(action: () -> Unit) {
+    final override fun setOnFollowed(action: () -> Unit) {
         followButton.setOnClickListener {
             isFollowed = !isFollowed
             action()
