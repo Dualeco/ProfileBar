@@ -7,5 +7,5 @@ interface ProfileBarActions {
     fun setOnLogOut(action: () -> Unit)
     fun setOnUsernameChangeFinished(action: (String) -> Unit)
     fun setOnFollowed(action: () -> Unit)
-    fun setOnUsernameChangeCancelled(action: () -> Unit)
+    fun setOnUsernameChangeCanceled(action: () -> Unit)
 }

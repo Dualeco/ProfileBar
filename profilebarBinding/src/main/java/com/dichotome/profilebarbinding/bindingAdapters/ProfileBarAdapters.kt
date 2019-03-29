@@ -2,10 +2,8 @@ package com.dichotome.profilebarbinding.bindingAdapters
 
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.widget.EditText
 import androidx.arch.core.util.Function
 import androidx.databinding.BindingAdapter
-import androidx.databinding.BindingMethod
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.extensions.download
@@ -173,3 +171,22 @@ fun setUsernameChangeFinished(bar: ProfileBar, action: Function<String, Unit>?) 
         }
     }
 }
+
+@BindingAdapter("app:onFollowed")
+fun setOnFollowed(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnFollowed {
+            it()
+        }
+    }
+}
+
+@BindingAdapter("app:onUsernameChangeCanceled")
+fun setOnUsernameChangeCanceled(bar: ProfileBar, action: (() -> Unit)?) {
+    action?.let {
+        bar.setOnUsernameChangeCanceled {
+            it()
+        }
+    }
+}
+

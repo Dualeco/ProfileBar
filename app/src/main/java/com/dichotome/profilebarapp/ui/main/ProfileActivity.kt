@@ -2,15 +2,12 @@ package com.dichotome.profilebarapp.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.dichotome.profilebar.stubs.fragments.FavouritesTabFragment
 import com.dichotome.profilebar.stubs.fragments.SubscriptionsTabFragment
 import com.dichotome.profilebar.ui.tabPager.TabPagerAdapter
 import com.dichotome.profilebarapp.R
 import com.dichotome.profilebarapp.util.constant.drw
-import com.dichotome.profileshared.extensions.hideKeyboard
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileActivity : AppCompatActivity() {
@@ -32,7 +29,7 @@ class ProfileActivity : AppCompatActivity() {
             title = "Pavlo Bondan"
             this.wallpaper = wallpaper
             isTitleEditable = true
-            setOnUsernameChangeCancelled {
+            setOnUsernameChangeCanceled {
                 Log.d("LOGIC", "RTFHJHKGCFHG")
             }
         }

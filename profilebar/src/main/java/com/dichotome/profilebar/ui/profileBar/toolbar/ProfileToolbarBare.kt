@@ -62,12 +62,12 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
     }
 
-    protected var onEditCancelledListener: (() -> Unit)? = null
+    protected var onEditCanceledListener: (() -> Unit)? = null
     final override val editTitle: EditText = object : EditText(context) {
         override fun onKeyPreIme(keyCode: Int, event: KeyEvent?): Boolean {
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 hideKeyboard()
-                onEditCancelledListener?.invoke()
+                onEditCanceledListener?.invoke()
             }
             return true
         }

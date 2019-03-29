@@ -233,8 +233,8 @@ open class ProfileToolbar @JvmOverloads constructor(
         }
     }
 
-    final override fun setOnUsernameChangeCancelled(action: () -> Unit) {
-        onEditCancelledListener = action
+    final override fun setOnUsernameChangeCanceled(action: () -> Unit) {
+        onEditCanceledListener = action
     }
 
     init {
