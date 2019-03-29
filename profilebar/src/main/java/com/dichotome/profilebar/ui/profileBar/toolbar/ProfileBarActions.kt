@@ -7,6 +7,6 @@ interface ProfileBarActions {
     fun setOnChangeWallpaper(action: () -> Unit)
     fun setOnChangeUsername(action: () -> Unit)
     fun setOnLogOut(action: () -> Unit)
-    fun setOnUsernameChangeFinished(action: (EditText) -> Unit)
+    fun setOnUsernameChangeFinished(action: (String) -> Unit)
     fun setOnFollowed(action: () -> Unit)
 }

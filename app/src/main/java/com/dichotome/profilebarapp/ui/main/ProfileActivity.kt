@@ -35,8 +35,5 @@ class ProfileActivity : AppCompatActivity() {
         profilePager.fragments = pagerFragments
 
         profileBar.setupWithViewPager(profilePager)
-        profileBar.setOnFollowed {
-
-        }
     }
 }

@@ -1,6 +1,8 @@
 package com.dichotome.profilebarapp.ui.mainBinding
 
 import android.graphics.drawable.Drawable
+import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dichotome.profilebarapp.R
@@ -18,10 +20,10 @@ class ProfileBindingLogic : ViewModel() {
         FavouritesTabFragment.newInstance("Favourites")
     )
     val isEditable: Boolean = true
-    val isOwn = false
+    val isOwn = true
     val isFollowed = true
 
-    fun onUsernameChanged() {
-        wallpaper.value = drw(R.drawable.picasso_wall)
+    fun onUsernameChangeFinished(text: String) {
+
     }
 }

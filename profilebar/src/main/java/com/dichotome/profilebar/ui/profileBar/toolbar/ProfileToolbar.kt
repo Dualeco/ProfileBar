@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.ui.profileBar.ProfileBarResources
 import com.dichotome.profilebar.util.extensions.download
+import com.dichotome.profilebar.util.extensions.hideKeyboard
 import com.dichotome.profilebar.util.extensions.setColor
 import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.extensions.col
@@ -211,10 +212,14 @@ open class ProfileToolbar @JvmOverloads constructor(
         }
     }
 
-    override fun setOnUsernameChangeFinished(action: (EditText) -> Unit) {
-        editTitle.setOnEditorActionListener { v, _, _ ->
-            action(v as EditText)
-            true
+    override fun setOnUsernameChangeFinished(action: (String) -> Unit) {
+        editTitle.apply {
+            setOnEditorActionListener { _, _, _ ->
+                action(text.toString())
+                clearFocus()
+                hideKeyboard()
+                true
+            }
         }
     }
 

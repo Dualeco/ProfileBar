@@ -3,7 +3,9 @@ package com.dichotome.profilebarbinding.bindingAdapters
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.EditText
+import androidx.arch.core.util.Function
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingMethod
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.extensions.download
@@ -164,10 +166,10 @@ fun setOnLogOut(bar: ProfileBar, action: (() -> Unit)?) {
 }
 
 @BindingAdapter("app:onUsernameChangeFinished")
-fun setOnUsernameChangeFinished(bar: ProfileBar, action: ((EditText) -> Unit)?) {
+fun setUsernameChangeFinished(bar: ProfileBar, action: Function<String, Unit>?) {
     action?.let {
-        bar.setOnUsernameChangeFinished { editText ->
-            it(editText)
+        bar.setOnUsernameChangeFinished { text ->
+            it.apply(text)
         }
     }
 }
