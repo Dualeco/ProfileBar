@@ -220,7 +220,6 @@ open class ProfileToolbar @JvmOverloads constructor(
     final override fun setOnUsernameChangeFinished(action: (String) -> Unit) {
         editTitle.apply {
             setOnEditorActionListener { _, _, _ ->
-                hideKeyboard()
                 clearFocus()
                 action(text.toString())
                 true
@@ -279,6 +278,8 @@ open class ProfileToolbar @JvmOverloads constructor(
         isTitleEditable = false
 
         setOnFollowed {  }
-        setOnUsernameChangeFinished {  }
+        setOnUsernameChangeFinished {
+            hideKeyboard()
+        }
     }
 }
