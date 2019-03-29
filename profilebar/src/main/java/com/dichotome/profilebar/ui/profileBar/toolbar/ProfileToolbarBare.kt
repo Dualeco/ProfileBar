@@ -72,7 +72,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
             return true
         }
     }.apply {
-        imeOptions = EditorInfo.IME_ACTION_DONE
+        imeOptions = EditorInfo.IME_ACTION_GO
         gravity = Gravity.CENTER
         id = R.id.editTitle
         typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)

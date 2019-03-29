@@ -16,10 +16,7 @@ import com.dichotome.profilebar.ui.profileBar.ProfileBarResources
 import com.dichotome.profilebar.util.extensions.download
 import com.dichotome.profilebar.util.extensions.setColor
 import com.dichotome.profileshared.constants.Constants
-import com.dichotome.profileshared.extensions.col
-import com.dichotome.profileshared.extensions.dpToPx
-import com.dichotome.profileshared.extensions.drw
-import com.dichotome.profileshared.extensions.hideKeyboard
+import com.dichotome.profileshared.extensions.*
 
 open class ProfileToolbar @JvmOverloads constructor(
     context: Context,
@@ -68,8 +65,13 @@ open class ProfileToolbar @JvmOverloads constructor(
             titleTV.visibility = if (value) View.INVISIBLE else View.VISIBLE
 
             if (field) editTitle.apply {
+                editTitle.setText(
+                    titleTV.text,
+                    TextView.BufferType.EDITABLE
+                )
                 requestFocus()
                 setSelection(text.length)
+                showKeyboard()
             }
         }
 
