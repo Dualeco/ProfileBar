@@ -10,8 +10,7 @@ abstract class TabFragment : Fragment() {
     var title: String
         get() = arguments?.getString(ARGS_TITLE) ?: ""
         set(title) {
-            val args = arguments ?: Bundle()
-            arguments = args.apply {
+            arguments = (arguments ?: Bundle()).apply {
                 putString(ARGS_TITLE, title)
             }
         }
