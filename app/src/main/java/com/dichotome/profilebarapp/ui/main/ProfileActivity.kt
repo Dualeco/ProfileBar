@@ -28,10 +28,6 @@ class ProfileActivity : AppCompatActivity() {
             subtitle = "Joined on 19 April 2017"
             title = "Pavlo Bondan"
             this.wallpaper = wallpaper
-            isTitleEditable = true
-            setOnUsernameChangeCanceled {
-                Log.d("LOGIC", "RTFHJHKGCFHG")
-            }
         }
 
         profilePager.adapter = TabPagerAdapter(supportFragmentManager)

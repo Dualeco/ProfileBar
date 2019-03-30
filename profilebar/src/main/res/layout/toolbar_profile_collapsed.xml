@@ -36,7 +36,7 @@
 
     <FrameLayout
         android:id="@+id/photo_frame"
-        android:layout_width="52dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:background="@drawable/profile_photo_stroke"
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:alpha="0.9"
         android:fontFamily="sans-serif-medium"
         android:text="Pavlo Bohdan"
@@ -90,12 +90,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dp"
         android:alpha="0.8"
         android:fontFamily="sans-serif"
         android:text="Joined on 23 March 2018"
         android:textColor="@color/textColorPrimary"
-        android:textSize="12sp"
+        android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/tabs"
         app:layout_constraintStart_toEndOf="@+id/photo_frame" />
 

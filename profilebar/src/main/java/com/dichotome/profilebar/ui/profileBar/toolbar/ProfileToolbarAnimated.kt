@@ -48,7 +48,7 @@ class ProfileToolbarAnimated @JvmOverloads constructor(
         private const val DIM_HEIGHT = "dimHeight"
         private const val TOP_MARGIN = "wallpaper_margin"
 
-        private var TRANSITION_THRESHOLD: Float = 0.52f
+        private var TRANSITION_THRESHOLD: Float = 0.5f
     }
     private var wallpaperImageVisible: Boolean = wallpaperImage.isVisible
     private var dimViewVisible: Boolean = dimView.isVisible
