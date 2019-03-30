@@ -28,7 +28,7 @@ open class ProfileToolbar @JvmOverloads constructor(
         private val DEFAULT_TEXT_COLOR_ID = R.color.colorPrimary
         private val DEFAULT_HINT_COLOR_ID = R.color.colorPrimaryUnselected
         private const val DEFAULT_TITLE_TEXT_SIZE = 18f
-        private const val DEFAULT_SUBTITLE_TITLE_TEXT_SIZE = 10f
+        private const val DEFAULT_SUBTITLE_TITLE_TEXT_SIZE = 12f
         private val DEFAULT_FRAME_DRAWABLE_ID = R.drawable.profile_photo_stroke
         private const val DEFAULT_FRAME_THICKNESS_DP = 2
         private val DEFAULT_FRAME_COLOR_ID = R.color.colorPrimaryTranslucent
