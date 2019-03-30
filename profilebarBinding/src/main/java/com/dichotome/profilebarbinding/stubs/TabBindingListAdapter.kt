@@ -34,9 +34,9 @@ class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(bind
 }
 
 class TabListAdapter<T : ViewDataBinding>(
-    private val data: List<TabListItem>,
-    private val itemViewType: Int,
-    private val isThumbnailCircular: Boolean
+    val data: List<TabListItem>,
+    val itemViewType: Int,
+    val isThumbnailCircular: Boolean
 ) : RecyclerView.Adapter<TabListHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
