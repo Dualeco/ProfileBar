@@ -8,7 +8,7 @@ class FavListItem(
     thumbnailUrl: String,
     uuid: String = UUID.randomUUID().toString()
 ) : TabListItem(
-    uuid,
     title,
-    thumbnailUrl
+    thumbnailUrl,
+    uuid
 )
