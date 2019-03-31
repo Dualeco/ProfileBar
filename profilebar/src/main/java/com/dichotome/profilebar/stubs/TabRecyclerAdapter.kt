@@ -14,11 +14,14 @@ open class TabRecyclerHolder(inflater: LayoutInflater, parent: ViewGroup, viewTy
     inflater.inflate(viewType, parent, false)
 ) {
 
+    lateinit var tabItem: TabRecyclerItem
+
     val name = itemView.findViewById<TextView>(R.id.itemNameTV)
     val subtitle = itemView.findViewById<TextView>(R.id.subtitleTV)
     val thumbnail = itemView.findViewById<ImageView>(R.id.thumbnail)
 
     fun bind(data: TabRecyclerItem, isThumbnailCircular: Boolean) {
+        tabItem = data
         name.text = data.name
         if (data is FavRecyclerItem)
             subtitle?.let {
