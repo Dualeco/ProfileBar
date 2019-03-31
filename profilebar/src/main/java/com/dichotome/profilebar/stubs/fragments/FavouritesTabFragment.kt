@@ -10,8 +10,9 @@ import com.dichotome.profilebar.stubs.FavListItem
 import com.dichotome.profilebar.stubs.TabListAdapter
 import com.dichotome.profilebar.ui.tabPager.TabFragment
 import kotlinx.android.synthetic.main.fragment_profile_tab.*
+import java.util.*
 
-class FavouritesTabFragment() : TabFragment() {
+class FavouritesTabFragment : TabFragment() {
     companion object {
         fun newInstance(tabTitle: String) = FavouritesTabFragment().apply {
             title = tabTitle

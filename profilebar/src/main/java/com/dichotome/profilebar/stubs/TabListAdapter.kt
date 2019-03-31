@@ -54,11 +54,11 @@ class TabListAdapter(
     override fun getItemViewType(position: Int) = itemViewType
 
     fun updateData(newData: List<TabListItem>) = DiffUtil.calculateDiff(
-        TabDiffUtilCallback(data, newData)
-    ).apply {
-        data = newData
-        dispatchUpdatesTo(this@TabListAdapter)
-    }
+            TabDiffUtilCallback(data, newData)
+        ).apply {
+            data = newData
+            dispatchUpdatesTo(this@TabListAdapter)
+        }
 }
 
 class TabDiffUtilCallback(
@@ -66,7 +66,7 @@ class TabDiffUtilCallback(
     private val newList: List<TabListItem>
 ) : DiffUtil.Callback() {
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-        oldList[oldItemPosition] == newList[newItemPosition]
+        oldList[oldItemPosition].uuid == newList[newItemPosition].uuid
 
     override fun getOldListSize() = oldList.size
 
