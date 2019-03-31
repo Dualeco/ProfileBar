@@ -10,7 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.util.extensions.download
 
-class TabListHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(
+open class TabRecyclerHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder(
     inflater.inflate(viewType, parent, false)
 ) {
 
@@ -18,9 +18,9 @@ class TabListHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int) 
     val subtitle = itemView.findViewById<TextView>(R.id.subtitleTV)
     val thumbnail = itemView.findViewById<ImageView>(R.id.thumbnail)
 
-    fun bind(data: TabListItem, isThumbnailCircular: Boolean) {
+    fun bind(data: TabRecyclerItem, isThumbnailCircular: Boolean) {
         name.text = data.name
-        if (data is FavListItem)
+        if (data is FavRecyclerItem)
             subtitle?.let {
                 it.text = data.subtitle
             }
@@ -32,13 +32,13 @@ class TabListHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int) 
     }
 }
 
-class TabListAdapter(
-    var data: List<TabListItem>,
+open class TabRecyclerAdapter(
+    var data: List<TabRecyclerItem>,
     val itemViewType: Int,
     val isThumbnailCircular: Boolean
-) : RecyclerView.Adapter<TabListHolder>() {
+) : RecyclerView.Adapter<TabRecyclerHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = TabListHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = TabRecyclerHolder(
         LayoutInflater.from(parent.context),
         parent,
         itemViewType
@@ -46,24 +46,24 @@ class TabListAdapter(
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: TabListHolder, position: Int) = holder.bind(
+    override fun onBindViewHolder(holder: TabRecyclerHolder, position: Int) = holder.bind(
         data[position],
         isThumbnailCircular
     )
 
     override fun getItemViewType(position: Int) = itemViewType
 
-    fun updateData(newData: List<TabListItem>) = DiffUtil.calculateDiff(
+    fun updateData(newData: List<TabRecyclerItem>) = DiffUtil.calculateDiff(
             TabDiffUtilCallback(data, newData)
         ).apply {
             data = newData
-            dispatchUpdatesTo(this@TabListAdapter)
+            dispatchUpdatesTo(this@TabRecyclerAdapter)
         }
 }
 
 class TabDiffUtilCallback(
-    private val oldList: List<TabListItem>,
-    private val newList: List<TabListItem>
+    private val oldList: List<TabRecyclerItem>,
+    private val newList: List<TabRecyclerItem>
 ) : DiffUtil.Callback() {
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
         oldList[oldItemPosition].uuid == newList[newItemPosition].uuid

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dichotome.profilebar.ui.tabPager.TabFragment
-import com.dichotome.profilebar.stubs.FavListItem
+import com.dichotome.profilebar.stubs.FavRecyclerItem
 import com.dichotome.profilebarbinding.R
 import com.dichotome.profilebarbinding.stubs.TabListAdapter
 import kotlinx.android.synthetic.main.fragment_profile_tab_binding.*
@@ -19,52 +19,52 @@ class FavouritesTabBindingFragment() : TabFragment() {
         }
     }
     val favList = arrayListOf(
-        FavListItem(
+        FavRecyclerItem(
             "The Amazing Spider-Man",
             "#5, 2018",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/amazing-spider-man--2-cover-art-by-ryan-ottley.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Star Wars",
             "#55, 2008",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/star-wars--55-cover-art-by-david-marquez.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Esteemed comic book author",
             "#214, 2017",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/amazing-spider-man--2-cover-art-by-ryan-ottley.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Superior comic book writer",
             "#3, 2019",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/star-wars--55-cover-art-by-david-marquez.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Batman: Rebirth",
             "#4, 2011",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccovers2017/large/batman26-mikeljanin.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "The Amazing Spider-Man",
             "#5, 2018",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/amazing-spider-man--2-cover-art-by-ryan-ottley.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Star Wars",
             "#55, 2008",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/star-wars--55-cover-art-by-david-marquez.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Esteemed comic book author",
             "#214, 2017",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/amazing-spider-man--2-cover-art-by-ryan-ottley.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Superior comic book writer",
             "#3, 2019",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccoversof2018/large/star-wars--55-cover-art-by-david-marquez.png?1384968217"
         ),
-        FavListItem(
+        FavRecyclerItem(
             "Batman: Rebirth",
             "#4, 2011",
             "https://cdn.pastemagazine.com/www/system/images/photo_albums/bestcomiccovers2017/large/batman26-mikeljanin.png?1384968217"

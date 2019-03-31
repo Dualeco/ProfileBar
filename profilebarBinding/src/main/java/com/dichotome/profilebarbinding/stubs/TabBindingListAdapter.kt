@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
-import com.dichotome.profilebar.stubs.FavListItem
+import com.dichotome.profilebar.stubs.FavRecyclerItem
 import com.dichotome.profilebar.stubs.TabDiffUtilCallback
-import com.dichotome.profilebar.stubs.TabListItem
+import com.dichotome.profilebar.stubs.TabRecyclerItem
 import com.dichotome.profilebar.util.extensions.download
 
 class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -21,9 +21,9 @@ class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(bind
     val subtitle = itemView.findViewById<TextView>(R.id.subtitleTV)
     val thumbnail = itemView.findViewById<ImageView>(R.id.thumbnail)
 
-    fun bind(data: TabListItem, isThumbnailCircular: Boolean) {
+    fun bind(data: TabRecyclerItem, isThumbnailCircular: Boolean) {
         name.text = data.name
-        if (data is FavListItem)
+        if (data is FavRecyclerItem)
             subtitle?.let {
                 it.text = data.subtitle
             }
@@ -36,7 +36,7 @@ class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(bind
 }
 
 class TabListAdapter<T : ViewDataBinding>(
-    var data: List<TabListItem>,
+    var data: List<TabRecyclerItem>,
     val itemViewType: Int,
     val isThumbnailCircular: Boolean
 ) : RecyclerView.Adapter<TabListHolder>() {
@@ -58,7 +58,7 @@ class TabListAdapter<T : ViewDataBinding>(
 
     override fun getItemViewType(position: Int) = itemViewType
 
-    fun updateData(newData: List<TabListItem>) = DiffUtil.calculateDiff(
+    fun updateData(newData: List<TabRecyclerItem>) = DiffUtil.calculateDiff(
         TabDiffUtilCallback(data, newData)
     ).apply {
         data = newData

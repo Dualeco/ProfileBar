@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dichotome.profilebar.ui.tabPager.TabFragment
-import com.dichotome.profilebar.stubs.TabListItem
+import com.dichotome.profilebar.stubs.TabRecyclerItem
 import com.dichotome.profilebarbinding.R
 import com.dichotome.profilebarbinding.databinding.ItemTabBindingSubscriptionsBinding
 import com.dichotome.profilebarbinding.stubs.TabListAdapter
@@ -19,99 +19,99 @@ class SubscriptionsTabBindingFragment : TabFragment() {
         }
     }
     val subList = arrayListOf(
-        TabListItem(
+        TabRecyclerItem(
             "2019 The Amazing Spider-Man #2",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "2018 Star Wars #55",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "2019 Batman: Rebirth #26",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Esteemed comic book author #1",
             "https://banner2.kisspng.com/20180405/hde/kisspng-superman-logo-batman-spider-man-computer-icons-superheroes-5ac5ebd3bcd9d8.2131948915229204037735.jpg"
         ),
-        TabListItem(
+        TabRecyclerItem(
             "Superior comic book writer",
             "https://cdn3.iconfinder.com/data/icons/superheroes-line/256/avengers-superhero-sign-logo-512.png"
         )

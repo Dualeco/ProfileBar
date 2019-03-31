@@ -2,12 +2,12 @@ package com.dichotome.profilebar.stubs
 
 import java.util.*
 
-class FavListItem(
+class FavRecyclerItem(
     title: String,
     val subtitle: String,
     thumbnailUrl: String,
     uuid: String = UUID.randomUUID().toString()
-) : TabListItem(
+) : TabRecyclerItem(
     title,
     thumbnailUrl,
     uuid
