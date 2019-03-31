@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
@@ -32,7 +33,7 @@ class TabListHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int) 
 }
 
 class TabListAdapter(
-    val data: List<TabListItem>,
+    var data: List<TabListItem>,
     val itemViewType: Int,
     val isThumbnailCircular: Boolean
 ) : RecyclerView.Adapter<TabListHolder>() {
@@ -50,6 +51,28 @@ class TabListAdapter(
         isThumbnailCircular
     )
 
-
     override fun getItemViewType(position: Int) = itemViewType
+
+    fun updateData(newData: List<TabListItem>) = DiffUtil.calculateDiff(
+        TabDiffUtilCallback(data, newData)
+    ).apply {
+        data = newData
+        dispatchUpdatesTo(this@TabListAdapter)
+    }
+}
+
+class TabDiffUtilCallback(
+    private val oldList: List<TabListItem>,
+    private val newList: List<TabListItem>
+) : DiffUtil.Callback() {
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        oldList[oldItemPosition] == newList[newItemPosition]
+
+    override fun getOldListSize() = oldList.size
+
+    override fun getNewListSize() = newList.size
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        oldList[oldItemPosition].name == newList[newItemPosition].name
+
 }

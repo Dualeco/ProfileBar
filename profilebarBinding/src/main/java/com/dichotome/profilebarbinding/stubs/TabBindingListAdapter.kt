@@ -6,10 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.stubs.FavListItem
+import com.dichotome.profilebar.stubs.TabDiffUtilCallback
 import com.dichotome.profilebar.stubs.TabListItem
 import com.dichotome.profilebar.util.extensions.download
 
@@ -34,7 +36,7 @@ class TabListHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(bind
 }
 
 class TabListAdapter<T : ViewDataBinding>(
-    val data: List<TabListItem>,
+    var data: List<TabListItem>,
     val itemViewType: Int,
     val isThumbnailCircular: Boolean
 ) : RecyclerView.Adapter<TabListHolder>() {
@@ -55,4 +57,11 @@ class TabListAdapter<T : ViewDataBinding>(
     )
 
     override fun getItemViewType(position: Int) = itemViewType
+
+    fun updateData(newData: List<TabListItem>) = DiffUtil.calculateDiff(
+        TabDiffUtilCallback(data, newData)
+    ).apply {
+        data = newData
+        dispatchUpdatesTo(this@TabListAdapter)
+    }
 }
