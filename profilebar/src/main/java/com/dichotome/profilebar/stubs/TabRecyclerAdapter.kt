@@ -36,7 +36,7 @@ open class TabRecyclerHolder(inflater: LayoutInflater, parent: ViewGroup, viewTy
 }
 
 open class TabRecyclerAdapter(
-    var data: List<TabRecyclerItem>,
+    var data: MutableList<TabRecyclerItem>,
     val itemViewType: Int,
     val isThumbnailCircular: Boolean
 ) : RecyclerView.Adapter<TabRecyclerHolder>() {
@@ -56,7 +56,7 @@ open class TabRecyclerAdapter(
 
     override fun getItemViewType(position: Int) = itemViewType
 
-    fun updateData(newData: List<TabRecyclerItem>) = DiffUtil.calculateDiff(
+    fun updateData(newData: MutableList<TabRecyclerItem>) = DiffUtil.calculateDiff(
             TabDiffUtilCallback(data, newData)
         ).apply {
             data = newData
