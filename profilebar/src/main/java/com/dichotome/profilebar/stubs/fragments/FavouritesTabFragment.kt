@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.stubs.FavRecyclerItem
 import com.dichotome.profilebar.stubs.TabRecyclerAdapter
+import com.dichotome.profilebar.stubs.TabRecyclerItem
 import com.dichotome.profilebar.ui.tabPager.TabFragment
 import kotlinx.android.synthetic.main.fragment_profile_tab.*
 
@@ -17,7 +18,7 @@ class FavouritesTabFragment : TabFragment() {
             title = tabTitle
         }
     }
-    val favList = arrayListOf(
+    val favList = mutableListOf<TabRecyclerItem>(
         FavRecyclerItem(
             "The Amazing Spider-Man",
             "#5, 2018",
