@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
+import androidx.core.os.bundleOf
 import com.dichotome.profilephoto.R
 import com.dichotome.profilephoto.anim.*
 import com.dichotome.profilephoto.util.extensions.copyForOverlay
@@ -201,51 +202,39 @@ class ZoomingImageView @JvmOverloads constructor(
         }
     }
 
-    override fun onSaveInstanceState() = Bundle().apply {
-        putParcelable(SUPER_STATE, super.onSaveInstanceState())
-
-        zoomablePhoto.apply {
-            layoutParams.apply {
-                putInt(PHOTO_WIDTH, width)
-                putInt(PHOTO_HEIGHT, height)
-            }
-            putBoolean(IS_ZOOMING_PHOTO_VISIBLE, isDisplayed)
-            putFloat(SCALE, scaleX)
-        }
-
-        putBoolean(IS_PHOTO_VIEW_VISIBLE, isDisplayed)
-
-        overlayBackgroundDark.apply {
-            putFloat(OVERLAY_ALPHA, alpha)
-        }
+    override fun onSaveInstanceState() = zoomablePhoto.let {
+        bundleOf(
+            SUPER_STATE to super.onSaveInstanceState(),
+            IS_PHOTO_VIEW_VISIBLE to this@ZoomingImageView.isDisplayed,
+            IS_ZOOMING_PHOTO_VISIBLE to it.isDisplayed,
+            PHOTO_HEIGHT to it.layoutParams.height,
+            PHOTO_WIDTH to it.layoutParams.width,
+            SCALE to it.scaleX,
+            OVERLAY_ALPHA to overlayBackgroundDark.alpha
+        )
     }
 
     override fun onRestoreInstanceState(state: Parcelable?) {
-        val superState = state?.let {
-            it as Bundle
+        (state as? Bundle)?.run {
+            super.onRestoreInstanceState(getParcelable<Parcelable>(SUPER_STATE))
+
             overlayBackgroundDark.apply {
-                isDisplayed = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
-                alpha = it.getFloat(OVERLAY_ALPHA)
+                isDisplayed = getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
+                alpha = getFloat(OVERLAY_ALPHA)
             }
 
             zoomablePhoto.apply {
-                layoutParams.apply {
-                    width = it.getInt(PHOTO_WIDTH)
-                    height = it.getInt(PHOTO_HEIGHT)
-                }
-                isDisplayed = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
-                scaleX = it.getFloat(SCALE)
-                scaleY = it.getFloat(SCALE)
+                layoutParams.width = getInt(PHOTO_WIDTH)
+                layoutParams.height = getInt(PHOTO_HEIGHT)
+                isDisplayed = getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
+                scaleX = getFloat(SCALE)
+                scaleY = getFloat(SCALE)
 
                 setInCenter()
             }
 
             wasViewRestored = true
-
-            it.getParcelable<Parcelable>(SUPER_STATE)
         }
-
-        super.onRestoreInstanceState(superState)
     }
 
     override fun onAttachedToWindow() {

@@ -1,6 +1,7 @@
 package com.dichotome.profilephoto.anim
 
 import android.animation.TimeInterpolator
+import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.core.animation.doOnEnd
@@ -81,12 +82,11 @@ class ZoomTranslationHelper(
     private var initY = view.y
 
     private val width = view.getZoomWidth()
-    private val height = view.getZoomHeight() - Constants(view.context).NAVBAR_SIZE
+    private val height = view.getZoomHeight() - Constants(view.context).STATUS_BAR_SIZE
 
     private val dimension = view.layoutParams.width
 
     override fun evaluateXY() = (view.scaleX == 1f).let {
-
         val direction = if (it) 1 else -1
 
         val viewCenterEndX = if (it) width / 2f else view.x + dimension / 2f
