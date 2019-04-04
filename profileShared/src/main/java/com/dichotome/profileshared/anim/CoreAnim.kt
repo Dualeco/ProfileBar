@@ -64,6 +64,14 @@ abstract class AnimationHelper(
 
     }
 
+    fun end() {
+        val endable = animators
+        animators = arrayListOf()
+        endable.forEach {
+            it.end()
+        }
+    }
+
     fun cancel() {
         val cancellable = animators
         animators = arrayListOf()

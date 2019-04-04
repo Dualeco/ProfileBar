@@ -6,26 +6,28 @@ import android.view.ViewAnimationUtils
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.util.Pair
-import androidx.core.view.isVisible
+import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profilephoto.util.extensions.getZoomHeight
 import com.dichotome.profilephoto.util.extensions.getZoomWidth
 import com.dichotome.profileshared.anim.LinearAnimationHelper
 import com.dichotome.profileshared.anim.PlainAnimationHelper
 import com.dichotome.profileshared.anim.SimpleAnimationHelper
 import com.dichotome.profileshared.constants.Constants
+import com.dichotome.profileshared.extensions.isDisplayed
 import com.dichotome.profileshared.views.CircularImageView
+import com.dichotome.profileshared.views.RoundedImageView
 import kotlin.math.ceil
 import kotlin.math.min
 
 class DetachFromFrameAnimationHelper(
-    private val targetView: CircularImageView,
-    private val detachFrom: CircularImageView,
+    private val targetView: RoundedImageView,
+    private val detachFrom: ZoomingImageView,
     timeInterpolator: TimeInterpolator,
     animDuration: Long
 ) : LinearAnimationHelper(targetView, timeInterpolator, animDuration) {
 
     private val init = targetView.cornerRadius
-    override fun evaluate() = (view.isVisible).let { visible ->
+    override fun evaluate() = (view.isDisplayed).let { visible ->
         animateInt(
             "cornerRadius",
             targetView.cornerRadius,
@@ -33,14 +35,14 @@ class DetachFromFrameAnimationHelper(
         )?.apply {
             doOnStart {
                 if (!visible) {
-                    detachFrom.isVisible = false
-                    view.isVisible = true
+                    detachFrom.isDisplayed = false
+                    view.isDisplayed = true
                 }
             }
             doOnEnd {
                 if (visible && targetView.cornerRadius == init) {
-                    view.isVisible = false
-                    detachFrom.isVisible = true
+                    view.isDisplayed = false
+                    detachFrom.isDisplayed = true
                 }
             }
             start()
@@ -109,7 +111,7 @@ class ZoomTranslationHelper(
 }
 
 class ZoomCircularRevealHelper(
-    photoView: CircularImageView,
+    photoView: RoundedImageView,
     private val viewToReveal: View,
     private val TimeInterpolator: TimeInterpolator,
     private var startRadius: Int,
@@ -120,7 +122,7 @@ class ZoomCircularRevealHelper(
     private val centerX = (photoView.x + photoView.layoutParams.width.toFloat() / 2).toInt()
     private val centerY = (photoView.y + photoView.layoutParams.height.toFloat() / 2).toInt()
 
-    override fun evaluate() = (!viewToReveal.isVisible).let { visible ->
+    override fun evaluate() = (!viewToReveal.isDisplayed).let { visible ->
 
         val beginRadius = if (visible) startRadius else stopRadius
         val endRadius = if (visible) stopRadius else startRadius
@@ -133,10 +135,10 @@ class ZoomCircularRevealHelper(
             endRadius.toFloat()
         ).apply {
             doOnStart {
-                if (visible) viewToReveal.isVisible = true
+                if (visible) viewToReveal.isDisplayed = true
             }
             doOnEnd {
-                if (!visible) viewToReveal.isVisible = false
+                if (!visible) viewToReveal.isDisplayed = false
             }
             interpolator = TimeInterpolator
             duration = animDuration

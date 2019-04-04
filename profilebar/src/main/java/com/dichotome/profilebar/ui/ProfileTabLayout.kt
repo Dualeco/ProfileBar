@@ -2,7 +2,7 @@ package com.dichotome.profilebar.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.core.view.isVisible
+import com.dichotome.profileshared.extensions.isDisplayed
 import com.google.android.material.tabs.TabLayout
 
 class ProfileTabLayout @JvmOverloads constructor(
@@ -13,6 +13,6 @@ class ProfileTabLayout @JvmOverloads constructor(
     var enabled: Boolean? = null
         set(value) {
             field = value
-            isVisible = value ?: false
+            isDisplayed = value ?: false
         }
 }

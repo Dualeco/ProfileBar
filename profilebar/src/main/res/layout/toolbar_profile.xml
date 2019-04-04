@@ -43,7 +43,7 @@
         app:layout_constraintHeight_percent="0.35"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.dichotome.profileshared.views.CircularImageView
+        <com.dichotome.profilephoto.ui.ZoomingImageView
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

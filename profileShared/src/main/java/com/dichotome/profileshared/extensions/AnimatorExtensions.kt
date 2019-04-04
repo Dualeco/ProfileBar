@@ -21,12 +21,16 @@ fun <H : AnimationHelper> H.addTo(collection: MutableCollection<in H>) = apply {
 }
 
 fun Collection<AnimationHelper>.evaluateAll() = forEach {
-    it.cancel()
+    it.end()
     when (it) {
         is SimpleAnimationHelper -> it.evaluate()
         is LinearAnimationHelper -> it.evaluate()
         is PlainAnimationHelper -> it.evaluateXY()
     }
+}
+
+fun Collection<AnimationHelper?>.endAll() = forEach {
+    it?.end()
 }
 
 fun Collection<AnimationHelper?>.cancelAll() = forEach {

@@ -65,3 +65,12 @@ fun View.showKeyboard() {
     imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 
 }
+
+var View.isDisplayed : Boolean
+    get() = visibility == View.VISIBLE
+    set(value) {
+        visibility = if (value)
+            View.VISIBLE
+        else
+            View.INVISIBLE
+    }

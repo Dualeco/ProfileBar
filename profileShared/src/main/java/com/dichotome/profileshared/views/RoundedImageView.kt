@@ -5,12 +5,12 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.dichotome.profileshared.R
+import kotlin.math.min
 
 open class RoundedImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = 0,
-    private val round: Boolean = false
+    defStyle: Int = 0
 ) :
     ImageView(context, attrs, defStyle) {
 
@@ -20,6 +20,23 @@ open class RoundedImageView @JvmOverloads constructor(
         background = GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             cornerRadius = extractCornerRadius(context, attrs)
+        }
+    }
+
+    var isSquare = false
+    var isCircular = false
+        set(value) {
+            field = value
+            if (value) isSquare = value
+        }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+        val dimension = min(measuredWidth, measuredHeight)
+        when {
+            isCircular -> cornerRadius = dimension / 2
+            isSquare -> setMeasuredDimension(dimension, dimension)
         }
     }
 

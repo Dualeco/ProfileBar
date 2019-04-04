@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams.MATCH_PARENT
-import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.request.RequestOptions
@@ -43,8 +42,8 @@ open class ProfileToolbar @JvmOverloads constructor(
     final override var isOwnProfile: Boolean = false
         set(value) {
             field = value
-            optionButton.isVisible = value
-            followButton.isVisible = !value
+            optionButton.isDisplayed = value
+            followButton.isDisplayed = !value
         }
 
     final override var isFollowed: Boolean = false
@@ -61,7 +60,7 @@ open class ProfileToolbar @JvmOverloads constructor(
     final override var isTitleEditable: Boolean = false
         set(value) {
             field = value
-            editTitle.isVisible = value
+            editTitle.isDisplayed = value
             titleTV.visibility = if (value) View.INVISIBLE else View.VISIBLE
 
             if (field) editTitle.apply {

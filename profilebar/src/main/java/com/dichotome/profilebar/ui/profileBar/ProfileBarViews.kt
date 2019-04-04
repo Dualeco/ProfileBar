@@ -10,8 +10,8 @@ interface ProfileBarViews {
     val wallpaperImage: ImageView
     val dimView: View
     val bottomGlowView: View
-    val photoImage: CircularImageView
-    val photoFrameBackground: CircularImageView
+    val photoImage: ImageView
+    val photoFrameBackground: ImageView
     val photoFrame: FrameLayout
     val titleTV: TextView
     val editTitle: EditText

@@ -43,7 +43,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
     final override val photoImage: ZoomingImageView = ZoomingImageView(context).apply {
         id = R.id.photo
         adjustViewBounds = true
-        makeCircular()
+        isCircular = true
     }
 
     final override val photoFrameBackground: CircularImageView = CircularImageView(context).apply {

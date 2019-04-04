@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import androidx.core.view.isVisible
 import com.dichotome.profilephoto.R
 import com.dichotome.profilephoto.anim.*
 import com.dichotome.profilephoto.util.extensions.copyForOverlay
@@ -17,29 +16,25 @@ import com.dichotome.profilephoto.util.extensions.setInCenter
 import com.dichotome.profilephoto.util.extensions.setOnBackButtonClicked
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.constants.Constants
-import com.dichotome.profileshared.extensions.addTo
-import com.dichotome.profileshared.extensions.cancelAll
-import com.dichotome.profileshared.extensions.col
-import com.dichotome.profileshared.extensions.evaluateAll
+import com.dichotome.profileshared.extensions.*
 import com.dichotome.profileshared.gestureListeners.SwipeUpListener
-import com.dichotome.profileshared.views.CircularImageView
+import com.dichotome.profileshared.views.RoundedImageView
 import kotlin.math.max
 
 class ZoomingImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
-) : CircularImageView(context, attrs, defStyle) {
+) : RoundedImageView(context, attrs, defStyle) {
 
     companion object {
-        const val TAG = "ZoomingImageView"
 
         const val DURATION_ZOOM = 200L
-        private const val DURATION_CORNERS = 250L
+        private const val DURATION_CORNERS = 220L
 
         private const val SUPER_STATE = "superState"
         private const val PHOTO_WIDTH = "photoWidth"
-        private const val PHOTO_HEIGHT = "photoWidth"
+        private const val PHOTO_HEIGHT = "photoHeight"
         private const val IS_ZOOMING_PHOTO_VISIBLE = "isZoomingPhotoVisible"
         private const val IS_PHOTO_VIEW_VISIBLE = "isPhotoViewVisible"
         private const val OVERLAY_ALPHA = "overlayAlpha"
@@ -63,15 +58,26 @@ class ZoomingImageView @JvmOverloads constructor(
         if (wasViewRestored) restorePhoto()
 
         onZoomListener?.invoke(this)
+        zoomAnimators.endAll()
         zoomAnimators.evaluateAll()
     }
 
-    private var swipeUpDetector = GestureDetector(context, SwipeUpListener(this) {
-        onZoom()
-    })
+    private fun zoomOut() {
+        if (isZoomed) {
+            isZoomed = false
+            onZoom()
+        }
+    }
 
-    private var zoomablePhoto = CircularImageView(context).apply {
-        isVisible = false
+    private fun zoomIn() {
+        if (!isZoomed) {
+            isZoomed = true
+            onZoom()
+        }
+    }
+
+    private var zoomablePhoto: RoundedImageView = RoundedImageView(context).apply {
+        isDisplayed = false
         layoutParams = FrameLayout.LayoutParams(0, 0)
         setOnTouchListener { _, event ->
             swipeUpDetector.onTouchEvent(event)
@@ -79,9 +85,15 @@ class ZoomingImageView @JvmOverloads constructor(
         }
     }
 
+    private var isZoomed = false
+
+    private var swipeUpDetector = GestureDetector(context, SwipeUpListener(this) {
+        zoomOut()
+    })
+
     private val overlayBackgroundDark = View(context).apply {
         alpha = 0f
-        isVisible = false
+        isDisplayed = false
         layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
             FrameLayout.LayoutParams.MATCH_PARENT
@@ -93,7 +105,7 @@ class ZoomingImageView @JvmOverloads constructor(
         }
     }
 
-    private fun isOverlayVisible() = overlayBackgroundDark.isVisible
+    private fun isOverlayVisible() = overlayBackgroundDark.isDisplayed
 
     private var zoomOverlayView = FrameLayout(context).apply {
         layoutParams = FrameLayout.LayoutParams(
@@ -121,8 +133,8 @@ class ZoomingImageView @JvmOverloads constructor(
 
     private var wasViewRestored = false
 
-    private fun isPhotoImageUpToDate(image: CircularImageView?) = image?.let {
-        val currentPhoto = CircularImageView(context)
+    private fun isPhotoImageUpToDate(image: RoundedImageView?) = image?.let {
+        val currentPhoto = RoundedImageView(context)
             .copyForOverlay(this)
 
         Math.abs(image.y - currentPhoto.y) < 10
@@ -166,6 +178,8 @@ class ZoomingImageView @JvmOverloads constructor(
                 DURATION_ZOOM
             ).addTo(zoomAnimators)
 
+
+            //
             revealOnClick = ZoomCircularRevealHelper(
                 it,
                 overlayBackgroundDark,
@@ -179,13 +193,11 @@ class ZoomingImageView @JvmOverloads constructor(
         }
     }
 
-    override fun makeCircular() = also { super.makeCircular() }
-
     init {
         setOnClickListener {
             wasViewRestored = false
             initPhoto()
-            onZoom()
+            zoomIn()
         }
     }
 
@@ -197,11 +209,11 @@ class ZoomingImageView @JvmOverloads constructor(
                 putInt(PHOTO_WIDTH, width)
                 putInt(PHOTO_HEIGHT, height)
             }
-            putBoolean(IS_ZOOMING_PHOTO_VISIBLE, isVisible)
+            putBoolean(IS_ZOOMING_PHOTO_VISIBLE, isDisplayed)
             putFloat(SCALE, scaleX)
         }
 
-        putBoolean(IS_PHOTO_VIEW_VISIBLE, isVisible)
+        putBoolean(IS_PHOTO_VIEW_VISIBLE, isDisplayed)
 
         overlayBackgroundDark.apply {
             putFloat(OVERLAY_ALPHA, alpha)
@@ -212,7 +224,7 @@ class ZoomingImageView @JvmOverloads constructor(
         val superState = state?.let {
             it as Bundle
             overlayBackgroundDark.apply {
-                isVisible = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
+                isDisplayed = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
                 alpha = it.getFloat(OVERLAY_ALPHA)
             }
 
@@ -221,7 +233,7 @@ class ZoomingImageView @JvmOverloads constructor(
                     width = it.getInt(PHOTO_WIDTH)
                     height = it.getInt(PHOTO_HEIGHT)
                 }
-                isVisible = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
+                isDisplayed = it.getBoolean(IS_ZOOMING_PHOTO_VISIBLE)
                 scaleX = it.getFloat(SCALE)
                 scaleY = it.getFloat(SCALE)
 
@@ -243,7 +255,7 @@ class ZoomingImageView @JvmOverloads constructor(
             rootView.findViewById<FrameLayout>(android.R.id.content).apply {
                 addView(zoomOverlayView)
                 setOnBackButtonClicked(::isOverlayVisible) {
-                    onZoom()
+                    zoomIn()
                 }
                 isOverlayAttached = true
             }

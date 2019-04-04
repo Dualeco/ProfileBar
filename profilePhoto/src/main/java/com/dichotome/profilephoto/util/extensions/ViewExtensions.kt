@@ -4,6 +4,7 @@ import android.view.KeyEvent
 import android.view.View
 import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.views.CircularImageView
+import com.dichotome.profileshared.views.RoundedImageView
 import kotlin.math.ceil
 
 
@@ -30,10 +31,10 @@ fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit)
     }
 }
 
-fun CircularImageView.copyForOverlay(imageView: CircularImageView) = apply {
+fun RoundedImageView.copyForOverlay(imageView: RoundedImageView) = apply {
     cornerRadius = imageView.cornerRadius
     adjustViewBounds = true
-    layoutParams = android.widget.FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredWidth)
+    layoutParams = android.widget.FrameLayout.LayoutParams(imageView.measuredWidth, imageView.measuredHeight)
 
     val coords = android.graphics.Rect()
     imageView.getGlobalVisibleRect(coords)

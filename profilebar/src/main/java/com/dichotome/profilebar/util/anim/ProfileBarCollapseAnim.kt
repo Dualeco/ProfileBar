@@ -7,9 +7,9 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.core.util.Pair
-import androidx.core.view.isVisible
 import com.dichotome.profileshared.anim.LinearAnimationHelper
 import com.dichotome.profileshared.anim.PlainAnimationHelper
+import com.dichotome.profileshared.extensions.isDisplayed
 import kotlin.math.max
 
 class HorizontalAnimationHelper(
@@ -65,7 +65,7 @@ class SmoothAlphaAnimationHelper(
     target: View,
     duration: Long
 ) : LinearAnimationHelper(target, null, duration) {
-    override fun evaluate() = (view.alpha == 1f && view.isVisible).let {
+    override fun evaluate() = (view.alpha == 1f && view.isDisplayed).let {
         animateFloat(
             "alpha",
             if (it) 1f else 0f,

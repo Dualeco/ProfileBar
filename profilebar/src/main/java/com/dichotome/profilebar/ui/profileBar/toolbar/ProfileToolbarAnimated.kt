@@ -4,26 +4,20 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
-import android.util.Log
-import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
-import android.widget.*
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.isVisible
 import androidx.core.view.marginTop
 import com.dichotome.profilebar.R
-import com.dichotome.profilebar.ui.ProfileOptionWindow
-import com.dichotome.profilebar.ui.ProfileTabLayout
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.anim.*
 import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.anim.DecelerateAccelerateInterpolator
 import com.dichotome.profileshared.extensions.addTo
-import com.dichotome.profileshared.extensions.cancelAll
+import com.dichotome.profileshared.extensions.endAll
 import com.dichotome.profileshared.extensions.evaluateAll
-import com.dichotome.profileshared.views.CircularImageView
+import com.dichotome.profileshared.extensions.isDisplayed
 import com.google.android.material.appbar.AppBarLayout
 
 class ProfileToolbarAnimated @JvmOverloads constructor(
@@ -50,18 +44,19 @@ class ProfileToolbarAnimated @JvmOverloads constructor(
 
         private var TRANSITION_THRESHOLD: Float = 0.5f
     }
-    private var wallpaperImageVisible: Boolean = wallpaperImage.isVisible
-    private var dimViewVisible: Boolean = dimView.isVisible
-    private var bottomGlowViewVisible: Boolean = bottomGlowView.isVisible
-    private var photoImageVisible: Boolean = photoImage.isVisible
-    private var photoFrameBackgroundVisible: Boolean = photoFrameBackground.isVisible
-    private var photoFrameVisible: Boolean = photoFrame.isVisible
-    private var titleTvVisible: Boolean = photoFrame.isVisible
-    private var editTitleVisible: Boolean = editTitle.isVisible
-    private var subtitleTvVisible: Boolean = subtitleTV.isVisible
-    private var optionButtonVisible: Boolean = optionButton.isVisible
-    private var followButtonVisible: Boolean = followButton.isVisible
-    private var tabsVisible: Boolean = tabs.isVisible
+
+    private var wallpaperImageVisible: Boolean = wallpaperImage.isDisplayed
+    private var dimViewVisible: Boolean = dimView.isDisplayed
+    private var bottomGlowViewVisible: Boolean = bottomGlowView.isDisplayed
+    private var photoImageVisible: Boolean = photoImage.isDisplayed
+    private var photoFrameBackgroundVisible: Boolean = photoFrameBackground.isDisplayed
+    private var photoFrameVisible: Boolean = photoFrame.isDisplayed
+    private var titleTvVisible: Boolean = photoFrame.isDisplayed
+    private var editTitleVisible: Boolean = editTitle.isDisplayed
+    private var subtitleTvVisible: Boolean = subtitleTV.isDisplayed
+    private var optionButtonVisible: Boolean = optionButton.isDisplayed
+    private var followButtonVisible: Boolean = followButton.isDisplayed
+    private var tabsVisible: Boolean = tabs.isDisplayed
 
     private var lastPosition = 0
     private var toolbarOpen = true
@@ -109,33 +104,33 @@ class ProfileToolbarAnimated @JvmOverloads constructor(
     }
 
     private fun saveVisibility() {
-        wallpaperImageVisible = wallpaperImage.isVisible
-        dimViewVisible = dimView.isVisible
-        bottomGlowViewVisible = bottomGlowView.isVisible
-        photoImageVisible = photoImage.isVisible
-        photoFrameBackgroundVisible = photoFrameBackground.isVisible
-        photoFrameVisible = photoFrame.isVisible
-        titleTvVisible = photoFrame.isVisible
-        editTitleVisible = editTitle.isVisible
-        subtitleTvVisible = subtitleTV.isVisible
-        optionButtonVisible = optionButton.isVisible
-        followButtonVisible = followButton.isVisible
-        tabsVisible = tabs.isVisible
+        wallpaperImageVisible = wallpaperImage.isDisplayed
+        dimViewVisible = dimView.isDisplayed
+        bottomGlowViewVisible = bottomGlowView.isDisplayed
+        photoImageVisible = photoImage.isDisplayed
+        photoFrameBackgroundVisible = photoFrameBackground.isDisplayed
+        photoFrameVisible = photoFrame.isDisplayed
+        titleTvVisible = photoFrame.isDisplayed
+        editTitleVisible = editTitle.isDisplayed
+        subtitleTvVisible = subtitleTV.isDisplayed
+        optionButtonVisible = optionButton.isDisplayed
+        followButtonVisible = followButton.isDisplayed
+        tabsVisible = tabs.isDisplayed
     }
 
     private fun restoreVisibility() {
-        wallpaperImage.isVisible = wallpaperImageVisible
-        dimView.isVisible = dimViewVisible
-        bottomGlowView.isVisible = bottomGlowViewVisible
-        photoImage.isVisible = photoImageVisible
-        photoFrameBackground.isVisible = photoFrameBackgroundVisible
-        photoFrame.isVisible = photoFrameVisible
-        photoFrame.isVisible = titleTvVisible
-        editTitle.isVisible = editTitleVisible
-        subtitleTV.isVisible = subtitleTvVisible
-        optionButton.isVisible = optionButtonVisible
-        followButton.isVisible = followButtonVisible
-        tabs.isVisible = tabsVisible
+        wallpaperImage.isDisplayed = wallpaperImageVisible
+        dimView.isDisplayed = dimViewVisible
+        bottomGlowView.isDisplayed = bottomGlowViewVisible
+        photoImage.isDisplayed = photoImageVisible
+        photoFrameBackground.isDisplayed = photoFrameBackgroundVisible
+        photoFrame.isDisplayed = photoFrameVisible
+        photoFrame.isDisplayed = titleTvVisible
+        editTitle.isDisplayed = editTitleVisible
+        subtitleTV.isDisplayed = subtitleTvVisible
+        optionButton.isDisplayed = optionButtonVisible
+        followButton.isDisplayed = followButtonVisible
+        tabs.isDisplayed = tabsVisible
     }
 
     private fun defineConstraints() =
@@ -340,7 +335,7 @@ class ProfileToolbarAnimated @JvmOverloads constructor(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        collapseAnimators.cancelAll()
-        alphaPhotoFrameBackground.cancel()
+        collapseAnimators.endAll()
+        alphaPhotoFrameBackground.end()
     }
 }
