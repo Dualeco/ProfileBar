@@ -31,11 +31,10 @@ private fun ImageView.glideDownload(obj: Any?, options: RequestOptions?) {
     val requestOptions = RequestOptions()
 
     options?.let {
-        requestOptions.apply {
-            apply(it)
-            format(DecodeFormat.PREFER_RGB_565)
-        }
-
+        requestOptions
+            .apply(it)
+            .placeholder(drawable)
+            .format(DecodeFormat.PREFER_RGB_565)
     }
 
     Glide.with(context)
