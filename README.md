@@ -53,7 +53,7 @@ allprojects {
 
 * Without databinding:
 ```
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.4"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.6.4"
 ```
 
 * With databinding:
@@ -65,8 +65,8 @@ android {
     }
 }
 ...
-implementation "com.github.DichotoMe.ProfileBar:profilebar:1.4"
-implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.4"
+implementation "com.github.DichotoMe.ProfileBar:profilebar:1.6.4"
+implementation "com.github.DichotoMe.ProfileBar:profilebarBinding:1.6.4"
 ```
 
 ### Building a layout
@@ -170,15 +170,14 @@ profileBar.setupWithViewPager(profilePager)
 <com.dichotome.profilebar.ui.profileBar.ProfileBar
     android:id="@+id/profileBar"
     
-    app:photo="@{logic.photo}"
-    app:wallpaper="@{logic.wallpaper}" 
+    app:photoSource="@{logic.photo}" // Any source: drawable, bitmap, url string etc.
+    app:wallpaperSource="@{logic.wallpaper}" // Same
     app:subtitle="@{logic.subtitle}"
     app:title="@{logic.title}" 
     ... />
     
 <com.dichotome.profilebar.ui.tabPager.TabPager 
     android:id="@+id/profilePager"
-    app:fragments="@{logic.pagerFragments}" 
     ... />
 ```
 **See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/res/layout/fragment_profile_with_adapters.xml "XML binding example")**
@@ -186,6 +185,8 @@ profileBar.setupWithViewPager(profilePager)
 *2. In code:*
 ```
 profilePager.adapter = TabAdapter(*your fragment manager*)
+profilePager.fragments = pagerFragments
+
 profileBar.setupWithViewPager(profilePager)
 ```
 **See a full example [here](https://github.com/DichotoMe/ProfileBar/blob/master/app/src/main/java/com/dichotome/profilebarapp/ui/mainBinding/ProfileBindingActivity.kt "Activity binding example")**
