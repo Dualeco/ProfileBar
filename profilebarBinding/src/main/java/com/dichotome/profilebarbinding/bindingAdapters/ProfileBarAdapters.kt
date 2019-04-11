@@ -30,32 +30,17 @@ fun setIsTitleEditable(bar: ProfileBar, isEditable: Boolean?) {
     }
 }
 
-@BindingAdapter("app:photo")
-fun setPhoto(bar: ProfileBar, photo: Drawable?) {
-    photo?.let {
-        bar.photo = it
+@BindingAdapter("app:photoSource")
+fun setPhotoSource(bar: ProfileBar, source: Any?) {
+    source?.let {
+        bar.photoImage.download(source)
     }
 }
 
-@BindingAdapter("app:photoUri")
-fun setPhotoUri(bar: ProfileBar, uri: Uri?) {
-    uri?.let {
-
-        bar.photoImage.download(uri, RequestOptions().override(Constants(bar.context).DISPLAY_WIDTH))
-    }
-}
-
-@BindingAdapter("app:wallpaper")
-fun setWallpaper(bar: ProfileBar, wallpaper: Drawable?) {
-    wallpaper?.let {
-        bar.wallpaper = it
-    }
-}
-
-@BindingAdapter("app:wallpaperUri")
-fun setWallpaperUri(bar: ProfileBar, uri: Uri?) {
-    uri?.let {
-        bar.wallpaperImage.download(uri)
+@BindingAdapter("app:wallpaperSource")
+fun setWallpaperSource(bar: ProfileBar, source: Any?) {
+    source?.let {
+        bar.wallpaperImage.download(source)
     }
 }
 

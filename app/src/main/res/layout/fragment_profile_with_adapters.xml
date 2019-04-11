@@ -22,10 +22,10 @@
             app:isTitleEditable="@{logic.isEditable}"
             app:isOwnProfile="@{logic.isOwn}"
             app:isFollowed="@{logic.isFollowed}"
-            app:photo="@{logic.photo}"
+            app:photoSource="@{logic.photo}"
             app:subtitle="@{logic.subtitle}"
             app:title="@{logic.title}"
-            app:wallpaper="@{logic.wallpaper}"
+            app:wallpaperSource="@{logic.wallpaper}"
             app:onUsernameChangeFinished="@{logic::onUsernameChangeFinished}"/>
 
         <com.dichotome.profilebar.ui.tabPager.TabPager
