@@ -40,11 +40,8 @@ fun setPhoto(bar: ProfileBar, photo: Drawable?) {
 @BindingAdapter("app:photoUri")
 fun setPhotoUri(bar: ProfileBar, uri: Uri?) {
     uri?.let {
-        val profilePicOptions = RequestOptions()
-            .override(Constants(bar.context).DISPLAY_WIDTH)
-            .centerCrop()
 
-        bar.photoImage.download(uri, profilePicOptions)
+        bar.photoImage.download(uri, RequestOptions().override(Constants(bar.context).DISPLAY_WIDTH))
     }
 }
 
@@ -58,10 +55,7 @@ fun setWallpaper(bar: ProfileBar, wallpaper: Drawable?) {
 @BindingAdapter("app:wallpaperUri")
 fun setWallpaperUri(bar: ProfileBar, uri: Uri?) {
     uri?.let {
-        val wallpaperOptions = RequestOptions()
-            .centerCrop()
-
-        bar.wallpaperImage.download(uri, wallpaperOptions)
+        bar.wallpaperImage.download(uri)
     }
 }
 

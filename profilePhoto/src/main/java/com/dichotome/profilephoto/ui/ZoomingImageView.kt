@@ -79,6 +79,8 @@ class ZoomingImageView @JvmOverloads constructor(
 
     private var zoomablePhoto: RoundedImageView = RoundedImageView(context).apply {
         isDisplayed = false
+        isSquare = this@ZoomingImageView.isSquare
+        isCircular = this@ZoomingImageView.isCircular
         layoutParams = FrameLayout.LayoutParams(0, 0)
         setOnTouchListener { _, event ->
             swipeUpDetector.onTouchEvent(event)

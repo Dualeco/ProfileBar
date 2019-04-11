@@ -24,6 +24,11 @@ open class RoundedImageView @JvmOverloads constructor(
     }
 
     var isSquare = false
+        set(value) {
+            field = value
+            if (value)
+                scaleType = ScaleType.CENTER_CROP
+        }
     var isCircular = false
         set(value) {
             field = value
@@ -35,7 +40,10 @@ open class RoundedImageView @JvmOverloads constructor(
 
         val dimension = min(measuredWidth, measuredHeight)
         when {
-            isCircular -> cornerRadius = dimension / 2
+            isCircular -> {
+                cornerRadius = dimension / 2
+                setMeasuredDimension(dimension, dimension)
+            }
             isSquare -> setMeasuredDimension(dimension, dimension)
         }
     }

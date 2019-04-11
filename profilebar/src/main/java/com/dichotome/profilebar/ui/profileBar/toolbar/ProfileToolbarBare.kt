@@ -33,7 +33,7 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
 
     final override val wallpaperImage: ImageView = ImageView(context).apply {
         id = R.id.wallpaper
-        scaleType = ImageView.ScaleType.CENTER
+        scaleType = ImageView.ScaleType.CENTER_CROP
     }
 
     final override val dimView: View = View(context).apply { id = R.id.dim }

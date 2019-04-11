@@ -8,6 +8,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.util.Pair
 import com.dichotome.profilephoto.ui.ZoomingImageView
+import com.dichotome.profilephoto.util.extensions.getStatusBarSize
 import com.dichotome.profilephoto.util.extensions.getZoomHeight
 import com.dichotome.profilephoto.util.extensions.getZoomWidth
 import com.dichotome.profileshared.anim.LinearAnimationHelper
@@ -82,18 +83,19 @@ class ZoomTranslationHelper(
     private var initY = view.y
 
     private val width = view.getZoomWidth()
-    private val height = view.getZoomHeight() - Constants(view.context).STATUS_BAR_SIZE
+    private val height = view.getZoomHeight() - view.getStatusBarSize()
 
-    private val dimension = view.layoutParams.width
+    private val dimensionX = view.layoutParams.width
+    private val dimensionY = view.layoutParams.height
 
     override fun evaluateXY() = (view.scaleX == 1f).let {
         val direction = if (it) 1 else -1
 
-        val viewCenterEndX = if (it) width / 2f else view.x + dimension / 2f
-        val viewCenterEndY = if (it) height / 2f else view.y + dimension / 2f
+        val viewCenterEndX = if (it) width / 2f else view.x + dimensionX / 2f
+        val viewCenterEndY = if (it) height / 2f else view.y + dimensionY / 2f
 
-        val offsetX = viewCenterEndX - initX - dimension / 2
-        val offsetY = viewCenterEndY - initY - dimension / 2
+        val offsetX = viewCenterEndX - initX - dimensionX / 2
+        val offsetY = viewCenterEndY - initY - dimensionY / 2
 
         Pair(
             animateFloat(
