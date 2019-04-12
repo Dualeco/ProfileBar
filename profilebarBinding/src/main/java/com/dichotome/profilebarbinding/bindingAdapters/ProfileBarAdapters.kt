@@ -33,7 +33,8 @@ fun setIsTitleEditable(bar: ProfileBar, isEditable: Boolean?) {
 @BindingAdapter("app:photoSource")
 fun setPhotoSource(bar: ProfileBar, source: Any?) {
     source?.let {
-        bar.photoImage.download(source)
+        bar.photoImage.download(source, RequestOptions()
+            .override(Constants(bar.context).DISPLAY_WIDTH))
     }
 }
 
@@ -76,7 +77,7 @@ fun setEnableTabs(bar: ProfileBar, enable: Boolean?) {
     }
 }
 
-@BindingAdapter("app:barScrollFlags")
+@BindingAdapter("app:scrollFlags")
 fun setScrollFlags(bar: ProfileBar, flags: Int?) {
     flags?.let {
         bar.setScrollFlags(flags)

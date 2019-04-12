@@ -74,8 +74,6 @@ open class ProfileToolbar @JvmOverloads constructor(
             }
         }
 
-    private val photoImageOptions = RequestOptions().override(Constants(context).DISPLAY_WIDTH)
-
     override var tabsEnabled: Boolean = false
         set(value) {
             field = value
@@ -106,6 +104,7 @@ open class ProfileToolbar @JvmOverloads constructor(
             wallpaperImage.download(field)
         }
 
+    private val photoImageOptions = RequestOptions().override(Constants(context).DISPLAY_WIDTH)
     override var photo: Drawable? = null
         set(value) {
             field = value
@@ -233,17 +232,16 @@ open class ProfileToolbar @JvmOverloads constructor(
     }
 
     init {
-        photoImage.download(DEFAULT_PHOTO_ID, photoImageOptions)
-        wallpaperImage.download(DEFAULT_WALLPAPER_ID)
-
         dimView.background = dimDrawable
         bottomGlowView.background = bottomGlowDrawable
 
         photoImage.apply {
+            setImageResource(DEFAULT_PHOTO_ID)
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT).apply {
                 setMargins(dpToPx(DEFAULT_FRAME_THICKNESS_DP))
             }
         }
+        wallpaperImage.setImageResource(DEFAULT_WALLPAPER_ID)
         photoFrameBackground.setImageDrawable(photoFrameDrawable)
 
         titleTV.apply {
