@@ -224,7 +224,6 @@ open class ProfileToolbar @JvmOverloads constructor(
 
     final override fun setOnFollowed(action: () -> Unit) {
         followButton.setOnClickListener {
-            isFollowed = !isFollowed
             action()
         }
     }
