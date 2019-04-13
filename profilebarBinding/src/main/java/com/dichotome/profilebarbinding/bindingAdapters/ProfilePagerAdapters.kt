@@ -1,12 +1,11 @@
 package com.dichotome.profilebarbinding.bindingAdapters
 
 import androidx.databinding.BindingAdapter
-import com.dichotome.profilebar.ui.tabPager.TabPager
-import com.dichotome.profilebar.ui.tabPager.TabFragment
+import androidx.viewpager.widget.ViewPager
 
-@BindingAdapter("app:fragments")
-fun setFragments(tabPager: TabPager, fragments: List<TabFragment>?) {
-    fragments?.let {
-        tabPager.fragments = fragments
+@BindingAdapter("app:offscreenPageLimit")
+fun setOffscreenPageLimit(viewPager: ViewPager, pages: Int?) {
+    pages?.let {
+        viewPager.offscreenPageLimit = pages
     }
 }

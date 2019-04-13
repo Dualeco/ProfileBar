@@ -246,7 +246,7 @@ class ZoomingImageView @JvmOverloads constructor(
             rootView.findViewById<FrameLayout>(android.R.id.content).apply {
                 addView(zoomOverlayView)
                 setOnBackButtonClicked(::isOverlayVisible) {
-                    zoomIn()
+                    zoomOut()
                 }
                 isOverlayAttached = true
             }

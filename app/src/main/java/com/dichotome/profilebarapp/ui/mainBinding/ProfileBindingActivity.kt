@@ -19,6 +19,7 @@ class ProfileBindingActivity : AppCompatActivity() {
         createBinding()
 
         profilePager.adapter = TabPagerAdapter(supportFragmentManager)
+        profilePager.fragments = provideLogic().pagerFragments
         profileBar.setupWithViewPager(profilePager)
     }
 
