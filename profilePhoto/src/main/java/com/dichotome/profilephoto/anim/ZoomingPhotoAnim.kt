@@ -1,22 +1,18 @@
 package com.dichotome.profilephoto.anim
 
 import android.animation.TimeInterpolator
-import android.util.Log
 import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.util.Pair
 import com.dichotome.profilephoto.ui.ZoomingImageView
-import com.dichotome.profilephoto.util.extensions.getStatusBarSize
 import com.dichotome.profilephoto.util.extensions.getZoomHeight
 import com.dichotome.profilephoto.util.extensions.getZoomWidth
 import com.dichotome.profileshared.anim.LinearAnimationHelper
 import com.dichotome.profileshared.anim.PlainAnimationHelper
 import com.dichotome.profileshared.anim.SimpleAnimationHelper
-import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.extensions.isDisplayed
-import com.dichotome.profileshared.views.CircularImageView
 import com.dichotome.profileshared.views.RoundedImageView
 import kotlin.math.ceil
 import kotlin.math.min
@@ -83,7 +79,7 @@ class ZoomTranslationHelper(
     private var initY = view.y
 
     private val width = view.getZoomWidth()
-    private val height = view.getZoomHeight() - view.getStatusBarSize()
+    private val height = view.getZoomHeight()
 
     private val dimensionX = view.layoutParams.width
     private val dimensionY = view.layoutParams.height

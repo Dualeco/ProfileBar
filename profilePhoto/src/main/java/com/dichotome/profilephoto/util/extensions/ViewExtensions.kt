@@ -11,8 +11,6 @@ import kotlin.math.ceil
 fun View.getZoomWidth() = Constants(context).DISPLAY_WIDTH
 fun View.getZoomHeight() = Constants(context).DISPLAY_HEIGHT
 
-fun View.getStatusBarSize() = Constants(context).STATUS_BAR_SIZE
-
 
 fun View.getViewCenteredX() = ceil((getZoomWidth() - layoutParams.width) / 2f)
 fun View.getViewCenteredY() = ceil((getZoomHeight() - layoutParams.height) / 2f)
@@ -39,11 +37,11 @@ fun RoundedImageView.copyForOverlay(imageView: RoundedImageView) = apply {
         imageView.measuredWidth,
         imageView.measuredHeight
     )
-    val coords = android.graphics.Rect()
-    imageView.getGlobalVisibleRect(coords)
+    val coords = IntArray(2)
+    imageView.getLocationInWindow(coords)
 
-    x = coords.left.toFloat()
-    y = coords.top.toFloat() - Constants(context).STATUS_BAR_SIZE
+    x = coords[0].toFloat()
+    y = coords[1].toFloat()
 
     setImageDrawable(imageView.drawable)
 }

@@ -181,8 +181,6 @@ class ZoomingImageView @JvmOverloads constructor(
                 DURATION_ZOOM
             ).addTo(zoomAnimators)
 
-
-            //
             revealOnClick = ZoomCircularRevealHelper(
                 it,
                 overlayBackgroundDark,

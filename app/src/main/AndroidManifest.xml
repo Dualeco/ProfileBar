@@ -11,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.dichotome.profilebarapp.ui.main.ProfileActivity">
-        </activity>
-        <activity android:name="com.dichotome.profilebarapp.ui.mainBinding.ProfileBindingActivity">
+        <activity android:name="com.dichotome.profilebarapp.ui.main.ProfileActivity"></activity>
+        <activity
+            android:name="com.dichotome.profilebarapp.ui.mainBinding.ProfileBindingActivity"
+            android:theme="@style/AppTheme.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
