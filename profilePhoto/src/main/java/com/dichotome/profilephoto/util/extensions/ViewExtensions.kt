@@ -1,9 +1,9 @@
 package com.dichotome.profilephoto.util.extensions
 
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import com.dichotome.profileshared.constants.Constants
-import com.dichotome.profileshared.views.CircularImageView
 import com.dichotome.profileshared.views.RoundedImageView
 import kotlin.math.ceil
 
@@ -22,12 +22,12 @@ fun View.setInCenter() {
     y = getViewCenteredY()
 }
 
-fun View.setOnBackButtonClicked(condition: () -> Boolean, onClicked: () -> Unit) {
+fun View.setOnBackButtonClick(condition: () -> Boolean, onClick: () -> Unit) {
     isFocusableInTouchMode = true
     requestFocus()
     setOnKeyListener { _, keyCode, event ->
         if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK && condition()) {
-            onClicked()
+            onClick()
             true
         } else false
     }

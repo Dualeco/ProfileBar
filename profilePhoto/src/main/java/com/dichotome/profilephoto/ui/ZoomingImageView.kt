@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.GestureDetector
 import android.view.Gravity
 import android.view.View
@@ -14,7 +15,7 @@ import com.dichotome.profilephoto.R
 import com.dichotome.profilephoto.anim.*
 import com.dichotome.profilephoto.util.extensions.copyForOverlay
 import com.dichotome.profilephoto.util.extensions.setInCenter
-import com.dichotome.profilephoto.util.extensions.setOnBackButtonClicked
+import com.dichotome.profilephoto.util.extensions.setOnBackButtonClick
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.constants.Constants
 import com.dichotome.profileshared.extensions.*
@@ -63,14 +64,14 @@ class ZoomingImageView @JvmOverloads constructor(
         zoomAnimators.evaluateAll()
     }
 
-    private fun zoomOut() {
+    fun zoomOut() {
         if (isZoomed) {
             isZoomed = false
             onZoom()
         }
     }
 
-    private fun zoomIn() {
+    fun zoomIn() {
         if (!isZoomed) {
             isZoomed = true
             onZoom()
@@ -88,7 +89,7 @@ class ZoomingImageView @JvmOverloads constructor(
         }
     }
 
-    private var isZoomed = false
+    var isZoomed = false
 
     private var swipeUpDetector = GestureDetector(context, SwipeUpListener(this) {
         zoomOut()
@@ -146,7 +147,6 @@ class ZoomingImageView @JvmOverloads constructor(
     private fun initPhoto() = zoomablePhoto.let {
         if (!isPhotoImageUpToDate(it)) {
             it.copyForOverlay(this)
-
             initZoom()
         }
     }
@@ -242,14 +242,15 @@ class ZoomingImageView @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 
-        if (!isOverlayAttached)
-            rootView.findViewById<FrameLayout>(android.R.id.content).apply {
-                addView(zoomOverlayView)
-                setOnBackButtonClicked(::isOverlayVisible) {
-                    zoomOut()
+        if (!isOverlayAttached) {
+            rootView.apply {
+                setOnBackButtonClick(::isOverlayVisible) { zoomOut() }
+                findViewById<FrameLayout>(android.R.id.content).apply {
+                    addView(zoomOverlayView)
+                    isOverlayAttached = true
                 }
-                isOverlayAttached = true
             }
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

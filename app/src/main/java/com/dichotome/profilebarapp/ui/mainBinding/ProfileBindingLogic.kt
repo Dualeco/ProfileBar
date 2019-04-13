@@ -19,7 +19,7 @@ class ProfileBindingLogic : ViewModel() {
         SubscriptionsTabBindingFragment.newInstance("Subscriptions"),
         FavouritesTabFragment.newInstance("Favourites")
     )
-    val isEditable: Boolean = true
+    val isEditable: Boolean = false
     val isOwn = true
     val isFollowed = true
 
