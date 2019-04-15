@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.*
 import com.dichotome.profilebar.ui.ProfileOptionWindow
 import com.dichotome.profilebar.ui.ProfileTabLayout
-import com.dichotome.profileshared.views.CircularImageView
 
 interface ProfileBarViews {
     val wallpaperImage: ImageView

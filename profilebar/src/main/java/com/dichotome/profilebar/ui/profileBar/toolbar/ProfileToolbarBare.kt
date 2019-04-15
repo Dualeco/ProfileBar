@@ -17,11 +17,11 @@ import com.dichotome.profilebar.ui.ProfileOptionWindow
 import com.dichotome.profilebar.ui.ProfileTabLayout
 import com.dichotome.profilebar.ui.profileBar.ProfileBarViews
 import com.dichotome.profilebar.util.extensions.addViews
-import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.extensions.dpToPx
 import com.dichotome.profileshared.extensions.drw
 import com.dichotome.profileshared.extensions.hideKeyboard
-import com.dichotome.profileshared.views.CircularImageView
+import com.dichotome.roundedimageview.RoundedImageView
+import com.dichotome.zoomingimageview.ZoomingImageView
 
 abstract class ProfileToolbarBare @JvmOverloads constructor(
     context: Context,
@@ -46,9 +46,10 @@ abstract class ProfileToolbarBare @JvmOverloads constructor(
         isCircular = true
     }
 
-    final override val photoFrameBackground: CircularImageView = CircularImageView(context).apply {
+    final override val photoFrameBackground: RoundedImageView = RoundedImageView(context).apply {
         id = R.id.photo_frame_background
         adjustViewBounds = true
+        isCircular = true
     }
 
     final override val photoFrame: FrameLayout = FrameLayout(context).apply {

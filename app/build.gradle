@@ -49,6 +49,4 @@ dependencies {
     //ProfileBar
     implementation project(path: ':profilebar')
     implementation project(path: ':profilebarBinding')
-
-    implementation project(path: ':profilePhoto')
 }

@@ -11,13 +11,13 @@ import androidx.core.view.marginTop
 import com.dichotome.profilebar.R
 import com.dichotome.profilebar.ui.profileBar.ProfileBar
 import com.dichotome.profilebar.util.anim.*
-import com.dichotome.profilephoto.ui.ZoomingImageView
 import com.dichotome.profileshared.anim.AnimationHelper
 import com.dichotome.profileshared.anim.DecelerateAccelerateInterpolator
 import com.dichotome.profileshared.extensions.addTo
 import com.dichotome.profileshared.extensions.endAll
 import com.dichotome.profileshared.extensions.evaluateAll
 import com.dichotome.profileshared.extensions.isDisplayed
+import com.dichotome.zoomingimageview.ZoomingImageView
 import com.google.android.material.appbar.AppBarLayout
 
 class ProfileToolbarAnimated @JvmOverloads constructor(

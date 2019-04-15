@@ -44,8 +44,8 @@ dependencies {
     //Components
     implementation project(path: ':profileShared')
 
-    //ProfileBar
-    implementation project(path: ':profilePhoto')
+    implementation 'com.github.DichotoMe:RoundedImageView:1.2'
+    implementation 'com.github.DichotoMe:ZoomingImageView:1.1'
 }
 repositories {
     mavenCentral()

@@ -33,10 +33,6 @@ fun Context.getNavBarHeight(): Int {
     } else 0
 }
 
-fun <T> T.addTo(collection: MutableCollection<T>): T {
-    collection.add(this)
-    return this
-}
 
 fun View.setViewAndChildrenEnabled(enabled: Boolean) {
     isEnabled = enabled
