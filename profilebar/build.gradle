@@ -44,8 +44,11 @@ dependencies {
     //Components
     implementation project(path: ':profileShared')
 
-    implementation 'com.github.DichotoMe:RoundedImageView:1.2'
-    implementation 'com.github.DichotoMe:ZoomingImageView:1.1'
+    //RoundedImageView
+    implementation "com.github.DichotoMe:RoundedImageView:$rounded_image_view"
+
+    //ZoomingImageView
+    implementation "com.github.DichotoMe:ZoomingImageView:$zooming_image_view"
 }
 repositories {
     mavenCentral()

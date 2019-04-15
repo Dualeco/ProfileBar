@@ -37,7 +37,8 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
-    implementation 'com.github.DichotoMe:RoundedImageView:1.2'
+    //RoundedImageView
+    implementation "com.github.DichotoMe:RoundedImageView:$rounded_image_view"
 }
 repositories {
     mavenCentral()

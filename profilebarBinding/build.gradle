@@ -44,7 +44,9 @@ dependencies {
 
     //ProfileBar
     implementation project(path: ':profilebar')
-    implementation 'com.github.DichotoMe:RoundedImageView:1.2'
+
+    //RoundedImageView
+    implementation "com.github.DichotoMe:RoundedImageView:$rounded_image_view"
 }
 repositories {
     mavenCentral()
